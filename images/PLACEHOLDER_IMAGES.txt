@@ -1,0 +1,28 @@
+IMPORTANT INSTRUCTIONS FOR ADDING IMAGES
+
+The images are not appearing because you need to add actual image files to this directory.
+The website is looking for the following image files:
+
+1. hero-bg.jpg - This is the background image for the hero section
+   - This should be a high-quality landscape image of your barbershop or a barber scene
+   - Recommended size: 1920 x 1080 pixels
+
+2. barber-portrait.jpg - This is the image of the barber for the About section
+   - This should be a professional photo of you or the barber
+   - Recommended size: 600 x 800 pixels
+
+3. Gallery images - For the gallery section
+   - Create 6 images named gallery-1.jpg, gallery-2.jpg, etc.
+   - These should be photos of haircuts you've done
+   - Recommended size: 600 x 600 pixels
+
+HOW TO ADD IMAGES:
+1. Find the images you want to use
+2. Rename them to match the names above (hero-bg.jpg, barber-portrait.jpg, etc.)
+3. Copy them to this "images" folder
+4. Replace any existing placeholder files
+
+Once you've added these image files, they will automatically appear on your website.
+
+NOTE: If you see a "broken image" icon on the website, it means the image file is missing
+or has the wrong name. Make sure the file names exactly match what's listed above. 

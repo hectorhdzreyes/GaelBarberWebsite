@@ -1,0 +1,1609 @@
+/* Root Variables - Global CSS custom properties for consistent theming */
+:root {
+    --primary-color: #000000;    /* Main brand color - black */
+    --secondary-color: #ffffff;   /* Secondary color - white */
+    --light-color: #ffffff;       /* Light elements color */
+    --dark-color: #000000;        /* Dark elements color */
+    --gray-color: #f0f0f0;        /* Neutral gray for backgrounds */
+    --transition: all 0.3s ease;  /* Default transition timing */
+    --border-radius: 0px;         /* Default border radius */
+    --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);  /* Default shadow effect */
+}
+
+/* Custom Scissors Cursor */
+body, html, *, *::before, *::after, div, section, img, .hero, .about, .services, .pricing, .gallery, .contact {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="8" cy="8" r="4" fill="%23333" stroke="%23FFF" stroke-width="1"/><circle cx="8" cy="24" r="4" fill="%23333" stroke="%23FFF" stroke-width="1"/><path d="M11 8L30 26" stroke="%23FFF" stroke-width="2.5"/><path d="M11 24L30 6" stroke="%23FFF" stroke-width="2.5"/></svg>') 8 8, crosshair !important;
+}
+
+/* For clickable elements - keep pointer cursor */
+a, button, .nav-item, .book-now-btn, .cal-trigger-item, input[type="submit"], 
+.mobile-menu-btn, .close-modal {
+    cursor: pointer !important;
+}
+
+/* Reset and Base Styles */
+* {
+    margin: 0;                    /* Remove default margin */
+    padding: 0;                   /* Remove default padding */
+    box-sizing: border-box;       /* Include padding in element width */
+}
+
+html {
+    scroll-behavior: smooth;      
+    background-color: #000;       
+    scroll-padding-top: 120px; /* Increased offset for fixed header height */
+}
+
+body {
+    font-family: 'Libre Baskerville', serif;  /* Set primary font */
+    line-height: 1.6;            /* Set comfortable line height */
+    color: var(--dark-color);    /* Set text color to dark */
+    background-color: #000;       /* Set black background */
+    overflow-x: hidden;          /* Prevent horizontal scrolling */
+    overflow-y: auto;            /* Allow vertical scrolling */
+    height: auto;                /* Allow content to determine height */
+    transition: opacity 0.4s ease-in-out;  /* Smooth opacity transitions */
+}
+
+/* Typography Styles */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Libre Baskerville', serif;  /* Consistent heading font */
+    line-height: 1.2;            /* Tighter line height for headings */
+    margin-bottom: 0.75rem;      /* Space below headings */
+    text-transform: uppercase;   /* All caps for headings */
+    letter-spacing: 1px;         /* Slight letter spacing */
+}
+
+h1 {
+    margin-bottom: 2rem;         /* More space below h1 */
+    font-size: 5rem;             /* Large size for main heading */
+    letter-spacing: 3px;         /* Wider letter spacing */
+    font-weight: 200;            /* Light weight for elegance */
+    color: rgba(255, 255, 255, 0.9);  /* Slightly transparent white */
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);  /* Subtle text shadow */
+}
+
+h1:hover {
+    color: rgba(255, 255, 255, 1);  /* Full opacity on hover */
+}
+
+h2 {
+    font-size: 2.5rem;           /* Large but smaller than h1 */
+    font-weight: 700;            /* Bold weight for emphasis */
+    letter-spacing: 2px;         /* Wider letter spacing */
+    position: relative;          /* For pseudo-element positioning */
+    display: inline-block;       /* Allow width to fit content */
+}
+
+h2:after {
+    content: "";                 /* Required for pseudo-element */
+    position: absolute;          /* Position relative to h2 */
+    bottom: -10px;              /* Space below text */
+    left: 50%;                  /* Center horizontally */
+    transform: translateX(-50%); /* Perfect centering */
+    width: 50px;                /* Line width */
+    height: 1px;                /* Line thickness */
+    background-color: var(--dark-color);  /* Line color */
+}
+
+h3 {
+    font-size: 2.5rem;          /* Same size as h2 for hierarchy */
+    font-weight: 700;           /* Bold weight */
+}
+
+p {
+    margin-bottom: 1rem;        /* Space below paragraphs */
+    font-weight: 300;           /* Light weight for readability */
+    letter-spacing: 0.5px;      /* Slight letter spacing */
+}
+
+/* Link Styles */
+a {
+    text-decoration: none;       /* Remove underline */
+    color: var(--dark-color);   /* Default link color */
+    transition: var(--transition);  /* Smooth color changes */
+}
+
+a:hover {
+    color: var(--primary-color);  /* Change color on hover */
+    opacity: 0.8;                /* Slightly fade on hover */
+}
+
+/* Image Styles */
+img {
+    width: 100%;                /* Full width of container */
+    display: block;             /* Remove inline spacing */
+}
+
+/* List Styles */
+ul {
+    list-style-type: none;      /* Remove bullet points */
+}
+
+/* Container Styles */
+.container {
+    width: 90%;                 /* Responsive width */
+    max-width: 1200px;          /* Maximum width */
+    margin: 0 auto;             /* Center horizontally */
+    padding: 0 1rem;            /* Horizontal padding */
+}
+
+/* Button Styles */
+.book-now-btn, .submit-btn {
+    display: inline-block;       /* Allow buttons to sit inline */
+    background-color: transparent;  /* Transparent background */
+    color: var(--light-color);   /* White text */
+    padding: 0.75rem 1.5rem;     /* Comfortable padding */
+    border: 5px solid rgb(255, 255, 255);  /* Semi-transparent border */
+    border-radius: var(--border-radius);  /* Use global border radius */
+    cursor: pointer;             /* Hand cursor on hover */
+    font-weight: 500;            /* Medium font weight */
+    letter-spacing: 2px;         /* Wide letter spacing */
+    transition: var(--transition);  /* Smooth transitions */    
+    text-transform: uppercase;   /* All caps text */
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);  /* Subtle text shadow */
+}
+
+.book-now-btn:hover, .submit-btn:hover {
+    background-color: #000;      /* Black background on hover */
+    opacity: 0.2;               /* Fade effect */
+    transform: translateY(-3px);  /* Slight lift effect */
+}
+
+.hero-btn {
+    margin-top: 1rem;           /* Space above button */
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.9rem;          /* Slightly smaller text */
+    letter-spacing: 0px;        /* No letter spacing */
+    padding: 1rem 2rem;         /* Comfortable padding */
+    transition: all 0.4s ease;  /* Smooth transitions */
+}
+
+/* UPDATED: Apply effects when hovering the entire hero section */
+.hero:hover .hero-btn, .hero.hover-active .hero-btn {
+    font-family: 'Libre Baskerville', serif;
+    transform: scale(1.05); /* Make bigger */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgb(255, 255, 255); /* Enhanced shadow + white glow */
+    background-color: #fff; /* White background on hover */
+    border-color: #fff;  /* White border on hover */
+    color: #000 !important; /* Black text on hover (force override) */
+    text-shadow: none; /* Remove text shadow on hover for visibility */
+}
+
+.hero:hover .hero-btn {
+    background-color: rgba(0, 0, 0, 0.3);  /* Dark background on hover */
+    border: 1px solid rgba(255, 255, 255, 0.8);  /* Visible border */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);  /* Shadow effect */
+}
+
+.pricing-btn, .submit-btn {
+    background-color: var(--dark-color);  /* Black background */
+    color: var(--light-color);   /* White text */
+    border: none;                /* No border */
+}
+
+.pricing-btn:hover, .submit-btn:hover {
+    opacity: 0.8;               /* Fade effect on hover */
+    background-color: #222;      /* Slightly lighter black */
+}
+
+/* Header Styles */
+.header {
+    position: fixed;             /* Fixed position */
+    top: 0;                      /* Top of viewport */
+    left: 0;                     /* Left edge */
+    width: 100%;                 /* Full width */
+    background-color: transparent;  /* Transparent background */
+    z-index: 1000;              /* High z-index for overlay */
+    padding: 1.5rem 0;          /* Vertical padding */
+    transition: var(--transition);  /* Smooth transitions */
+}
+
+.header.scrolled {
+    background-color: rgba(0, 0, 0, 0.9);  /* Dark background when scrolled */
+    padding: 1rem 0;             /* Reduced padding when scrolled */
+}
+
+.header-container {
+    display: flex;               
+    justify-content: space-between;  
+    align-items: center;         
+}
+
+.logo a {
+    display: flex;               /* Flexbox layout */
+    align-items: self-start;     /* Align to top */
+    gap: 10px;                  /* Space between image and text */
+    text-decoration: line-through;  /* Strikethrough effect */
+    text-decoration-thickness: 1.5px;  /* Thicker strikethrough */
+}
+  
+.gaellogo-jpg {
+    height: 85px;               /* Fixed height for logo */
+}
+  
+.logo-text {
+    font-size: 15px;            /* Small text size */
+    font-weight: 500;           /* Medium weight */
+    color: #ffffff;             /* White text */
+}
+
+/* Styles for Header Corner Logo */
+.header-corner-logo {
+    height: 60px; /* Adjust height as needed */
+    width: auto; /* Maintain aspect ratio */
+    /* Add margin if needed for spacing */
+    /* margin-left: 20px; */ 
+}
+
+/* Navigation Styles */
+.main-nav {
+    position: fixed;             /* Fixed position */
+    top: 0;                      /* Top of viewport */
+    right: -100%;               /* Start off-screen */
+    width: 300px;               /* Fixed width */
+    height: 100vh;              /* Full viewport height */
+    background-color: var(--dark-color);  /* Black background */
+    padding: 4rem 2rem;         /* Comfortable padding */
+    z-index: 200;               /* Above header */
+    transition: right 0.3s ease;  /* Smooth slide animation */
+}
+
+.main-nav.show {
+    right: 0;                   /* Slide into view */
+}
+
+.main-nav ul {
+    display: flex;              /* Flexbox layout */
+    flex-direction: column;     /* Stack items vertically */
+}
+
+.main-nav li {
+    margin: 1rem 0;             /* Vertical spacing */
+}
+
+.main-nav a {
+    font-weight: 500;           /* Medium weight */
+    color: var(--light-color);  /* White text */
+    font-size: 1.2rem;          /* Larger text */
+    letter-spacing: 1px;        /* Wide letter spacing */
+    text-transform: uppercase;  /* All caps */
+}
+
+.main-nav a:hover {
+    color: var(--light-color);  /* Keep white on hover */
+    opacity: 0.7;               /* Fade effect */
+}
+
+/* Mobile Menu Button */
+/* 
+.mobile-menu-btn { ... }
+.mobile-menu-btn span { ... }
+.mobile-menu-btn.open span:nth-child(1) { ... }
+.mobile-menu-btn.open span:nth-child(2) { ... }
+.mobile-menu-btn.open span:nth-child(3) { ... }
+*/
+
+.header-btn {
+    display: none;              /* Hide by default */
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;              /* Full viewport height */
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../images/gaelhp.jpg');  /* Dark overlay on image */
+    background-size: cover;     /* Cover entire area */
+    background-position: center;  /* Center image */
+    display: flex;              /* Flexbox layout */
+    align-items: center;        /* Center vertically */
+    text-align: center;         /* Center text */
+    color: var(--light-color);  /* White text */
+    position: relative;         /* For positioning */
+    cursor: pointer;            /* Hand cursor */
+    transition: all 0.7s ease;  /* Smooth transitions */
+    background-size: 75%;       /* Scale background */
+    position: relative; /* Ensure child absolute positioning is relative to hero */
+    overflow: hidden; /* Hide parts of slideshows extending outside */
+}
+
+.hero.darkened {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/gaelhp.jpg');  /* Darker overlay */
+    background-size: cover;     /* Cover entire area */
+    background-position: center;  /* Center image */
+}
+
+.hero::before {
+    content: "";                /* Required for pseudo-element */
+    position: absolute;         /* Absolute positioning */
+    top: 0;                     /* Top edge */
+    left: 0;                    /* Left edge */
+    width: 75%;                 /* Partial width */
+    height: 75%;                /* Partial height */
+    background-color: #ffffff;  /* White background */
+    z-index: -1;               /* Behind content */
+}
+
+.hero-content {
+    max-width: 800px;           /* Maximum width */
+    margin: 0 auto;             /* Center horizontally */
+    position: relative;         /* For positioning */
+    /* Ensure content inside is centered and stacked */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero h1 {
+    display: inline-block; /* Allow transform */
+    margin-bottom: 1rem;        /* Space below heading */
+    text-transform: uppercase;  /* All caps */
+    transition: color 0.4s ease, text-shadow 0.4s ease, transform 0.3s ease;  /* Add transform transition */
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);  /* Text shadow */
+    /* Inherits base h1 styles like font-size, weight, color etc. */
+}
+
+/* UPDATED: Apply effects when hovering the entire hero section */
+.hero:hover h1, .hero.hover-active h1 {
+    transform: scale(1.05); /* Make bigger */
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.6); /* Make shinier */
+    color: rgba(255, 255, 255, 1); /* Ensure full white */
+}
+
+.tagline {
+    display: inline-block; /* Allow transform */
+    font-size: 1.2rem;            /* Readable size */
+    font-weight: 400;            /* Regular weight */
+    letter-spacing: 1.5px;       /* Spaced out letters */
+    margin-top: 1rem;           /* Space above tagline */
+    margin-bottom: 2rem;        /* Space below tagline */
+    color: rgba(255, 255, 255, 0.7);  /* Semi-transparent white */
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);  /* Text shadow for readability */
+    transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease; /* Ensure transitions cover all hover effects */
+}
+
+/* UPDATED: Apply effects when hovering the entire hero section */
+.hero:hover .tagline, .hero.hover-active .tagline {
+    color: rgba(255, 255, 255, 1); /* Fully opaque white on hover */
+    transform: scale(1.05); /* Make slightly bigger */
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.6); /* Make shinier */
+}
+
+.hero.darkened .tagline {
+    color: rgba(255, 255, 255, 0.7);  /* More transparent when darkened */
+}
+
+.hero.darkened .hero-btn {
+    background-color: rgba(0, 0, 0, 0.3);  /* Semi-transparent background */
+    border: 1px solid rgba(255, 255, 255, 0.8);  /* Visible border */
+    transform: translateY(-5px);  /* Lift effect */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);  /* Shadow effect */
+}
+
+.hero-btn {
+    font-size: 1rem;            /* Base font size */
+}
+
+/* Style the Cal.com trigger button specifically in the hero */
+.hero .cal-trigger-btn.hero-btn {
+    display: block; /* Force onto new line */
+    margin-top: 2rem; /* Add space below tagline */
+    border-radius: 25px; /* Add rounded corners */
+    /* Inherits other .hero-btn styles like padding, font, base color, etc. */
+}
+
+/* Original Hover effect for general hero button */
+/* This rule will now correctly apply black text to the Cal button on hover */
+.hero:hover .hero-btn {
+    transform: scale(1.05); 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgb(255, 255, 255); 
+    background-color: #fff; 
+    border-color: #fff;  
+    color: #000 !important; /* Black text on hover */
+    text-shadow: none; 
+}
+
+/* Section Styles */
+section {
+    padding: 7rem 0;            /* Vertical padding */
+    transition: opacity 0.3s ease-in-out, transform 0.4s ease-in-out;  /* Smooth transitions */
+}
+
+.section-header {
+    text-align: center;         /* Center text */
+    margin-bottom: 5rem;        /* Space below header */
+    position: relative;         /* For positioning */
+}
+
+.section-number {
+    font-size: 0.875rem;        /* Small text size */
+    color: rgba(0, 0, 0, 0.5);  /* Semi-transparent black */
+    display: block;             /* Block display */
+    margin-bottom: 0.5rem;      /* Space below number */
+    font-family: 'Courier New', Courier, monospace;  /* Monospace font */
+    letter-spacing: 1px;        /* Wide letter spacing */
+}
+
+.section-tagline {
+    font-size: 1rem;            /* Base font size */
+    font-style: italic;         /* Italic text */
+    color: rgba(0, 0, 0, 0.6);  /* Semi-transparent black */
+    opacity: 0.8;               /* Slightly transparent */
+    margin-top: 1rem;           /* Space above tagline */
+    font-family: 'Courier New', Courier, monospace;  /* Monospace font */
+    font-weight: 300;           /* Light weight */
+    letter-spacing: -0.5px;     /* Tighter letter spacing */
+}
+
+/* About Section */
+.about {
+    background-color: var(--light-color);  /* White background */
+    position: relative;         /* For positioning */
+    overflow: hidden;           /* Hide overflow */
+    cursor: pointer;            /* Hand cursor */
+}
+
+.about::before {
+    content: "";                /* Required for pseudo-element */
+    position: absolute;         /* Absolute positioning */
+    top: 0;                     /* Top edge */
+    left: 0;                    /* Left edge */
+    width: 100%;                /* Full width */
+    height: 100%;               /* Full height */
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/gaelpic1.jpg');  /* Dark overlay on image */
+    background-size: cover;     /* Cover entire area */
+    background-position: center;  /* Center image */
+    opacity: 0.15;              /* Very transparent */
+    z-index: 0;                 /* Behind content */
+}
+
+.about-container {
+    position: relative;         /* For positioning */
+    z-index: 1;                 /* Above background */
+}
+
+.about-content {
+    display: grid;              /* Grid layout */
+    grid-template-columns: 1fr 1fr;  /* Two equal columns */
+    gap: 5rem;                  /* Space between columns */
+    align-items: center;        /* Center vertically */
+}
+
+.about-text p {
+    font-size: 1.5rem;
+    font-family: 'Libre Baskerville', serif;
+    margin-bottom: 2rem;        /* Space below paragraphs */
+    line-height: 1.8;           /* Comfortable line height */
+}
+
+.about-image {
+    position: relative;         /* For positioning */
+    height: 500px;              /* Fixed height */
+    overflow: hidden;           /* Hide overflow */
+    border-radius: 20px;  /* Use global border radius */
+    background-color: #ddd;     /* Light gray background */
+    display: flex;              /* Flexbox layout */
+    justify-content: center;    /* Center horizontally */
+    align-items: center;        /* Center vertically */
+    color: #666;                /* Gray text */
+}
+
+.about-image::before {
+    content: "Placeholder - Add barber-portrait.jpg";  /* Placeholder text */
+    position: absolute;         /* Absolute positioning */
+    font-size: 0.9rem;          /* Small text size */
+    text-transform: uppercase;  /* All caps */
+    letter-spacing: 1px;        /* Wide letter spacing */
+    z-index: 1;                 /* Above background */
+}
+
+.about-image img {
+    height: 100%;               /* Full height */
+    width: 100%;                /* Full width */
+    object-fit: cover;          /* Cover entire area */
+    position: relative;         /* For positioning */
+    z-index: 2;                 /* Above placeholder */
+}
+
+/* Services Section */
+.services {
+    background-color: var(--gray-color);  /* Light gray background */
+    position: relative;         /* For positioning */
+    overflow: hidden;           /* Hide overflow */
+    color: var(--light-color);  /* White text */
+    padding: 7rem 0;            /* Vertical padding */
+    min-height: 100vh;          /* Minimum full viewport height */
+    display: flex;              /* Flexbox layout */
+    align-items: center;        /* Center vertically */
+    justify-content: flex-start;  /* Align to start */
+    z-index: 10;                /* Above other sections */
+    transition: opacity 0.4s ease-in-out;  /* Smooth transitions */
+}
+
+.services::before {
+    content: "";                /* Required for pseudo-element */
+    position: absolute;         /* Absolute positioning */
+    top: 0%;                    /* Top edge */
+    left: 50%;                  /* Half width */
+    width: 50%;                 /* Half width */
+    height: 100%;               /* Full height */
+    background-image: url('../images/gaelpic1.jpg');  /* Background image */
+    background-size: cover;     /* Cover entire area */
+    background-position: bottom;  /* Align to bottom */
+    z-index: 0;                 /* Behind content */
+    background-repeat: no-repeat;  /* No repeat */
+}
+
+.services::after {
+    content: "";                /* Required for pseudo-element */
+    position: absolute;         /* Absolute positioning */
+    top: 0;                     /* Top edge */
+    left: 0;                    /* Left edge */
+    width: 50%;                 /* Half width */
+    height: 100%;               /* Full height */
+    background-color: black;    /* Black background */
+    z-index: 0;                 /* Behind content */
+}
+
+.services-container {
+    position: relative;         /* For positioning */
+    z-index: 1;                 /* Above background */
+    display: block;             /* Block display */
+    width: 50%;                 /* Half width */
+    margin: 0;                  /* No margin */
+    padding: 0;                 /* No padding */
+}
+
+.services-content {
+    max-width: 85%;             /* Maximum width */
+    padding-left: 1rem;         /* Left padding */
+    margin: 0;                  /* No margin */
+    display: flex;              /* Flexbox layout */
+    flex-direction: column;     /* Stack vertically */
+    align-items: flex-start;    /* Align to start */
+}
+
+.services .section-number {
+    color: rgba(255, 255, 255, 0.6);  /* Semi-transparent white */
+    text-align: left;           /* Left align */
+    font-size: 1.1rem;          /* Slightly larger */
+    margin-bottom: 1rem;        /* Space below */
+    font-weight: 500;           /* Medium weight */
+    width: 100%;                /* Full width */
+    padding: 0;                 /* No padding */
+}
+
+.services .section-header {
+    text-align: left;           /* Left align */
+    color: var(--light-color);  /* White text */
+    margin-bottom: 2.5rem;      /* Space below */
+    width: 100%;                /* Full width */
+    margin-left: 0;             /* No left margin */
+    padding: 0;                 /* No padding */
+}
+
+.services h2 {
+    color: var(--light-color);  /* White text */
+    font-size: 3.5rem;          /* Large size */
+    margin-bottom: 1.5rem;      /* Space below */
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);  /* Text shadow */
+    text-align: left;           /* Left align */
+    margin-left: 0;             /* No left margin */
+    padding: 0;                 /* No padding */
+}
+
+.services h2:after {
+    background-color: var(--light-color);  /* White line */
+    left: 0;                    /* Left align */
+    transform: none;            /* No transform */
+    width: 100px;               /* Fixed width */
+    height: 3px;                /* Line thickness */
+    bottom: -15px;              /* Space below */
+}
+
+.services .section-tagline {
+    color: rgba(255, 255, 255, 0.9);  /* Almost white */
+    text-align: left;           /* Left align */
+    font-size: 1.3rem;          /* Larger size */
+    margin-bottom: 3.5rem;      /* Space below */
+    font-weight: 400;           /* Regular weight */
+    max-width: 100%;            /* Full width */
+    margin-left: 0;             /* No left margin */
+    padding: 0;                 /* No padding */
+}
+
+.services-grid {
+    display: flex;              /* Flexbox layout */
+    flex-direction: column;     /* Stack vertically */
+    gap: 1.5rem;               /* Space between items */
+    width: 100%;                /* Full width */
+    margin: 0;                  /* No margin */
+    padding: 0;                 /* No padding */
+    align-items: flex-start;    /* Align to start */
+}
+
+.service-card {
+    display: flex;              /* Flexbox layout */
+    align-items: flex-start;    /* Align to start */
+    gap: 1.5rem;               /* Space between elements */
+    padding: 0 0 1.5rem 0;      /* Bottom padding */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);  /* Subtle border */
+    transition: var(--transition);  /* Smooth transitions */
+}
+
+.service-card:last-child {
+    border-bottom: none;        /* No border on last item */
+    padding-bottom: 0;          /* No bottom padding */
+}
+
+.service-icon {
+    font-size: 2rem;            /* Large size */
+    color: var(--light-color);  /* White color */
+    opacity: 0.9;               /* Slightly transparent */
+    flex-shrink: 0;             /* Prevent shrinking */
+    width: 40px;                /* Fixed width */
+    text-align: left;           /* Left align */
+    margin-top: 0.5rem;         /* Top margin */
+}
+
+.service-info {
+    flex: 1;                    /* Take remaining space */
+}
+
+.service-card h3 {
+    font-size: 1.5rem;          /* Medium size */
+    margin-bottom: 0.5rem;      /* Space below */
+    color: var(--light-color);  /* White text */
+    display: flex;              /* Flexbox layout */
+    justify-content: space-between;  /* Space between */
+    align-items: center;        /* Center vertically */
+    letter-spacing: 1.5px;      /* Wide letter spacing */
+}
+
+.service-price {
+    font-size: 1.3rem;          /* Slightly larger */
+    font-weight: 700;           /* Bold weight */
+    letter-spacing: 1px;        /* Wide letter spacing */
+    color: rgba(255, 255, 255, 1);  /* Solid white */
+    background: rgba(0, 0, 0, 0.5);  /* Semi-transparent background */
+    padding: 0.3rem 1rem;       /* Comfortable padding */
+    border-radius: 3px;         /* Rounded corners */
+    border-left: 3px solid #fff;  /* White left border */
+}
+
+.service-card p {
+    opacity: 0.9;               /* Slightly transparent */
+    font-size: 1rem;            /* Base size */
+    color: var(--light-color);  /* White text */
+    margin-bottom: 0;           /* No bottom margin */
+    line-height: 1.7;           /* Comfortable line height */
+}
+
+.services-cta {
+    margin-top: 3rem;
+    text-align: left;
+}
+
+.services-btn {
+    display: inline-block;
+    background-color: transparent;
+    color: var(--light-color);
+    padding: 1rem 2.5rem;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: 600;
+    letter-spacing: 2px;
+    transition: var(--transition);
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.services-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: var(--light-color);
+    transition: width 0.4s ease;
+    z-index: -1;
+}
+
+.services-btn:hover {
+    color: var(--dark-color);
+    border-color: var(--light-color);
+}
+
+.services-btn:hover::before {
+    width: 100%;
+}
+
+/* Pricing Section */
+.pricing {
+    background-color: var(--dark-color);  /* Black background */
+    position: relative;         /* For positioning */
+    overflow: hidden;           /* Hide overflow */
+    color: var(--light-color);  /* White text */
+    padding-top: 7rem;          /* Keep top padding */
+    padding-bottom: 2rem;       /* REDUCED bottom padding */
+}
+
+.pricing::before {
+    content: "";                /* Required for pseudo-element */
+    position: absolute;         /* Absolute positioning */
+    top: 0;                     /* Top edge */
+    left: 0;                    /* Left edge */
+    width: 100%;                /* Full width */
+    height: 100%;               /* Full height */
+    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('../images/gaellogo.jpg');  /* Dark overlay on image */
+    background-size: 60%;       /* Scale background */
+    background-position: center;  /* Center image */
+    background-repeat: no-repeat;  /* No repeat */
+    opacity: 0.3;               /* Very transparent */
+    z-index: 0;                 /* Behind content */
+}
+
+.pricing-container {
+    position: relative;         /* For positioning */
+    z-index: 1;                 /* Above background */
+}
+
+.pricing-content {
+    max-width: 800px;           /* Maximum width */
+    margin: 0 auto;             /* Center horizontally */
+}
+
+.pricing-text {
+    text-align: center;         /* Center text */
+    margin-bottom: 4rem;        /* Space below */
+}
+
+.pricing-text p {
+    font-size: 1.1rem;          /* Slightly larger */
+    line-height: 1.8;           /* Comfortable line height */
+    opacity: 0.9;               /* Slightly transparent */
+    color: var(--light-color);  /* White text */
+}
+
+.pricing h2 {
+    color: var(--light-color);  /* White text */
+}
+
+.pricing h2:after {
+    background-color: var(--light-color);  /* White line */
+}
+
+.pricing .section-number {
+    color: rgba(255, 255, 255, 0.6);  /* Semi-transparent white */
+}
+
+.pricing .section-tagline {
+    color: rgba(255, 255, 255, 0.8);  /* More opaque white */
+}
+
+.pricing-list {
+    margin-bottom: 4rem;        /* Space below */
+    background-color: rgba(0, 0, 0, 0.5);  /* Semi-transparent background */
+    padding: 3rem;              /* Comfortable padding */
+    border-radius: var(--border-radius);  /* Use global border radius */
+}
+
+.price-item {
+    display: flex;              /* Flexbox layout */
+    justify-content: space-between;  /* Space between */
+    align-items: center;        /* Center vertically */
+    margin-bottom: 2rem;        /* Space below */
+    padding-bottom: 1rem;       /* Bottom padding */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);  /* Subtle border */
+}
+
+.price-name {
+    font-weight: 500;           /* Medium weight */
+    font-size: 1.1rem;          /* Slightly larger */
+    letter-spacing: 1px;        /* Wide letter spacing */
+    color: var(--light-color);  /* White text */
+}
+
+.price-line {
+    flex: 1;                    /* Take remaining space */
+    height: 1px;                /* Line thickness */
+    background-color: rgba(255, 255, 255, 0.15);  /* Semi-transparent line */
+    margin: 0 2rem;             /* Horizontal spacing */
+}
+
+.price-amount {
+    font-weight: 700;           /* Bold weight */
+    color: var(--light-color);  /* White text */
+    font-size: 1.25rem;         /* Larger size */
+}
+
+.pricing-btn {
+    background-color: transparent;  /* Transparent background */
+    color: var(--light-color);  /* White text */
+    border: 2px solid rgba(255, 255, 255, 0.3);  /* Semi-transparent border */
+    transition: var(--transition);  /* Smooth transitions */
+    justify-content: absolute;  /* Absolute positioning */
+    margin-left: 40%;           /* Offset from left */
+    align-items: center;        /* Center vertically */
+}
+
+.pricing-btn:hover {
+    background-color: var(--light-color);  /* White background */
+    color: var(--dark-color);   /* Black text */
+    border-color: var(--light-color);  /* White border */
+}
+
+/* Styles for the button in Pricing section */
+.pricing .cal-trigger-btn.hero-btn {
+    display: block; 
+    transform: scale(1.10); /* Keep reasonable scale */
+    /* Reset width and margin for full width */
+    width: 100%;
+    margin: 0rem 0 0 0; /* Adjust vertical margin, remove horizontal auto */
+    /* Remove transform if it was added */
+    /* transform: none; */ 
+    /* Keep other styles */
+    border-radius: 25px; 
+    /* Inherit base hero-btn styles */
+}
+
+/* Keep hover effect */
+.pricing .cal-trigger-btn.hero-btn:hover {
+    transform: scale(1.25); /* Keep reasonable scale */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgb(255, 255, 255); 
+    background-color: #fff; 
+    border-color: #fff;  
+    color: #000 !important; 
+    text-shadow: none; 
+}
+
+/* Gallery Section */
+.gallery {
+    background-color: var(--gray-color);  
+    padding-top: 2rem;          
+    padding-bottom: 3rem; /* REDUCED bottom padding */       
+    position: relative; 
+    z-index: 5; 
+}
+
+/* Explicit styles for Gallery Section Header - FORCE VISIBILITY AGAIN */
+.gallery .section-header {
+    text-align: center;         
+    margin-bottom: 5rem;         
+    position: relative;         
+    z-index: 100; /* Keep high z-index */
+    display: block !important; /* FORCE display */
+    visibility: visible !important; /* FORCE visibility */
+    opacity: 1 !important; /* FORCE opacity */
+    padding: 10px; /* TEMPORARY: Add padding to make border visible */
+    color: #ffffff !important; /* TEMPORARY: Magenta color for all text inside */
+}
+
+.gallery .section-header .section-number {
+    color: inherit !important; /* Inherit magenta */
+    /* Keep other defaults */
+    font-size: 0.875rem;        
+    display: block !important; /* Force display */          
+    margin-bottom: 0.5rem;      
+    font-family: 'Courier New', Courier, monospace;  
+    letter-spacing: 1px;        
+}
+
+.gallery .section-header h2 {
+    color: inherit !important; /* Inherit magenta */
+    /* Keep other defaults */
+    font-size: 2.5rem;           
+    font-weight: 700;            
+    letter-spacing: 2px;         
+    position: relative;          
+    display: inline-block !important; /* Force display */  
+    margin-bottom: 0.75rem;     
+}
+
+.gallery .section-header h2::after {
+    background-color: rgb(255, 255, 255) !important;  /* Match text color */
+    /* Keep other defaults */
+    content: "";                 
+    position: absolute;          
+    bottom: -10px;              
+    left: 50%;                  
+    transform: translateX(-50%); 
+    width: 50px;                
+    height: 1px;                
+}
+
+.gallery .section-header .section-tagline {
+    color: inherit !important; /* Inherit magenta */
+     /* Keep other defaults */
+    font-size: 1rem;            
+    font-style: italic;         
+    opacity: 1 !important; /* Force opacity */            
+    margin-top: 1rem;           
+    font-family: 'Courier New', Courier, monospace;  
+    font-weight: 300;           
+    letter-spacing: -0.5px;   
+    display: block !important; /* Force display */  
+}
+
+.gallery-grid {
+    display: grid;              /* Grid layout */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));  /* Responsive columns */
+    gap: 1rem;                  /* Slightly reduce gap to make borders look better */
+}
+
+.gallery-item {
+    height: 350px;              /* Fixed height */
+    background-color: rgba(0, 0, 0, 0.05);  /* Light background */
+    border-radius: var(--border-radius);  /* Use global border radius */
+    overflow: hidden;           /* Hide overflow */
+    transition: var(--transition);  /* Smooth transitions */
+    position: relative;         /* For positioning */
+    background-size: cover;     /* Cover area */
+    background-position: center; /* Center image */
+    border: 3px solid var(--dark-color); /* Add dark border */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: add subtle shadow */
+}
+
+.gallery-item::before {
+    content: ""; /* Remove placeholder text */
+    /* Remove other placeholder styles if ::before isn't needed for overlay */
+    /* position: absolute; ... etc */
+}
+
+/* Specific Gallery Images */
+#gallery-1 {
+    background-image: url('../images/gallery1.jpg');
+}
+
+#gallery-2 {
+    background-image: url('../images/gallery2.jpg');
+}
+
+#gallery-3 {
+    background-image: url('../images/gallery3.jpg');
+}
+
+#gallery-4 {
+    background-image: url('../images/gallery4.jpg');
+}
+
+#gallery-5 {
+    background-image: url('../images/gallery5.jpg');
+}
+
+#gallery-6 {
+    background-image: url('../images/gallery6.jpg');
+}
+
+/* Optional: Keep hover effect */
+.gallery-item:hover {
+    transform: scale(1.03);     /* Slight zoom effect */
+}
+
+/* Contact Section */
+.contact {
+    background-color: var(--light-color);  
+    position: relative;         
+    overflow: hidden;           
+    padding-top: 3rem; /* REDUCED top padding */
+    padding-bottom: 7rem; /* Keep original bottom padding */
+}
+
+.contact::before {
+    content: "";                /* Required for pseudo-element */
+    position: absolute;         /* Absolute positioning */
+    top: 0;                     /* Top edge */
+    left: 0;                    /* Left edge */
+    width: 100%;                /* Full width */
+    height: 100%;               /* Full height */
+    background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url('../images/gaellogo2.jpg');  /* Dark overlay on image */
+    background-size: 40%;       /* Scale background */
+    background-position: center;  /* Center image */
+    background-repeat: no-repeat;  /* No repeat */
+    opacity: 0.05;              /* Very transparent */
+    z-index: 0;                 /* Behind content */
+}
+
+.contact-container {
+    position: relative;         /* For positioning */
+    z-index: 1;                 /* Above background */
+}
+
+.contact-content {
+    display: flex;              /* Flexbox layout */
+    justify-content: space-between;  /* Space between columns */
+    width: 100%;                /* Full width */
+}
+
+.contact-column {
+    flex: 1;                    /* Equal width columns */
+    padding: 0 2rem;            /* Horizontal padding */
+    display: flex;              /* Flexbox layout */
+    flex-direction: column;     /* Stack vertically */
+}
+
+.contact-column h3 {
+    font-size: 1.2rem;          /* Medium size */
+    font-weight: 500;           /* Medium weight */
+    letter-spacing: 1px;        /* Wide letter spacing */
+    margin-bottom: 2.5rem;      /* Space below */
+    color: var(--light-color);  /* White text */
+    text-transform: uppercase;  /* All caps */
+}
+
+.contact-item {
+    display: flex;              /* Flexbox layout */
+    justify-content: space-between;  /* Space between */
+    margin-bottom: 1rem;        /* Space below */
+    font-family: 'Montserrat', sans-serif;  /* Montserrat font */
+}
+
+.contact-label {
+    color: var(--light-color);  /* White text */
+    font-weight: 400;           /* Regular weight */
+    font-size: 0.95rem;         /* Slightly smaller */
+}
+
+.contact-value {
+    color: var(--light-color);  /* White text */
+    font-weight: 500;           /* Medium weight */
+    font-size: 0.95rem;         /* Slightly smaller */
+    text-align: right;          /* Right align */
+}
+
+.contact-divider {
+    height: 1px;                /* Line thickness */
+    background-color: rgba(255, 255, 255, 0.2);  /* Semi-transparent line */
+    margin: 1rem 0 2rem 0;      /* Vertical spacing */
+    width: 100%;                /* Full width */
+}
+
+.social-icons {
+    display: flex;              /* Flexbox layout */
+    gap: 2rem;                  /* Space between icons */
+    margin-top: 1rem;           /* Top margin */
+}
+
+.social-icons a {
+    display: flex;              /* Flexbox layout */
+    justify-content: center;    /* Center horizontally */
+    align-items: center;        /* Center vertically */
+    width: 45px;                /* Fixed width */
+    height: 45px;               /* Fixed height */
+    border-radius: 50%;         /* Circular shape */
+    color: white;               /* White color */
+    font-size: 1.5rem;          /* Large size */
+    transition: transform 0.3s ease, opacity 0.3s ease;  /* Smooth transitions */
+    background-color: transparent;  /* Transparent background */
+    border: 1px solid rgba(255, 255, 255, 0.3);  /* Semi-transparent border */
+}
+
+.social-icons a:hover {
+    transform: translateY(-5px);  /* Lift effect */
+    opacity: 0.8;               /* Fade effect */
+    border-color: rgba(255, 255, 255, 0.6);  /* More visible border */
+}
+
+/* Footer Styles */
+.footer {
+    background-color: var(--dark-color);  /* Black background */
+    color: var(--light-color);  /* White text */
+    padding: 4rem 0;            /* Vertical padding */
+}
+
+.footer-container {
+    display: grid;              /* Grid layout */
+    grid-template-columns: 1fr 2fr 1fr;  /* Three columns */
+    align-items: center;        /* Center vertically */
+}
+
+.footer-logo a {
+    display: flex;              /* Flexbox layout */
+    align-items: center;        /* Center vertically */
+    justify-content: flex-start;  /* Align to start */
+    gap: 10px;                  /* Space between elements */
+    color: var(--light-color);  /* White text */
+    text-decoration: line-through;  /* Strikethrough effect */
+    text-decoration-thickness: 1.5px;  /* Thicker strikethrough */
+}
+
+.footer-logo-img {
+    height: 60px;               /* Fixed height */
+    width: auto;                /* Auto width */
+}
+
+.footer-nav ul {
+    display: flex;              /* Flexbox layout */
+    justify-content: center;    /* Center horizontally */
+    gap: 3rem;                  /* Space between items */
+}
+
+.footer-nav a {
+    color: var(--light-color);  /* White text */
+    font-size: 0.875rem;        /* Small size */
+    text-transform: uppercase;  /* All caps */
+    letter-spacing: 1px;        /* Wide letter spacing */
+    opacity: 0.8;               /* Slightly transparent */
+}
+
+.footer-nav a:hover {
+    color: var(--light-color);  /* Keep white */
+    opacity: 0.5;               /* More transparent */
+}
+
+.copyright {
+    text-align: right;          /* Right align */
+    font-size: 0.875rem;        /* Small size */
+    opacity: 0.7;               /* More transparent */
+}
+
+/* Booking Modal */
+.booking-modal {
+    display: none;              /* Hidden by default */
+    position: fixed;            /* Fixed position */
+    top: 0;                     /* Top of viewport */
+    left: 0;                    /* Left edge */
+    width: 100%;                /* Full width */
+    height: 100%;               /* Full height */
+    background-color: rgba(0, 0, 0, 0.9);  /* Dark overlay */
+    z-index: 1100;              /* Above everything */
+    overflow-y: auto;           /* Allow vertical scrolling */
+}
+
+.modal-content {
+    background-color: var(--light-color);  /* White background */
+    margin: 5% auto;            /* Center vertically */
+    padding: 3rem;              /* Comfortable padding */
+    width: 90%;                 /* Responsive width */
+    max-width: 600px;           /* Maximum width */
+    border-radius: var(--border-radius);  /* Use global border radius */
+    position: relative;         /* For positioning */
+}
+
+.modal-content h2 {
+    text-align: center;         /* Center text */
+    margin-bottom: 2.5rem;      /* Space below */
+}
+
+.close-modal {
+    position: absolute;         /* Absolute positioning */
+    top: 1.5rem;               /* Top spacing */
+    right: 2rem;               /* Right spacing */
+    font-size: 2rem;           /* Large size */
+    cursor: pointer;            /* Hand cursor */
+    color: var(--dark-color);   /* Black color */
+    opacity: 0.7;               /* Slightly transparent */
+    transition: var(--transition);  /* Smooth transitions */
+}
+
+.close-modal:hover {
+    opacity: 1;                 /* Full opacity on hover */
+}
+
+.booking-modal label {
+    display: block;             /* Block display */
+    margin-bottom: 0.5rem;      /* Space below */
+    font-weight: 500;           /* Medium weight */
+    letter-spacing: 0.5px;      /* Wide letter spacing */
+}
+
+.booking-modal .submit-btn {
+    width: 100%;                /* Full width */
+    padding: 1rem;              /* Comfortable padding */
+    margin-top: 1rem;           /* Top margin */
+}
+
+/* Page Transition Styles */
+.page-container {
+    position: absolute;         /* Absolute positioning */
+    top: 0;                     /* Top edge */
+    left: 0;                    /* Left edge */
+    width: 200%;                /* Double width */
+    display: flex;              /* Flexbox layout */
+    transition: transform 0.6s ease-in-out;  /* Smooth transitions */
+    overflow: hidden;           /* Hide overflow */
+    height: 100vh;              /* Full viewport height */
+    z-index: 5;                 /* Above base content */
+    box-shadow: 0 2px 20px rgba(0,0,0,0.5);  /* Subtle shadow */
+}
+
+.page {
+    width: 50%;                 /* Half width */
+    flex-shrink: 0;             /* Prevent shrinking */
+    position: relative;         /* For positioning */
+    height: 100vh;              /* Full viewport height */
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 992px) {
+    .about-content,
+    .contact-content {
+        grid-template-columns: 1fr;  /* Single column */
+        gap: 3rem;                  /* Space between */
+    }
+    
+    .footer-container {
+        grid-template-columns: 1fr;  /* Single column */
+        gap: 2rem;                  /* Space between */
+        text-align: center;         /* Center text */
+    }
+    
+    .copyright {
+        text-align: center;         /* Center text */
+    }
+    
+    h1 {
+        font-size: 5rem;            /* Large size */
+    }
+    
+    .section-header {
+        margin-bottom: 3rem;        /* Reduced spacing */
+    }
+    
+    .services-container {
+        flex-direction: column;     /* Stack vertically */
+    }
+    
+    .services-content {
+        max-width: 100%;            /* Full width */
+    }
+    
+    .services {
+        padding: 8rem 0;            /* Increased padding */
+    }
+    
+    .services-container {
+        width: 100%;                /* Full width */
+    }
+    
+    .services::before {
+        left: 0;                    /* Full width background */
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../images/gaelpic1.jpg');
+        background-position: center;
+    }
+    
+    .services::after {
+        display: none;              /* Hide overlay */
+    }
+    
+    .services-content {
+        max-width: 100%;            /* Full width */
+        padding-right: 2rem;        /* Right padding */
+        padding-left: 2rem;         /* Left padding */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    h1 {
+        font-size: 3.5rem;          /* Smaller size */
+    }
+    
+    h2 {
+        font-size: 2rem;            /* Smaller size */
+    }
+    
+    .services-grid,
+    .gallery-grid {
+        grid-template-columns: 1fr;  /* Single column */
+    }
+    
+    .gallery-item {
+        height: 300px;              /* Reduced height */
+    }
+    
+    .contact-info {
+        gap: 2.5rem;                /* Increased spacing */
+    }
+    
+    .footer-nav ul {
+        flex-direction: column;     /* Stack vertically */
+        gap: 1.5rem;               /* Space between */
+    }
+    
+    section {
+        padding: 5rem 0;            /* Reduced padding */
+    }
+    
+    .service-card {
+        flex-direction: column;     /* Stack vertically */
+        align-items: flex-start;    /* Align to start */
+        gap: 1rem;                  /* Space between */
+        padding: 0 0 2rem 0;        /* Bottom padding */
+    }
+    
+    .service-icon {
+        margin-bottom: 0.5rem;      /* Bottom margin */
+    }
+    
+    .service-card h3 {
+        flex-direction: column;     /* Stack vertically */
+        align-items: flex-start;    /* Align to start */
+        gap: 0.5rem;                /* Space between */
+        font-size: 1.5rem;          /* Medium size */
+    }
+    
+    .service-price {
+        font-size: 1.2rem;          /* Smaller size */
+        padding: 0.2rem 0.8rem;     /* Reduced padding */
+    }
+    
+    .service-card p {
+        font-size: 1rem;            /* Base size */
+    }
+    
+    .services {
+        padding: 6rem 0;            /* Reduced padding */
+        min-height: auto;           /* Auto height */
+    }
+    
+    .contact-content {
+        flex-direction: column;     /* Stack vertically */
+        gap: 3rem;                  /* Space between */
+    }
+    
+    .contact-column {
+        padding: 0;                 /* No padding */
+    }
+    
+    .contact-item {
+        flex-direction: column;     /* Stack vertically */
+        gap: 0.5rem;                /* Space between */
+    }
+    
+    .contact-value {
+        align-self: flex-start;     /* Align to start */
+    }
+}
+
+@media screen and (max-width: 576px) {
+    h1 {
+        font-size: 2.5rem;          /* Smaller size */
+    }
+    
+    .tagline {
+        font-size: 0.9rem;          /* Smaller size */
+    }
+    
+    .modal-content {
+        padding: 2rem;              /* Reduced padding */
+    }
+    
+    .services h2 {
+        font-size: 2.2rem;          /* Smaller size */
+    }
+    
+    .services .section-tagline {
+        font-size: 1.1rem;          /* Smaller size */
+    }
+}
+
+/* Utility Classes */
+.scroll-margin {
+    scroll-margin-top: 80px;       /* Offset for fixed header */
+}
+
+/* Fix for services section positioning */
+#services {
+    position: relative;             /* For positioning */
+    z-index: 10;                    /* Above other sections */
+    margin-top: 100vh;              /* Full viewport height */
+    padding-top: 0;                 /* No top padding */
+    display: block !important;      /* Force display */
+    visibility: visible !important;  /* Force visibility */
+    opacity: 1;                     /* Full opacity */
+    transition: opacity 0.4s ease-in-out;  /* Smooth transitions */
+    background-color: #000;         /* Black background */
+}
+
+/* Ensure sections retain proper positioning */
+.page .hero,
+.page #about {
+    width: 100%;                    /* Full width */
+    height: 100%;                   /* Full height */
+}
+
+/* Page container transitions */
+.page-container.show-about {
+    transform: translateX(-50%);    /* Slide left */
+}
+
+.page-container.transition-active {
+    height: 100vh;                  /* Full viewport height */
+    position: relative;             /* For positioning */
+}
+
+.page-container.transition-active .hero,
+.page-container.transition-active #about {
+    cursor: pointer;                /* Hand cursor */
+}
+
+/* Section positioning fixes */
+#pricing, #gallery, #contact, .footer {
+    position: relative;             /* For positioning */
+    z-index: 10;                    /* Above other sections */
+    display: block !important;      /* Force display */
+    visibility: visible !important;  /* Force visibility */
+    transition: opacity 0.3s ease-in-out, transform 0.4s ease-in-out;  /* Smooth transitions */
+    background-color: var(--dark-color);  /* Black background */
+}
+
+/* Ensure clickable elements work */
+.hero, .about {
+    cursor: pointer;                /* Hand cursor */
+}
+
+.hero a, .hero button, .about a, .about button {
+    cursor: pointer !important;     /* Force hand cursor */
+    position: relative;             /* For positioning */
+    z-index: 10;                    /* Above other elements */
+}
+
+/* Prevent white flash during transitions */
+html {
+    scroll-behavior: smooth;        /* Smooth scrolling */
+    background-color: #000;         /* Black background */
+}
+
+/* Right-side vertical slideshow */
+.hero-slideshow {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 150px; /* Adjust width as needed */
+    overflow: hidden;
+    z-index: 5; /* Below hero content */
+    right: 20px; /* Shifted from right edge */
+
+    /* Keep fade effect if desired, adjust background if needed */
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 60px; /* Height of the fade */
+        z-index: 10; /* Above the track */
+        pointer-events: none; /* Allow clicks through */
+    }
+    &::before {
+        top: 0;
+        /* Example fade if right side has NO background */
+        background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, transparent 100%); 
+    }
+    &::after {
+        bottom: 0;
+        /* Example fade if right side has NO background */
+        background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%); 
+    }
+}
+
+/* Image Slideshow Track */
+.slideshow-track {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    animation: slideDown 40s linear infinite; /* Original animation */
+}
+
+/* Image Item Specific Styles */
+.slideshow-image {
+    height: 140px; 
+    width: 140px; 
+    margin: 5px auto; 
+    border: 1px solid rgba(255, 255, 255, 0.2); 
+    overflow: hidden; 
+    position: relative; /* Added for pseudo element if needed */
+    border-radius: 5px; /* Keep rounded corners from before */
+}
+
+.slideshow-image img {
+    max-height: none; 
+    width: 100%;      
+    height: 100%;     
+    object-fit: cover;
+    transform: scale(1.2); 
+    transition: transform 0.3s ease; 
+}
+
+/* Image hover effect */
+.slideshow-image:hover img {
+    transform: scale(1.25); /* Slightly more zoom on hover */
+}
+
+/* Animation Keyframes */
+@keyframes slideDown {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-50%); /* Moves items UP */
+    }
+}
+
+/* New Left Panel Container */
+.hero-left-panel {
+    position: absolute;
+    left: 20px; 
+    top: 50%; 
+    transform: translateY(-50%); 
+    width: 170px; /* Slightly wider if needed */
+    z-index: 15; 
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    gap: 35px; /* Increased spacing more */
+}
+
+/* Style items (links and divs) within the left panel */
+.hero-left-panel a,
+.hero-left-panel div { /* Apply to links AND divs */
+    color: rgba(255, 255, 255, 0.7); 
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3rem; /* Increased font size again */
+    font-weight: 500;
+    text-transform: uppercase;
+    text-decoration: none; 
+    letter-spacing: 1.5px; /* Slightly more spacing */
+    padding: 5px 0; 
+    cursor: pointer; 
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover effect for left panel items */
+.hero-left-panel a:hover,
+.hero-left-panel div:hover { /* Apply to links AND divs */
+    color: #ffffff; 
+    transform: translateX(5px); 
+}
+
+/* Make the non-linking 'about me' div visually distinct if desired */
+.hero-left-panel div:not(.cal-trigger-item) { 
+    cursor: default; /* Not clickable */
+    /* Optionally slightly different opacity or no hover effect */
+    /* opacity: 0.6; */
+}
+.hero-left-panel div:not(.cal-trigger-item):hover {
+    /* Remove hover transform if needed */
+    /* transform: none; */ 
+}
+
+/* New Hero Bottom Text Styles */
+.hero-bottom-text {
+    position: absolute;
+    bottom: 35px; /* Adjust distance from bottom */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150%; /* Limit width */
+    text-align: center;
+    z-index: 10; /* Ensure it's above background/slideshows */
+
+    /* Match tagline style */
+    font-size: 1.2rem;            
+    font-weight: 400;            
+    letter-spacing: 2px;       
+    color: rgba(255, 255, 255, 0.7);  
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);  
+    /* No margin needed due to absolute positioning */
+}
+.hero-bottom-text-under {
+    position: absolute;
+    bottom: 5px; /* Adjust distance from bottom */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%; /* Limit width */
+    text-align: center;
+    z-index: 10; /* Ensure it's above background/slideshows */
+
+    /* Match tagline style */
+    font-size: 1.5rem;            
+    font-weight: 400;            
+    letter-spacing: 1.5px;       
+    color: rgb(255, 255, 255);  
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);  
+    /* No margin needed due to absolute positioning */
+}

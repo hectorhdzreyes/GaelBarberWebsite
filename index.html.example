@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gael's Barber Shop</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Other stylesheets and meta tags -->
+</head>
+<body>
+    <!-- Header stays outside the page container -->
+    <header class="header">
+        <!-- Header content -->
+    </header>
+    
+    <!-- Page container for the transition effect -->
+    <div class="page-container">
+        <!-- First page (Home) -->
+        <div class="page home-page">
+            <!-- Hero Section -->
+            <section class="hero" id="home">
+                <div class="hero-content">
+                    <h1>GAEL'S</h1>
+                    <p class="tagline">PROFESSIONAL BARBER SERVICES</p>
+                    <a href="#booking" class="book-now-btn hero-btn">BOOK NOW</a>
+                </div>
+            </section>
+            
+            <!-- Additional sections that should appear on the home page -->
+            <!-- Services, Gallery, etc. -->
+        </div>
+        
+        <!-- Second page (About) -->
+        <div class="page about-page">
+            <section class="about" id="about">
+                <div class="container about-container">
+                    <div class="section-header">
+                        <span class="section-number">01</span>
+                        <h2>About Me</h2>
+                        <p class="section-tagline">Meet your barber</p>
+                    </div>
+                    <div class="about-content">
+                        <div class="about-text">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus.</p>
+                            <p>Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit.</p>
+                        </div>
+                        <div class="about-image">
+                            <img src="images/placeholder-barber.jpg" alt="Barber Portrait" id="placeholder-barber">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Additional sections that should appear after the about section -->
+            <!-- Pricing, Contact, etc. -->
+        </div>
+    </div>
+    
+    <!-- Footer stays outside the page container -->
+    <footer class="footer">
+        <!-- Footer content -->
+    </footer>
+    
+    <!-- JavaScript files -->
+    <script src="js/main.js"></script>
+    <script src="js/page-transition.js"></script>
+</body>
+</html> 

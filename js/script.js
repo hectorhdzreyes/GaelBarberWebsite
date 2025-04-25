@@ -155,4 +155,51 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // --- START: Scroll Animation for Hero on Mobile --- 
+    const heroElement = document.querySelector('.hero');
+    let scrollTimeout;
+    let isMobile = window.innerWidth <= 768; // Check initial width
+
+    function handleScroll() {
+        if (!heroElement || !isMobile) return; // Only run if hero exists and on mobile
+
+        heroElement.classList.add('scrolling-active');
+
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+            heroElement.classList.remove('scrolling-active');
+        }, 150); // Adjust timeout duration (milliseconds) as needed
+    }
+
+    // Re-check mobile status on resize
+    window.addEventListener('resize', () => {
+        isMobile = window.innerWidth <= 768;
+        // Optional: Remove class if resizing out of mobile view while scrolling
+        if (!isMobile && heroElement) {
+           heroElement.classList.remove('scrolling-active');
+           clearTimeout(scrollTimeout); 
+        }
+    });
+
+    // Add scroll listener only if initially mobile
+    if (isMobile) {
+        window.addEventListener('scroll', handleScroll);
+    } 
+    // Re-add/remove listener on resize (more robust)
+    let listenerAttached = isMobile;
+    window.addEventListener('resize', () => {
+        isMobile = window.innerWidth <= 768;
+        if (isMobile && !listenerAttached) {
+            window.addEventListener('scroll', handleScroll);
+            listenerAttached = true;
+        } else if (!isMobile && listenerAttached) {
+            window.removeEventListener('scroll', handleScroll);
+            listenerAttached = false;
+             // Clean up class if resizing out of mobile view
+            if (heroElement) heroElement.classList.remove('scrolling-active');
+            clearTimeout(scrollTimeout);
+        }
+    });
+    // --- END: Scroll Animation for Hero on Mobile --- 
 }); 

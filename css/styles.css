@@ -1294,11 +1294,11 @@ section {
     /* --- END UTILITY CLASSES --- */
 
     h1 {
-        font-size: 3.5rem;          /* Smaller size */
+        font-size: 3.5rem;
     }
     
     h2 {
-        font-size: 2rem;            /* Smaller size */
+        font-size: 2rem;
     }
     
     .services-grid,
@@ -1373,17 +1373,19 @@ section {
         align-self: flex-start;     /* Align to start */
     }
 
-    /* --- MOBILE HERO & HEADER SIMPLIFICATION --- */
+    /* --- MOBILE HERO & HEADER ADJUSTMENTS --- */
 
     .header-container {
         flex-direction: row; 
         align-items: center; 
         padding: 0 1rem; 
-        justify-content: space-between; /* Keep logo left, corner right */
+        justify-content: space-between; 
     }
 
     .gaellogo-jpg {
         height: 50px; 
+        width: auto; /* Prevent stretching */
+        flex-shrink: 0; /* Prevent shrinking in flex context */
     }
 
     .logo-text {
@@ -1393,6 +1395,7 @@ section {
     .logo a {
         gap: 5px; 
         text-decoration: none; 
+        align-items: center; /* Vertically align logo image and text */
     }
 
     .header-corner-logo {
@@ -1400,27 +1403,37 @@ section {
         flex-shrink: 0; 
     }
 
-    /* REMOVED Styles for .mobile-header-nav */
-
-    /* REMOVED Styles for .hero-slideshow-mobile */
-    /* --- END MOBILE HERO & HEADER SIMPLIFICATION --- */
-
-    /* REMOVE hero padding */
-    /* .hero {
-        padding-bottom: 140px; 
-    } */
-     
-    /* Reset bottom text styles (they will be hidden by class anyway) */
-    .hero-bottom-text {
-        /* bottom: 150px; */
-        /* font-size: 1rem; */
-        /* width: 95%; */
+    /* Explicit initial state for Hero Cal Button on Mobile */
+    .hero .cal-trigger-btn.hero-btn {
+        color: #000; /* Black text */
+        background-color: #fff; /* White background */
+        border-color: #fff; /* White border */
+        /* Ensure other base styles like padding, radius are inherited or set */
     }
-    .hero-bottom-text-under {
-        /* bottom: 130px; */
-        /* font-size: 1.2rem; */
-        /* width: 95%; */
+    
+    /* Define styles for scroll-triggered animation */
+    .hero.scrolling-active h1 {
+        transform: scale(1.05); 
+        text-shadow: 0 0 15px rgba(255, 255, 255, 0.6); 
+        color: rgba(255, 255, 255, 1); 
     }
+    
+    .hero.scrolling-active .tagline {
+        color: rgba(255, 255, 255, 1); 
+        transform: scale(1.05); 
+        text-shadow: 0 0 12px rgba(255, 255, 255, 0.6); 
+    }
+    
+    .hero.scrolling-active .hero-btn {
+        transform: scale(1.05); 
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgb(255, 255, 255); 
+        background-color: #fff; 
+        border-color: #fff;  
+        color: #000 !important; 
+        text-shadow: none; 
+    }
+
+    /* --- END MOBILE HERO & HEADER ADJUSTMENTS --- */
 }
 
 @media screen and (max-width: 576px) {

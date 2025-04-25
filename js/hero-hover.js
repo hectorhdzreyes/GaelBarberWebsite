@@ -36,25 +36,22 @@
             
             // Function for when mouse moves in the hero section
             const handleMouseMove = function(e) {
-                // Don't apply effect if modal is open
+                if (window.innerWidth <= 768) return; // Don't run hover effect on mobile
+                
                 if (bookingModal && bookingModal.style.display === 'block') {
                     return;
                 }
                 
-                // Don't apply effect if using interactive elements
                 if (e.target.tagName === 'BUTTON' || 
                     e.target.tagName === 'A' ||
                     e.target.classList.contains('book-now-btn')) {
                     return;
                 }
                 
-                // Add darkened class
                 heroSection.classList.add('darkened');
                 
-                // Clear any existing timer
                 clearTimeout(mouseTimer);
                 
-                // Set new timer to remove class after delay
                 mouseTimer = setTimeout(function() {
                     heroSection.classList.remove('darkened');
                 }, inactivityDelay);
@@ -62,7 +59,8 @@
             
             // Also handle mouse enter to ensure effect triggers right away
             const handleMouseEnter = function() {
-                // Don't apply effect if modal is open
+                if (window.innerWidth <= 768) return; // Don't run hover effect on mobile
+                
                 if (bookingModal && bookingModal.style.display === 'block') {
                     return;
                 }
@@ -70,10 +68,8 @@
                 heroSection.classList.add('darkened');
                 heroSection.classList.add('hover-active');
                 
-                // Clear any existing timer
                 clearTimeout(mouseTimer);
                 
-                // Set new timer to remove class after delay
                 mouseTimer = setTimeout(function() {
                     heroSection.classList.remove('darkened');
                     heroSection.classList.remove('hover-active');

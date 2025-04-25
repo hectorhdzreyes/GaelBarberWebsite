@@ -6,6 +6,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 100);
     
     function setupPageTransition() {
+        // Disable this entire transition logic on mobile screens
+        if (window.innerWidth <= 768) {
+            console.log('Page transition disabled on mobile.');
+            // Ensure original hero/about are visible if they exist initially
+            // (This might not be strictly necessary if CSS handles mobile layout well)
+            const hero = document.querySelector('#home'); 
+            const about = document.querySelector('#about');
+            if (hero) hero.style.display = 'flex'; // Or block, depending on original style
+            if (about) about.style.display = 'block';
+            return; 
+        }
+        
         // Get elements
         const hero = document.querySelector('.hero');
         const about = document.querySelector('#about');

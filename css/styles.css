@@ -1409,9 +1409,20 @@ section {
         background-color: #fff; /* White background */
         border-color: #fff; /* White border */
         /* Ensure other base styles like padding, radius are inherited or set */
+        transform: scale(1.0); 
+        box-shadow: none;
+        text-shadow: none;
     }
     
     /* Define styles for scroll-triggered animation */
+    .hero.scrolling-active {
+        /* Darken background on scroll */
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/gaelhp.jpg') !important; 
+        background-size: cover !important; 
+        background-repeat: no-repeat !important;
+        background-position: center center !important;
+    }
+    
     .hero.scrolling-active h1 {
         transform: scale(1.05); 
         text-shadow: 0 0 15px rgba(255, 255, 255, 0.6); 
@@ -1425,6 +1436,7 @@ section {
     }
     
     .hero.scrolling-active .hero-btn {
+        /* Apply the hover styles */
         transform: scale(1.05); 
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgb(255, 255, 255); 
         background-color: #fff; 

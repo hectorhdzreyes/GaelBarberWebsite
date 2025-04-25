@@ -1415,7 +1415,7 @@ section {
     }
     
     /* Define styles for scroll-triggered animation */
-    .hero.scrolling-active {
+    section.hero.scrolling-active {
         /* Darken background on scroll */
         background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/gaelhp.jpg') !important; 
         background-size: cover !important; 
@@ -1423,19 +1423,19 @@ section {
         background-position: center center !important;
     }
     
-    .hero.scrolling-active h1 {
+    section.hero.scrolling-active h1 {
         transform: scale(1.05); 
         text-shadow: 0 0 15px rgba(255, 255, 255, 0.6); 
         color: rgba(255, 255, 255, 1); 
     }
     
-    .hero.scrolling-active .tagline {
+    section.hero.scrolling-active .tagline {
         color: rgba(255, 255, 255, 1); 
         transform: scale(1.05); 
         text-shadow: 0 0 12px rgba(255, 255, 255, 0.6); 
     }
     
-    .hero.scrolling-active .hero-btn {
+    section.hero.scrolling-active .hero-btn {
         /* Apply the hover styles */
         transform: scale(1.05); 
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgb(255, 255, 255); 

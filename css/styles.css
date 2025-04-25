@@ -1408,7 +1408,6 @@ section {
         color: #000; /* Black text */
         background-color: #fff; /* White background */
         border-color: #fff; /* White border */
-        /* Ensure other base styles like padding, radius are inherited or set */
         transform: scale(1.0); 
         box-shadow: none;
         text-shadow: none;
@@ -1416,7 +1415,7 @@ section {
     
     /* Define styles for scroll-triggered animation */
     section.hero.scrolling-active {
-        /* Darken background on scroll */
+        /* Darken background on scroll - Ensure override */
         background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/gaelhp.jpg') !important; 
         background-size: cover !important; 
         background-repeat: no-repeat !important;
@@ -1443,6 +1442,11 @@ section {
         border-color: #fff;  
         color: #000 !important; 
         text-shadow: none; 
+    }
+
+    /* Explicitly remove the problematic desktop :before pseudo-element */
+    .hero::before {
+        display: none !important;
     }
 
     /* --- END MOBILE HERO & HEADER ADJUSTMENTS --- */

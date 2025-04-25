@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', function() {
         clearTimeout(scrollTimeout);
         scrollTimeout = setTimeout(() => {
             heroElement.classList.remove('scrolling-active');
-        }, 150); // Adjust timeout duration (milliseconds) as needed
+        }, 300); // Increased timeout duration to 300ms
     }
 
     // Re-check mobile status on resize

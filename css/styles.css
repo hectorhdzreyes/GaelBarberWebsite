@@ -1405,21 +1405,20 @@ section {
 
     /* Explicit initial state for Hero Cal Button on Mobile */
     .hero .cal-trigger-btn.hero-btn {
-        color: #000; /* Black text */
-        background-color: #fff; /* White background */
-        border-color: #fff; /* White border */
+        color: #000;
+        background-color: #fff;
+        border-color: #fff;
         transform: scale(1.0); 
         box-shadow: none;
         text-shadow: none;
+        /* Add transition */
+        transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out, background-color 0.4s ease-in-out, color 0.4s ease-in-out, border-color 0.4s ease-in-out;
     }
     
-    /* Define styles for scroll-triggered animation */
+    /* --- Styles ONLY for Scroll Animation --- */
     section.hero.scrolling-active {
-        /* Darken background on scroll - Ensure override */
+        /* ONLY change background gradient */
         background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/gaelhp.jpg') !important; 
-        background-size: cover !important; 
-        background-repeat: no-repeat !important;
-        background-position: center center !important;
     }
     
     section.hero.scrolling-active h1 {
@@ -1435,7 +1434,6 @@ section {
     }
     
     section.hero.scrolling-active .hero-btn {
-        /* Apply the hover styles */
         transform: scale(1.05); 
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgb(255, 255, 255); 
         background-color: #fff; 
@@ -1443,13 +1441,69 @@ section {
         color: #000 !important; 
         text-shadow: none; 
     }
+    /* --- END Scroll Animation Styles --- */
+
+    /* --- END MOBILE HERO & HEADER ADJUSTMENTS --- */
+
+    .hero {
+        background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../images/gaelhp.jpg') !important;
+        background-size: cover !important; 
+        background-repeat: no-repeat !important; 
+        background-position: center center !important; 
+        transition: background 0.4s ease-in-out; /* Added transition */
+    }
 
     /* Explicitly remove the problematic desktop :before pseudo-element */
     .hero::before {
         display: none !important;
     }
 
+    .hero h1 {
+        /* Add transition for scroll effect */
+        transition: transform 0.4s ease-in-out, text-shadow 0.4s ease-in-out, color 0.4s ease-in-out;
+    }
+
+    .hero .tagline {
+         /* Add transition for scroll effect */
+        transition: transform 0.4s ease-in-out, text-shadow 0.4s ease-in-out, color 0.4s ease-in-out;
+    }
+
+    /* Ensure button transition exists */
+    .hero .cal-trigger-btn.hero-btn {
+        transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out, background-color 0.4s ease-in-out, color 0.4s ease-in-out, border-color 0.4s ease-in-out;
+    }
+    
+    /* --- Styles ONLY for Scroll Animation --- */
+    section.hero.scrolling-active {
+        /* ONLY change background gradient */
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/gaelhp.jpg') !important; 
+    }
+    
+    section.hero.scrolling-active h1 {
+        transform: scale(1.05); 
+        text-shadow: 0 0 15px rgba(255, 255, 255, 0.6); 
+        color: rgba(255, 255, 255, 1); 
+    }
+    
+    section.hero.scrolling-active .tagline {
+        color: rgba(255, 255, 255, 1); 
+        transform: scale(1.05); 
+        text-shadow: 0 0 12px rgba(255, 255, 255, 0.6); 
+    }
+    
+    section.hero.scrolling-active .hero-btn {
+        transform: scale(1.05); 
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgb(255, 255, 255); 
+        background-color: #fff; 
+        border-color: #fff;  
+        color: #000 !important; 
+        text-shadow: none; 
+    }
+    /* --- END Scroll Animation Styles --- */
+
     /* --- END MOBILE HERO & HEADER ADJUSTMENTS --- */
+
+    // ... other 768px rules ...
 }
 
 @media screen and (max-width: 576px) {

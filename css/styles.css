@@ -1448,7 +1448,7 @@ section {
         background-size: cover !important; 
         background-repeat: no-repeat !important; 
         background-position: center center !important; 
-        transition: background-image 0.4s ease-in-out; /* MODIFIED transition target */
+        transition: none; /* Explicitly disable transitions on the hero itself */
     }
 
     /* Explicitly remove the problematic desktop :before pseudo-element */
@@ -1456,6 +1456,7 @@ section {
         display: none !important;
     }
 
+    /* Keep transitions on the inner elements */
     .hero h1 { 
         transition: transform 0.4s ease-in-out, text-shadow 0.4s ease-in-out, color 0.4s ease-in-out; 
     }
@@ -1464,41 +1465,23 @@ section {
         transition: transform 0.4s ease-in-out, text-shadow 0.4s ease-in-out, color 0.4s ease-in-out; 
     }
 
-    /* Ensure button transition exists */
     .hero .cal-trigger-btn.hero-btn {
+        /* ... initial styles ... */
         transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out, background-color 0.4s ease-in-out, color 0.4s ease-in-out, border-color 0.4s ease-in-out;
     }
     
     /* --- Styles ONLY for Scroll Animation --- */
     section.hero.scrolling-active {
+        /* ONLY change background gradient */
         background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/gaelhp.jpg') !important; 
     }
     
-    section.hero.scrolling-active h1 {
-        transform: scale(1.05); 
-        text-shadow: 0 0 15px rgba(255, 255, 255, 0.6); 
-        color: rgba(255, 255, 255, 1); 
-    }
-    
-    section.hero.scrolling-active .tagline {
-        color: rgba(255, 255, 255, 1); 
-        transform: scale(1.05); 
-        text-shadow: 0 0 12px rgba(255, 255, 255, 0.6); 
-    }
-    
-    section.hero.scrolling-active .hero-btn {
-        transform: scale(1.05); 
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgb(255, 255, 255); 
-        background-color: #fff; 
-        border-color: #fff;  
-        color: #000 !important; 
-        text-shadow: none; 
-    }
-}
-    /* --- END Scroll Animation Styles --- */
+    /* ... rest of scroll animation styles ... */
 
     /* --- END MOBILE HERO & HEADER ADJUSTMENTS --- */
 
+    // ... other 768px rules ...
+}
 
 @media screen and (max-width: 576px) {
     h1 {

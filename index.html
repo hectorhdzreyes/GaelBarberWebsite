@@ -111,8 +111,11 @@
                     <span class="logo-text">BARBER</span>
                     </a>
                 </div>
+                <!-- Mobile-specific image that shows under the logo on mobile only -->
                 <img src="images/toprighthero.jpg" alt="Header Corner Logo" class="header-corner-logo mobile-corner-logo">
             </div>
+            <!-- Keep the original desktop image -->
+            <img src="images/toprighthero.jpg" alt="Header Corner Logo" class="header-corner-logo desktop-corner-logo">
         </div>
     </header>
 
@@ -128,7 +131,7 @@
 
     <!-- Removing page container for home and about transition -->
     <section id="home" class="hero">
-        <!-- Left Navigation Panel (desktop only) -->
+        <!-- Left Navigation Panel - Desktop -->
         <div class="hero-left-panel hide-on-mobile">
             <div>about me</div>
             <a href="#services">services</a>
@@ -144,10 +147,9 @@
                 book now
             </div>
         </div>
-        
-        <!-- Mobile Right Navigation Panel -->
-        <div class="hero-right-panel show-on-mobile-flex">
-            <a href="#about">about</a>
+
+        <!-- Mobile-specific top right panel -->
+        <div class="hero-mobile-panel show-on-mobile-flex">
             <a href="#services">services</a>
             <a href="#pricing">pricing</a>
             <a href="#gallery">gallery</a>

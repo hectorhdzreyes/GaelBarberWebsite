@@ -205,9 +205,18 @@ ul {
 }
 
 .header-container {
-    display: flex;               
-    justify-content: space-between;  
-    align-items: center;         
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.mobile-corner-logo {
+    display: none; /* Hide the mobile version on desktop */
 }
 
 .logo a {
@@ -1282,6 +1291,34 @@ section {
     /* MOBILE-SPECIFIC EFFECTS FOR HERO ELEMENTS */
     /* Same effects as desktop but applied differently for mobile */
     
+    /* Logo and Header Layout */
+    .desktop-corner-logo {
+        display: none; /* Hide the desktop version */
+    }
+    
+    .mobile-corner-logo {
+        display: block; /* Show the mobile version */
+        margin-top: 15px; /* Add space between logo and image */
+        width: 80px; /* Adjust size as needed */
+        height: auto;
+    }
+    
+    .logo-wrapper {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    
+    /* Mobile Hero Panel */
+    .hero-mobile-panel {
+        display: flex !important; /* Force display on mobile */
+    }
+    
+    /* Style fixes for mobile hero */
+    .hero-content {
+        padding-top: 80px; /* Add some space for the mobile panel */
+    }
+    
     /* Prevent horizontal scrolling on mobile */
     html, body {
         overflow-x: hidden !important;
@@ -1352,61 +1389,6 @@ section {
     .hero .tagline,
     .hero .cal-trigger-btn.hero-btn {
         transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease !important;
-    }
-    
-    /* HEADER AND LOGO MOBILE ADJUSTMENTS */
-    /* Make logo and image stack vertically */
-    .logo-wrapper {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    /* Reposition toprighthero image for mobile */
-    .mobile-corner-logo {
-        position: static !important; /* Override absolute positioning */
-        width: 100px;
-        height: 100px;
-        border-radius: 15px;
-        margin-top: 10px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    }
-    
-    /* Display right navigation panel on mobile */
-    .hero-right-panel.show-on-mobile-flex {
-        display: flex;
-    }
-    
-    /* Style the mobile right navigation panel */
-    .hero-right-panel {
-        background-color: rgba(0, 0, 0, 0.5);
-        border-radius: 10px;
-        padding: 8px;
-        top: 15px;
-        right: 15px;
-    }
-    
-    /* Header container mobile adjustments */
-    .header-container {
-        flex-direction: row; 
-        align-items: center; 
-        padding: 0 1rem; 
-        justify-content: space-between; 
-    }
-
-    .gaellogo-jpg {
-        height: 50px; 
-        width: auto; /* Prevent stretching */
-        flex-shrink: 0; /* Prevent shrinking in flex context */
-    }
-
-    .logo-text {
-        font-size: 12px; 
-    }
-    
-    .logo a {
-        gap: 5px; 
-        text-decoration: none; 
-        align-items: center; /* Vertically align logo image and text */
     }
     
     /* Make them slightly enhanced by default */
@@ -1486,7 +1468,6 @@ section {
         display: inline-block !important;
     }
     
-    /* Rest of the mobile styles... */
     h1 {
         font-size: 3.5rem;
     }
@@ -1566,10 +1547,67 @@ section {
     .contact-value {
         align-self: flex-start;     /* Align to start */
     }
+
+    /* MOBILE HERO & HEADER ADJUSTMENTS */
+    .header-container {
+        flex-direction: row; 
+        align-items: center; 
+        padding: 0 1rem; 
+        justify-content: space-between; 
+    }
+
+    .gaellogo-jpg {
+        height: 50px; 
+        width: auto; /* Prevent stretching */
+        flex-shrink: 0; /* Prevent shrinking in flex context */
+    }
+
+    .logo-text {
+        font-size: 12px; 
+    }
     
-    /* Ensure all transforms work properly on mobile */
+    .logo a {
+        gap: 5px; 
+        text-decoration: none; 
+        align-items: center; /* Vertically align logo image and text */
+    }
+
+    .header-corner-logo {
+        height: 40px; 
+        flex-shrink: 0; 
+    }
+
+    /* Explicit initial state for Hero Cal Button on Mobile */
+    .hero .cal-trigger-btn.hero-btn {
+        color: #000;
+        background-color: #fff;
+        border-color: #fff;
+        transform: scale(1.0); 
+        box-shadow: none;
+        text-shadow: none;
+        transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out, background-color 0.4s ease-in-out, color 0.4s ease-in-out;
+    }
+    
     body, html {
         transform: none !important;
+    }
+
+    /* Logo and Header Layout */
+    .desktop-corner-logo {
+        display: none; /* Hide the desktop version */
+    }
+    
+    .mobile-corner-logo {
+        display: block; /* Show the mobile version */
+        margin-top: 15px; /* Add space between logo and image */
+        width: 80px; /* Adjust size as needed */
+        height: auto;
+    }
+    
+    .logo-wrapper {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
     }
 }
 
@@ -1864,90 +1902,40 @@ html {
     /* No margin needed due to absolute positioning */
 }
 
-/* For desktop view, keep logo and image side by side */
-.logo-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
-
-/* Default desktop header corner logo styling */
-.header-corner-logo {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 140px;
-    height: 140px;
-    border-radius: 0 0 0 25px;
-    object-fit: cover;
-    box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.3);
-    z-index: 1;
-}
-
-/* Mobile Right Navigation Panel - hidden by default */
-.hero-right-panel {
-    display: none; /* Hidden by default, shown with show-on-mobile-flex class */
+/* Mobile Hero Right Panel - Only for mobile */
+.hero-mobile-panel {
+    display: none; /* Hidden by default (desktop) */
     position: absolute;
     top: 20px;
-    right: 20px;
+    right: 15px;
     flex-direction: column;
     align-items: flex-end;
-    gap: 15px;
-    z-index: 15;
+    gap: 12px;
+    z-index: 20;
 }
 
-.hero-right-panel a,
-.hero-right-panel div {
+.hero-mobile-panel a,
+.hero-mobile-panel div {
     color: rgba(255, 255, 255, 0.8);
     font-family: 'Montserrat', sans-serif;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 500;
     text-transform: uppercase;
     text-decoration: none;
     letter-spacing: 1px;
-    padding: 3px 5px;
+    padding: 2px 0;
     cursor: pointer;
     transition: color 0.2s ease, transform 0.2s ease;
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
 }
 
-.hero-right-panel a:hover,
-.hero-right-panel div:hover {
+.hero-mobile-panel a:hover,
+.hero-mobile-panel div:hover {
     color: #ffffff;
-    transform: translateX(-3px);
+    transform: scale(1.05);
 }
 
-/* Mobile-specific styles */
-@media screen and (max-width: 768px) {
-    /* Arrange logo and image in a vertical stack on mobile */
-    .logo-wrapper {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    /* Adjust the top-right image for mobile */
-    .mobile-corner-logo {
-        position: static; /* Remove absolute positioning */
-        width: 100px;
-        height: 100px;
-        border-radius: 15px;
-        margin-top: 10px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    }
-    
-    /* Additional mobile-specific styles */
-    .hero-right-panel.show-on-mobile-flex {
-        display: flex;
-    }
-    
-    /* Ensure mobile right panel has a good background for visibility */
-    .hero-right-panel {
-        background-color: rgba(0, 0, 0, 0.5);
-        border-radius: 10px;
-        padding: 8px;
-    }
-    
-    /* MOBILE-SPECIFIC EFFECTS FOR HERO ELEMENTS */
-    /* Same effects as desktop but applied differently for mobile */
+.hero-mobile-panel .cal-trigger-item {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 2px 8px;
+    border-radius: 4px;
 }

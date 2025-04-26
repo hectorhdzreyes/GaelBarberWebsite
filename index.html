@@ -103,26 +103,16 @@
 <body>
     <header class="header">
         <div class="container header-container">
-            <div class="logo">
-                <a href="index.html">
-                <span class="logo-text">THE</span>
-                <img src="images/gaellogo.jpg" alt="Logo" class="gaellogo-jpg">
-                <span class="logo-text">BARBER</span>
-                </a>
-                <!-- Mobile-only logo image directly under the main logo -->
-                <img src="images/toprighthero.jpg" alt="Mobile Logo" class="mobile-under-logo show-on-mobile-block hide-on-desktop">
-              </div>
-              
-              <!-- Desktop top right image (hidden on mobile) -->
-              <img src="images/toprighthero.jpg" alt="Header Corner Logo" class="header-corner-logo hide-on-mobile">
-              
-              <!-- Mobile nav panel in top right (only visible on mobile) -->
-              <div class="mobile-nav-panel show-on-mobile-flex hide-on-desktop">
-                <a href="#services">services</a>
-                <a href="#pricing">pricing</a>
-                <a href="#gallery">gallery</a>
-                <a href="#contact">contact</a>
-              </div>
+            <div class="logo-wrapper">
+                <div class="logo">
+                    <a href="index.html">
+                    <span class="logo-text">THE</span>
+                    <img src="images/gaellogo.jpg" alt="Logo" class="gaellogo-jpg">
+                    <span class="logo-text">BARBER</span>
+                    </a>
+                </div>
+                <img src="images/toprighthero.jpg" alt="Header Corner Logo" class="header-corner-logo mobile-corner-logo">
+            </div>
         </div>
     </header>
 
@@ -138,7 +128,7 @@
 
     <!-- Removing page container for home and about transition -->
     <section id="home" class="hero">
-        <!-- Left Navigation Panel -->
+        <!-- Left Navigation Panel (desktop only) -->
         <div class="hero-left-panel hide-on-mobile">
             <div>about me</div>
             <a href="#services">services</a>
@@ -152,6 +142,23 @@
                 data-cal-config='{"layout":"month_view"}'
             >
                 book now
+            </div>
+        </div>
+        
+        <!-- Mobile Right Navigation Panel -->
+        <div class="hero-right-panel show-on-mobile-flex">
+            <a href="#about">about</a>
+            <a href="#services">services</a>
+            <a href="#pricing">pricing</a>
+            <a href="#gallery">gallery</a>
+            <a href="#contact">contact</a>
+            <div 
+                class="cal-trigger-item" 
+                data-cal-link="hector-hernandez-jng1ej/30min" 
+                data-cal-namespace="book-now"
+                data-cal-config='{"layout":"month_view"}'
+            >
+                book
             </div>
         </div>
 

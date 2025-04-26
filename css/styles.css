@@ -1305,17 +1305,42 @@ section {
         pointer-events: none !important;
     }
     
-    /* Disable ALL possible transitions and animations */
+    /* MOBILE SCROLL EFFECTS - Only for specific elements */
+    /* Default state */
+    .hero h1,
+    .hero .tagline,
+    .hero .cal-trigger-btn {
+        transition: all 0.3s ease !important;
+    }
+    
+    /* Scrolling active state */
+    .hero.scroll-active h1 {
+        transform: scale(1.1) !important;
+        text-shadow: 0 0 15px rgba(255, 255, 255, 0.8) !important;
+        color: #ffffff !important;
+    }
+    
+    .hero.scroll-active .tagline {
+        transform: scale(1.08) !important;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.7) !important;
+        color: #ffffff !important;
+        opacity: 1 !important;
+    }
+    
+    .hero.scroll-active .cal-trigger-btn {
+        transform: scale(1.08) !important;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.5) !important;
+        background-color: #fff !important;
+        color: #000 !important;
+        border-color: #fff !important;
+    }
+    
+    /* Disable ALL transitions and animations for everything else */
     .hero,
-    .hero *,
     .hero::before,
     .hero::after,
     .hero:hover,
     .hero-content,
-    .hero-content *,
-    .hero h1,
-    .hero .tagline,
-    .hero .hero-btn,
     .slideshow-track,
     .slideshow-image,
     .slideshow-image img,
@@ -1346,8 +1371,6 @@ section {
         text-shadow: none !important;
         box-shadow: none !important;
         opacity: 1 !important;
-        color: inherit !important;
-        background-color: inherit !important;
     }
 
     .hide-on-mobile {

@@ -36,6 +36,30 @@
                         if (slideshow) {
                             slideshow.style.display = "none";
                         }
+                        
+                        // Setup scroll effects for title, tagline and button
+                        var title = hero.querySelector('h1');
+                        var tagline = hero.querySelector('.tagline');
+                        var bookButton = hero.querySelector('.cal-trigger-btn');
+                        
+                        if (title) title.style.transition = "all 0.3s ease";
+                        if (tagline) tagline.style.transition = "all 0.3s ease";
+                        if (bookButton) bookButton.style.transition = "all 0.3s ease";
+                        
+                        // Add scroll handler
+                        var scrollTimeout;
+                        window.addEventListener('scroll', function() {
+                            // Add the class when scrolling starts
+                            hero.classList.add('scroll-active');
+                            
+                            // Clear existing timeout
+                            clearTimeout(scrollTimeout);
+                            
+                            // Remove the class after scrolling stops
+                            scrollTimeout = setTimeout(function() {
+                                hero.classList.remove('scroll-active');
+                            }, 300);
+                        });
                     }
                 });
             }

@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- START: Scroll Animation for Hero on Mobile --- 
+    // --- START: Mobile Hero Static Background ---
     const heroElement = document.querySelector('.hero');
     let isMobile = window.innerWidth <= 768; // Check initial width
 
@@ -174,13 +174,40 @@ document.addEventListener('DOMContentLoaded', function() {
         // Force all children to have no transitions or animations
         const allHeroChildren = heroElement.querySelectorAll('*');
         allHeroChildren.forEach(child => {
+            // Skip the specific elements we want to animate
+            if (child.tagName === 'H1' || 
+                child.classList.contains('tagline') || 
+                child.classList.contains('cal-trigger-btn')) {
+                return;
+            }
+            
             child.style.transition = "none";
             child.style.animation = "none";
             child.style.transform = "none";
         });
+        
+        // Add scroll effect for mobile
+        if (isMobile) {
+            let scrollTimeout;
+            
+            window.addEventListener('scroll', function() {
+                if (!heroElement) return;
+                
+                // Add the class when scrolling starts
+                heroElement.classList.add('scroll-active');
+                
+                // Clear existing timeout
+                clearTimeout(scrollTimeout);
+                
+                // Remove the class after scrolling stops
+                scrollTimeout = setTimeout(function() {
+                    heroElement.classList.remove('scroll-active');
+                }, 300);
+            });
+        }
     }
 
-    // Disable all scroll handlers for mobile
+    // Disable all scroll handlers for mobile except our specific ones
     let listenerAttached = false; // Don't attach any listeners for mobile
     
     // Apply static styles if resizing to mobile
@@ -199,11 +226,18 @@ document.addEventListener('DOMContentLoaded', function() {
             // Force all children to have no transitions or animations
             const allHeroChildren = heroElement.querySelectorAll('*');
             allHeroChildren.forEach(child => {
+                // Skip the specific elements we want to animate
+                if (child.tagName === 'H1' || 
+                    child.classList.contains('tagline') || 
+                    child.classList.contains('cal-trigger-btn')) {
+                    return;
+                }
+                
                 child.style.transition = "none";
                 child.style.animation = "none";
                 child.style.transform = "none";
             });
         }
     });
-    // --- END: Mobile Hero Static Background ---
+    // --- END: Mobile Hero Static Background with Scroll Effects ---
 }); 

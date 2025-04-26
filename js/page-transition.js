@@ -16,6 +16,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const navAboutLink = document.querySelector('#about-link');
         const navHomeLink = document.querySelector('#home-link');
         
+        // Mobile specific elements
+        const mobileAboutLink = document.querySelector('#mobile-about-link');
+        
         // For mobile: Track scroll position to enable/disable transitions
         if (isMobile) {
             // Initially, at the top of the page, set the at-hero class
@@ -31,6 +34,48 @@ document.addEventListener('DOMContentLoaded', function() {
                     document.body.classList.remove('at-hero');
                     // Don't automatically transition back when scrolling, only when specifically clicking
                     // Allow scrolling on about page without transitioning back
+                }
+            });
+            
+            // Set up click handler for mobile-specific about link
+            if (mobileAboutLink) {
+                mobileAboutLink.addEventListener('click', function(e) {
+                    e.stopPropagation(); // Prevent bubbling to parent
+                    
+                    const pageContainer = document.querySelector('.page-container.mobile-container');
+                    if (pageContainer) {
+                        console.log('Mobile about link clicked, transitioning to about');
+                        pageContainer.classList.add('show-about');
+                        window.history.pushState({page: 'about'}, 'About Me', '#about');
+                    }
+                });
+            }
+            
+            // Fix mobile navigation links to work correctly
+            document.querySelectorAll('.mobile-link').forEach(link => {
+                if (link.tagName === 'A') { // Only for actual links, not the about me div
+                    link.addEventListener('click', function(e) {
+                        e.stopPropagation(); // Prevent bubbling to hero
+                        
+                        const href = this.getAttribute('href');
+                        if (href && href.startsWith('#')) {
+                            e.preventDefault();
+                            
+                            // Get target section
+                            const targetSection = document.querySelector(href);
+                            if (targetSection) {
+                                // For mobile navigation - smooth scroll to target
+                                let headerOffset = 100; // Adjust as needed
+                                let elementPosition = targetSection.getBoundingClientRect().top;
+                                let offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                                
+                                window.scrollTo({
+                                    top: offsetPosition,
+                                    behavior: 'smooth'
+                                });
+                            }
+                        }
+                    });
                 }
             });
         }

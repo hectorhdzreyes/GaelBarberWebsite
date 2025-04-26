@@ -1298,20 +1298,34 @@ section {
     
     .mobile-corner-logo {
         display: block; /* Show the mobile version */
-        margin-top: 15px; /* Add space between logo and image */
+        margin-top: 5px; /* Reduced space between logo and image */
         width: 80px; /* Adjust size as needed */
         height: auto;
+        align-self: flex-start; /* Ensure it stays left-aligned */
     }
     
     .logo-wrapper {
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start; /* Align to the left instead of center */
         width: 100%;
+        margin-left: 10px; /* Add some left margin */
     }
     
-    /* Mobile Hero Panel */
+    .logo {
+        align-self: flex-start; /* Ensure logo stays left-aligned */
+    }
+    
+    /* Mobile Hero Panel - smaller text and spacing */
     .hero-mobile-panel {
         display: flex !important; /* Force display on mobile */
+        gap: 8px; /* Reduced spacing between items */
+    }
+    
+    .hero-mobile-panel a,
+    .hero-mobile-panel div {
+        font-size: 0.75rem; /* Smaller text */
+        letter-spacing: 0.5px; /* Reduced letter spacing */
+        padding: 1px 0; /* Smaller padding */
     }
     
     /* Style fixes for mobile hero */
@@ -1599,15 +1613,268 @@ section {
     
     .mobile-corner-logo {
         display: block; /* Show the mobile version */
-        margin-top: 15px; /* Add space between logo and image */
+        margin-top: 5px; /* Reduced space between logo and image */
         width: 80px; /* Adjust size as needed */
         height: auto;
+        align-self: flex-start; /* Ensure it stays left-aligned */
     }
     
     .logo-wrapper {
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start; /* Align to the left instead of center */
         width: 100%;
+        margin-left: 10px; /* Add some left margin */
+    }
+    
+    .logo {
+        align-self: flex-start; /* Ensure logo stays left-aligned */
+    }
+    
+    /* Mobile Hero Panel - smaller text and spacing */
+    .hero-mobile-panel {
+        display: flex !important; /* Force display on mobile */
+        gap: 8px; /* Reduced spacing between items */
+    }
+    
+    .hero-mobile-panel a,
+    .hero-mobile-panel div {
+        font-size: 0.75rem; /* Smaller text */
+        letter-spacing: 0.5px; /* Reduced letter spacing */
+        padding: 1px 0; /* Smaller padding */
+    }
+    
+    /* Style fixes for mobile hero */
+    .hero-content {
+        padding-top: 80px; /* Add some space for the mobile panel */
+    }
+    
+    /* Prevent horizontal scrolling on mobile */
+    html, body {
+        overflow-x: hidden !important;
+        position: relative !important;
+        touch-action: pan-y !important;  /* Only allow vertical scrolling */
+        -webkit-overflow-scrolling: touch !important;
+    }
+    
+    /* Ensure non-hero sections don't allow transitions */
+    body:not(.at-hero) .page-container.mobile-container {
+        pointer-events: none !important;
+    }
+    
+    /* But keep the current state visible when scrolling */
+    body:not(.at-hero) .page-container.mobile-container.show-about {
+        transform: translateX(-50%) !important; /* Keep showing about page */
+        transition: none !important;
+    }
+    
+    /* Keep hero view when scrolling from hero */
+    body:not(.at-hero) .page-container.mobile-container:not(.show-about) {
+        transform: none !important;
+        transition: none !important;
+    }
+    
+    /* Limit transitions to when at hero section only */
+    body.at-hero .page-container.mobile-container {
+        pointer-events: auto !important;
+        transition: transform 0.5s ease-in-out !important;
+    }
+    
+    /* Enable page transitions for mobile */
+    .page-container.mobile-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 200%;
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+        overflow: hidden;
+        height: 100vh;
+        z-index: 5;
+    }
+    
+    /* Show about page when clicked */
+    .page-container.mobile-container.show-about {
+        transform: translateX(-50%);
+    }
+    
+    /* For the two pages inside the container */
+    .page-container.mobile-container .page {
+        width: 50%;
+        flex-shrink: 0;
+        position: relative;
+        height: 100vh;
+    }
+    
+    /* Make sure both hero and about sections are clickable */
+    .page-container.mobile-container .hero,
+    .page-container.mobile-container #about {
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+    }
+    
+    /* Allow animations ONLY for specific elements */
+    .hero h1,
+    .hero .tagline,
+    .hero .cal-trigger-btn.hero-btn {
+        transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease !important;
+    }
+    
+    /* Make them slightly enhanced by default */
+    .hero h1 {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.5) !important;
+    }
+    
+    .hero .tagline {
+        color: rgba(255, 255, 255, 0.9) !important;
+    }
+    
+    .hero .cal-trigger-btn.hero-btn {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3) !important;
+        color: #000 !important;
+        background-color: #fff !important;
+        border-color: #fff !important;
+    }
+    
+    /* MOBILE SCROLL EFFECTS - Enhanced effects when scrolling */
+    .hero.scroll-active h1 {
+        transform: scale(1.1) !important;
+        text-shadow: 0 0 20px rgba(255, 255, 255, 1) !important;
+        color: #ffffff !important;
+    }
+    
+    .hero.scroll-active .tagline {
+        transform: scale(1.08) !important;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.8) !important;
+        color: #ffffff !important;
+        opacity: 1 !important;
+    }
+    
+    .hero.scroll-active .cal-trigger-btn.hero-btn {
+        transform: scale(1.08) !important;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 8px 20px rgba(0, 0, 0, 0.4) !important;
+        background-color: #fff !important;
+        color: #000 !important;
+        border-color: #fff !important;
+    }
+    
+    /* Static background for hero */
+    .hero {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/gaelhp.jpg') !important;
+        background-size: cover !important;
+        background-position: center center !important;
+        background-repeat: no-repeat !important;
+        background-attachment: scroll !important;
+    }
+    
+    /* Completely hide slideshow on mobile */
+    .hero-slideshow,
+    .slideshow-track,
+    .slideshow-image {
+        display: none !important;
+    }
+    
+    /* Make sure only our targeted elements have effects */
+    .hero *:not(h1):not(.tagline):not(.cal-trigger-btn) {
+        transition: none !important;
+        animation: none !important;
+        transform: none !important;
+    }
+    
+    .hide-on-mobile {
+        display: none !important;
+    }
+    
+    .show-on-mobile-block {
+        display: block !important;
+    }
+    
+    .show-on-mobile-flex {
+        display: flex !important;
+    }
+    
+    .show-on-mobile-inline-block {
+        display: inline-block !important;
+    }
+    
+    h1 {
+        font-size: 3.5rem;
+    }
+    
+    h2 {
+        font-size: 2rem;
+    }
+    
+    .services-grid,
+    .gallery-grid {
+        grid-template-columns: 1fr;  /* Single column */
+    }
+    
+    .gallery-item {
+        height: 300px;              /* Reduced height */
+    }
+    
+    .contact-info {
+        gap: 2.5rem;                /* Increased spacing */
+    }
+    
+    .footer-nav ul {
+        flex-direction: column;     /* Stack vertically */
+        gap: 1.5rem;               /* Space between */
+    }
+    
+    section {
+        padding: 5rem 0;            /* Reduced padding */
+    }
+    
+    .service-card {
+        flex-direction: column;     /* Stack vertically */
+        align-items: flex-start;    /* Align to start */
+        gap: 1rem;                  /* Space between */
+        padding: 0 0 2rem 0;        /* Bottom padding */
+    }
+    
+    .service-icon {
+        margin-bottom: 0.5rem;      /* Bottom margin */
+    }
+    
+    .service-card h3 {
+        flex-direction: column;     /* Stack vertically */
+        align-items: flex-start;    /* Align to start */
+        gap: 0.5rem;                /* Space between */
+        font-size: 1.5rem;          /* Medium size */
+    }
+    
+    .service-price {
+        font-size: 1.2rem;          /* Smaller size */
+        padding: 0.2rem 0.8rem;     /* Reduced padding */
+    }
+    
+    .service-card p {
+        font-size: 1rem;            /* Base size */
+    }
+    
+    .services {
+        padding: 6rem 0;            /* Reduced padding */
+        min-height: auto;           /* Auto height */
+    }
+    
+    .contact-content {
+        flex-direction: column;     /* Stack vertically */
+        gap: 3rem;                  /* Space between */
+    }
+    
+    .contact-column {
+        padding: 0;                 /* No padding */
+    }
+    
+    .contact-item {
+        flex-direction: column;     /* Stack vertically */
+        gap: 0.5rem;                /* Space between */
+    }
+    
+    .contact-value {
+        align-self: flex-start;     /* Align to start */
     }
 }
 
@@ -1938,4 +2205,17 @@ html {
     background-color: rgba(255, 255, 255, 0.2);
     padding: 2px 8px;
     border-radius: 4px;
+}
+
+/* Make about link visually distinct */
+#mobile-about-link {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+/* Mobile links style for active state */
+.mobile-link.active {
+    color: #ffffff !important;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
 }

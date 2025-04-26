@@ -1279,16 +1279,61 @@ section {
 }
 
 @media screen and (max-width: 768px) {
-    /* MOBILE HERO - COMPLETELY STATIC BACKGROUND WITH NO EFFECTS */
+    /* MOBILE-SPECIFIC EFFECTS FOR HERO ELEMENTS */
+    /* Same effects as desktop but applied differently for mobile */
+    
+    /* Allow animations ONLY for these specific elements */
+    .hero h1,
+    .hero .tagline,
+    .hero .cal-trigger-btn.hero-btn {
+        transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease !important;
+    }
+    
+    /* Make them slightly enhanced by default */
+    .hero h1 {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.5) !important;
+    }
+    
+    .hero .tagline {
+        color: rgba(255, 255, 255, 0.9) !important;
+    }
+    
+    .hero .cal-trigger-btn.hero-btn {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3) !important;
+        color: #000 !important;
+        background-color: #fff !important;
+        border-color: #fff !important;
+    }
+    
+    /* MOBILE SCROLL EFFECTS - Enhanced effects when scrolling */
+    .hero.scroll-active h1 {
+        transform: scale(1.1) !important;
+        text-shadow: 0 0 20px rgba(255, 255, 255, 1) !important;
+        color: #ffffff !important;
+    }
+    
+    .hero.scroll-active .tagline {
+        transform: scale(1.08) !important;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.8) !important;
+        color: #ffffff !important;
+        opacity: 1 !important;
+    }
+    
+    .hero.scroll-active .cal-trigger-btn.hero-btn {
+        transform: scale(1.08) !important;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 8px 20px rgba(0, 0, 0, 0.4) !important;
+        background-color: #fff !important;
+        color: #000 !important;
+        border-color: #fff !important;
+    }
+    
+    /* Static background for hero */
     .hero {
         background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/gaelhp.jpg') !important;
         background-size: cover !important;
         background-position: center center !important;
         background-repeat: no-repeat !important;
         background-attachment: scroll !important;
-        transform: none !important;
-        transition: none !important;
-        animation: none !important;
     }
     
     /* Completely hide slideshow on mobile */
@@ -1296,83 +1341,15 @@ section {
     .slideshow-track,
     .slideshow-image {
         display: none !important;
-        visibility: hidden !important;
-        opacity: 0 !important;
-        width: 0 !important;
-        height: 0 !important;
-        overflow: hidden !important;
-        position: absolute !important;
-        pointer-events: none !important;
     }
     
-    /* MOBILE SCROLL EFFECTS - Only for specific elements */
-    /* Default state */
-    .hero h1,
-    .hero .tagline,
-    .hero .cal-trigger-btn {
-        transition: all 0.3s ease !important;
-    }
-    
-    /* Scrolling active state */
-    .hero.scroll-active h1 {
-        transform: scale(1.1) !important;
-        text-shadow: 0 0 15px rgba(255, 255, 255, 0.8) !important;
-        color: #ffffff !important;
-    }
-    
-    .hero.scroll-active .tagline {
-        transform: scale(1.08) !important;
-        text-shadow: 0 0 10px rgba(255, 255, 255, 0.7) !important;
-        color: #ffffff !important;
-        opacity: 1 !important;
-    }
-    
-    .hero.scroll-active .cal-trigger-btn {
-        transform: scale(1.08) !important;
-        box-shadow: 0 0 15px rgba(255, 255, 255, 0.5) !important;
-        background-color: #fff !important;
-        color: #000 !important;
-        border-color: #fff !important;
-    }
-    
-    /* Disable ALL transitions and animations for everything else */
-    .hero,
-    .hero::before,
-    .hero::after,
-    .hero:hover,
-    .hero-content,
-    .slideshow-track,
-    .slideshow-image,
-    .slideshow-image img,
-    .hero-left-panel,
-    .hero-left-panel a,
-    .hero-left-panel div,
-    .hero-bottom-text,
-    .hero-bottom-text-under {
+    /* Make sure only our targeted elements have effects */
+    .hero *:not(h1):not(.tagline):not(.cal-trigger-btn) {
         transition: none !important;
         animation: none !important;
         transform: none !important;
-        animation-play-state: paused !important;
-        animation-duration: 0s !important;
-        animation-delay: 0s !important;
-        animation-iteration-count: 0 !important;
     }
     
-    /* Stop hover effects completely */
-    .hero:hover h1,
-    .hero:hover .tagline,
-    .hero:hover .hero-btn,
-    .hero:hover *,
-    .hero.hover-active h1,
-    .hero.hover-active .tagline,
-    .hero.hover-active .hero-btn,
-    .hero.hover-active * {
-        transform: none !important;
-        text-shadow: none !important;
-        box-shadow: none !important;
-        opacity: 1 !important;
-    }
-
     .hide-on-mobile {
         display: none !important;
     }

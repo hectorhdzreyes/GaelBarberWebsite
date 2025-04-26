@@ -156,88 +156,84 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- START: Mobile Hero Static Background ---
+    // --- START: Mobile Hero Scroll Effects ---
     const heroElement = document.querySelector('.hero');
-    let isMobile = window.innerWidth <= 768; // Check initial width
-
-    // If on mobile, apply static hero style immediately
-    if (isMobile && heroElement) {
-        // Force static styling
-        heroElement.style.transition = "none";
-        heroElement.style.animation = "none";
-        heroElement.style.transform = "none";
-        heroElement.style.backgroundAttachment = "scroll";
-        
-        // Remove any classes that might have animations
-        heroElement.classList.remove('scrolling-active');
-        
-        // Force all children to have no transitions or animations
-        const allHeroChildren = heroElement.querySelectorAll('*');
-        allHeroChildren.forEach(child => {
-            // Skip the specific elements we want to animate
-            if (child.tagName === 'H1' || 
-                child.classList.contains('tagline') || 
-                child.classList.contains('cal-trigger-btn')) {
-                return;
-            }
-            
-            child.style.transition = "none";
-            child.style.animation = "none";
-            child.style.transform = "none";
-        });
-        
-        // Add scroll effect for mobile
-        if (isMobile) {
-            let scrollTimeout;
-            
-            window.addEventListener('scroll', function() {
-                if (!heroElement) return;
-                
-                // Add the class when scrolling starts
-                heroElement.classList.add('scroll-active');
-                
-                // Clear existing timeout
-                clearTimeout(scrollTimeout);
-                
-                // Remove the class after scrolling stops
-                scrollTimeout = setTimeout(function() {
-                    heroElement.classList.remove('scroll-active');
-                }, 300);
-            });
-        }
-    }
-
-    // Disable all scroll handlers for mobile except our specific ones
-    let listenerAttached = false; // Don't attach any listeners for mobile
+    const isMobile = window.innerWidth <= 768; // Check initial width
     
-    // Apply static styles if resizing to mobile
-    window.addEventListener('resize', () => {
-        isMobile = window.innerWidth <= 768;
-        if (isMobile && heroElement) {
-            // Force static styling on resize to mobile
-            heroElement.style.transition = "none";
-            heroElement.style.animation = "none";
-            heroElement.style.transform = "none";
-            heroElement.style.backgroundAttachment = "scroll";
+    // Mobile-specific scroll effects setup
+    function setupMobileScrollEffects() {
+        if (!heroElement) return;
+        
+        console.log("Setting up mobile scroll effects");
+        
+        // Get the specific elements we want to animate
+        const title = heroElement.querySelector('h1');
+        const tagline = heroElement.querySelector('.tagline');
+        const bookButton = heroElement.querySelector('.cal-trigger-btn');
+        
+        // Make sure we allow transitions for these elements
+        if (title) title.style.transition = "transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease";
+        if (tagline) tagline.style.transition = "transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease, opacity 0.3s ease";
+        if (bookButton) bookButton.style.transition = "transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease";
+        
+        // Clear any existing scroll handler first
+        window.removeEventListener('scroll', handleMobileScroll);
+        
+        // Add the scroll handler back
+        window.addEventListener('scroll', handleMobileScroll);
+        
+        // Trigger once on load to ensure initial state is correct
+        setTimeout(function() {
+            // Add and then remove to create a flash effect
+            handleMobileScroll();
+        }, 500);
+    }
+    
+    // The actual scroll handler function
+    let scrollTimeout;
+    function handleMobileScroll() {
+        if (!heroElement) return;
+        
+        // Only apply on mobile
+        if (window.innerWidth > 768) return;
+        
+        console.log("Mobile scroll detected");
+        
+        // Add the class when scrolling starts
+        heroElement.classList.add('scroll-active');
+        
+        // Clear existing timeout
+        clearTimeout(scrollTimeout);
+        
+        // Remove the class after scrolling stops
+        scrollTimeout = setTimeout(function() {
+            heroElement.classList.remove('scroll-active');
+        }, 300);
+    }
+    
+    // Run on load if mobile
+    if (isMobile) {
+        document.addEventListener('DOMContentLoaded', setupMobileScrollEffects);
+        
+        // Also try immediately in case DOM is already loaded
+        setupMobileScrollEffects();
+    }
+    
+    // Update on resize
+    window.addEventListener('resize', function() {
+        const isMobileNow = window.innerWidth <= 768;
+        
+        if (isMobileNow) {
+            setupMobileScrollEffects();
+        } else {
+            // Remove scroll handler when not mobile
+            window.removeEventListener('scroll', handleMobileScroll);
             
-            // Remove any classes that might have animations
-            heroElement.classList.remove('scrolling-active');
-            
-            // Force all children to have no transitions or animations
-            const allHeroChildren = heroElement.querySelectorAll('*');
-            allHeroChildren.forEach(child => {
-                // Skip the specific elements we want to animate
-                if (child.tagName === 'H1' || 
-                    child.classList.contains('tagline') || 
-                    child.classList.contains('cal-trigger-btn')) {
-                    return;
-                }
-                
-                child.style.transition = "none";
-                child.style.animation = "none";
-                child.style.transform = "none";
-            });
+            // Remove any applied effects
+            if (heroElement) {
+                heroElement.classList.remove('scroll-active');
+            }
         }
     });
-    // --- END: Mobile Hero Static Background with Scroll Effects ---
+    // --- END: Mobile Hero Scroll Effects ---
 }); 

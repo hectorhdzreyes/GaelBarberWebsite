@@ -538,7 +538,8 @@ section {
     top: 0;                     /* Top edge */
     left: 0;                    /* Left edge */
     width: 50%;                 /* Half width */
-    height: 100%;               /* Full height */
+    height: 100%;        
+    background-size: cover;       /* Full height */
     background-color: black;    /* Black background */
     z-index: 0;                 /* Behind content */
 }
@@ -1448,39 +1449,60 @@ section {
         background-size: cover !important; 
         background-repeat: no-repeat !important; 
         background-position: center center !important; 
-        transition: none; /* Explicitly disable transitions on the hero itself */
+        transition: none !important; /* FORCE no transitions on hero */
+        transform: none !important; /* FORCE no transforms on hero */
     }
 
-    /* Explicitly remove the problematic desktop :before pseudo-element */
     .hero::before {
         display: none !important;
     }
 
-    /* Keep transitions on the inner elements */
+    /* Keep transitions/transforms on inner elements */
     .hero h1 { 
         transition: transform 0.4s ease-in-out, text-shadow 0.4s ease-in-out, color 0.4s ease-in-out; 
     }
-
     .hero .tagline {
         transition: transform 0.4s ease-in-out, text-shadow 0.4s ease-in-out, color 0.4s ease-in-out; 
     }
-
     .hero .cal-trigger-btn.hero-btn {
-        /* ... initial styles ... */
         transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out, background-color 0.4s ease-in-out, color 0.4s ease-in-out, border-color 0.4s ease-in-out;
+        /* Ensure initial transform is none */
+        transform: none;
     }
     
     /* --- Styles ONLY for Scroll Animation --- */
     section.hero.scrolling-active {
         /* ONLY change background gradient */
         background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/gaelhp.jpg') !important; 
+        /* DO NOT change size/repeat/position */
+        /* FORCE no transform even when active */
+        transform: none !important; 
     }
     
-    /* ... rest of scroll animation styles ... */
+    /* Apply transforms ONLY to inner elements when scrolling */
+    section.hero.scrolling-active h1 {
+        transform: scale(1.05); 
+        text-shadow: 0 0 15px rgba(255, 255, 255, 0.6); 
+        color: rgba(255, 255, 255, 1); 
+    }
+    section.hero.scrolling-active .tagline {
+        color: rgba(255, 255, 255, 1); 
+        transform: scale(1.05); 
+        text-shadow: 0 0 12px rgba(255, 255, 255, 0.6); 
+    }
+    section.hero.scrolling-active .hero-btn {
+        transform: scale(1.05); 
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgb(255, 255, 255); 
+        background-color: #fff; 
+        border-color: #fff;  
+        color: #000 !important; 
+        text-shadow: none; 
+    }
+    /* --- END Scroll Animation Styles --- */
 
     /* --- END MOBILE HERO & HEADER ADJUSTMENTS --- */
 
-    // ... other 768px rules ...
+    
 }
 
 @media screen and (max-width: 576px) {

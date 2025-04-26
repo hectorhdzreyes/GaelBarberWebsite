@@ -126,7 +126,7 @@
 
     <!-- Removing page container for home and about transition -->
     <section id="home" class="hero">
-        <!-- Left Navigation Panel -->
+        <!-- Left Navigation Panel (desktop only) -->
         <div class="hero-left-panel hide-on-mobile">
             <div>about me</div>
             <a href="#services">services</a>
@@ -140,6 +140,23 @@
                 data-cal-config='{"layout":"month_view"}'
             >
                 book now
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation Panel (top-right) -->
+        <div class="hero-mobile-panel">
+            <a href="#about">about</a>
+            <a href="#services">service</a>
+            <a href="#pricing">price</a>
+            <a href="#gallery">gallery</a>
+            <a href="#contact">contact</a>
+            <div 
+                class="cal-trigger-item" 
+                data-cal-link="hector-hernandez-jng1ej/30min" 
+                data-cal-namespace="book-now"
+                data-cal-config='{"layout":"month_view"}'
+            >
+                book
             </div>
         </div>
 

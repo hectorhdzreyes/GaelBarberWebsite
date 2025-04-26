@@ -1290,6 +1290,74 @@ section {
         -webkit-overflow-scrolling: touch !important;
     }
     
+    /* HEADER ADJUSTMENTS FOR MOBILE */
+    /* Move top-right image closer to logo */
+    .header-container {
+        flex-direction: row;
+        align-items: center;
+        padding: 0 0.5rem;
+        gap: 5px; /* Minimize spacing */
+    }
+    
+    .gaellogo-jpg {
+        height: 50px;
+        width: auto;
+    }
+    
+    .logo-text {
+        font-size: 12px;
+    }
+    
+    .logo a {
+        gap: 2px; /* Minimize spacing between logo elements */
+    }
+    
+    .header-corner-logo {
+        height: 40px;
+        margin-left: -10px; /* Pull it closer to the logo */
+    }
+    
+    /* MOBILE TOP-RIGHT NAVIGATION PANEL */
+    /* Create a smaller version of the left panel in the top right for mobile */
+    .hero-left-panel.hide-on-mobile {
+        display: none; /* Hide the desktop version */
+    }
+    
+    /* Create mobile version of the nav panel */
+    .hero-mobile-panel {
+        display: flex !important;
+        position: absolute;
+        top: 65px; /* Position below header */
+        right: 10px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 8px;
+        max-width: 120px;
+        z-index: 20;
+    }
+    
+    /* Style mobile panel items */
+    .hero-mobile-panel a,
+    .hero-mobile-panel div {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.75rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        padding: 3px 5px;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 3px;
+        text-decoration: none;
+    }
+    
+    /* Hover/active state for mobile panel items */
+    .hero-mobile-panel a:active,
+    .hero-mobile-panel div:active {
+        color: #fff;
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+    
     /* Ensure non-hero sections don't allow transitions */
     body:not(.at-hero) .page-container.mobile-container {
         pointer-events: none !important;
@@ -1311,19 +1379,6 @@ section {
     body.at-hero .page-container.mobile-container {
         pointer-events: auto !important;
         transition: transform 0.5s ease-in-out !important;
-    }
-    
-    /* Enable page transitions for mobile */
-    .page-container.mobile-container {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 200%;
-        display: flex;
-        transition: transform 0.5s ease-in-out;
-        overflow: hidden;
-        height: 100vh;
-        z-index: 5;
     }
     
     /* Show about page when clicked */
@@ -1845,4 +1900,28 @@ html {
     color: rgb(255, 255, 255);  
     text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);  
     /* No margin needed due to absolute positioning */
+}
+
+/* Limit transitions to when at hero section only */
+body.at-hero .page-container.mobile-container {
+    pointer-events: auto !important;
+    transition: transform 0.5s ease-in-out !important;
+}
+
+/* Enable page transitions for mobile */
+.page-container.mobile-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    overflow: hidden;
+    height: 100vh;
+    z-index: 5;
+}
+
+/* Show about page when clicked */
+.page-container.mobile-container.show-about {
+    transform: translateX(-50%);
 }

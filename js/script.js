@@ -158,48 +158,52 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // --- START: Scroll Animation for Hero on Mobile --- 
     const heroElement = document.querySelector('.hero');
-    let scrollTimeout;
     let isMobile = window.innerWidth <= 768; // Check initial width
 
-    function handleScroll() {
-        if (!heroElement || !isMobile) return; // Only run if hero exists and on mobile
-
-        heroElement.classList.add('scrolling-active');
-
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(() => {
-            heroElement.classList.remove('scrolling-active');
-        }, 250); // Increased timeout duration to 300ms
+    // If on mobile, apply static hero style immediately
+    if (isMobile && heroElement) {
+        // Force static styling
+        heroElement.style.transition = "none";
+        heroElement.style.animation = "none";
+        heroElement.style.transform = "none";
+        heroElement.style.backgroundAttachment = "scroll";
+        
+        // Remove any classes that might have animations
+        heroElement.classList.remove('scrolling-active');
+        
+        // Force all children to have no transitions or animations
+        const allHeroChildren = heroElement.querySelectorAll('*');
+        allHeroChildren.forEach(child => {
+            child.style.transition = "none";
+            child.style.animation = "none";
+            child.style.transform = "none";
+        });
     }
 
-    // Re-check mobile status on resize
+    // Disable all scroll handlers for mobile
+    let listenerAttached = false; // Don't attach any listeners for mobile
+    
+    // Apply static styles if resizing to mobile
     window.addEventListener('resize', () => {
         isMobile = window.innerWidth <= 768;
-        // Optional: Remove class if resizing out of mobile view while scrolling
-        if (!isMobile && heroElement) {
-           heroElement.classList.remove('scrolling-active');
-           clearTimeout(scrollTimeout); 
+        if (isMobile && heroElement) {
+            // Force static styling on resize to mobile
+            heroElement.style.transition = "none";
+            heroElement.style.animation = "none";
+            heroElement.style.transform = "none";
+            heroElement.style.backgroundAttachment = "scroll";
+            
+            // Remove any classes that might have animations
+            heroElement.classList.remove('scrolling-active');
+            
+            // Force all children to have no transitions or animations
+            const allHeroChildren = heroElement.querySelectorAll('*');
+            allHeroChildren.forEach(child => {
+                child.style.transition = "none";
+                child.style.animation = "none";
+                child.style.transform = "none";
+            });
         }
     });
-
-    // Add scroll listener only if initially mobile
-    if (isMobile) {
-        window.addEventListener('scroll', handleScroll);
-    } 
-    // Re-add/remove listener on resize (more robust)
-    let listenerAttached = isMobile;
-    window.addEventListener('resize', () => {
-        isMobile = window.innerWidth <= 768;
-        if (isMobile && !listenerAttached) {
-            window.addEventListener('scroll', handleScroll);
-            listenerAttached = true;
-        } else if (!isMobile && listenerAttached) {
-            window.removeEventListener('scroll', handleScroll);
-            listenerAttached = false;
-             // Clean up class if resizing out of mobile view
-            if (heroElement) heroElement.classList.remove('scrolling-active');
-            clearTimeout(scrollTimeout);
-        }
-    });
-    // --- END: Scroll Animation for Hero on Mobile --- 
+    // --- END: Mobile Hero Static Background ---
 }); 

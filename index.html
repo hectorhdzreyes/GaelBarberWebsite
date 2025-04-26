@@ -10,7 +10,37 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fon ts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Immediate fix for mobile hero to ensure it's static before any JS loads -->
+    <script>
+        (function() {
+            // Check if on mobile
+            if (window.innerWidth <= 768) {
+                // Apply immediately when DOM starts loading
+                document.addEventListener('DOMContentLoaded', function() {
+                    var hero = document.querySelector('.hero');
+                    if (hero) {
+                        // Force completely static background with no effects
+                        hero.style.background = "linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/gaelhp.jpg')";
+                        hero.style.backgroundSize = "cover";
+                        hero.style.backgroundPosition = "center center";
+                        hero.style.backgroundRepeat = "no-repeat";
+                        hero.style.backgroundAttachment = "scroll";
+                        hero.style.transition = "none";
+                        hero.style.animation = "none";
+                        hero.style.transform = "none";
+                        
+                        // Hide slideshow
+                        var slideshow = document.querySelector('.hero-slideshow');
+                        if (slideshow) {
+                            slideshow.style.display = "none";
+                        }
+                    }
+                });
+            }
+        })();
+    </script>
 </head>
 <body>
     <header class="header">

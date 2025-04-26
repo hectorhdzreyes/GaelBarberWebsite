@@ -1279,21 +1279,93 @@ section {
 }
 
 @media screen and (max-width: 768px) {
-    /* --- UTILITY CLASSES FOR MOBILE --- */
+    /* MOBILE HERO - COMPLETELY STATIC BACKGROUND WITH NO EFFECTS */
+    .hero {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/gaelhp.jpg') !important;
+        background-size: cover !important;
+        background-position: center center !important;
+        background-repeat: no-repeat !important;
+        background-attachment: scroll !important;
+        transform: none !important;
+        transition: none !important;
+        animation: none !important;
+    }
+    
+    /* Completely hide slideshow on mobile */
+    .hero-slideshow,
+    .slideshow-track,
+    .slideshow-image {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        width: 0 !important;
+        height: 0 !important;
+        overflow: hidden !important;
+        position: absolute !important;
+        pointer-events: none !important;
+    }
+    
+    /* Disable ALL possible transitions and animations */
+    .hero,
+    .hero *,
+    .hero::before,
+    .hero::after,
+    .hero:hover,
+    .hero-content,
+    .hero-content *,
+    .hero h1,
+    .hero .tagline,
+    .hero .hero-btn,
+    .slideshow-track,
+    .slideshow-image,
+    .slideshow-image img,
+    .hero-left-panel,
+    .hero-left-panel a,
+    .hero-left-panel div,
+    .hero-bottom-text,
+    .hero-bottom-text-under {
+        transition: none !important;
+        animation: none !important;
+        transform: none !important;
+        animation-play-state: paused !important;
+        animation-duration: 0s !important;
+        animation-delay: 0s !important;
+        animation-iteration-count: 0 !important;
+    }
+    
+    /* Stop hover effects completely */
+    .hero:hover h1,
+    .hero:hover .tagline,
+    .hero:hover .hero-btn,
+    .hero:hover *,
+    .hero.hover-active h1,
+    .hero.hover-active .tagline,
+    .hero.hover-active .hero-btn,
+    .hero.hover-active * {
+        transform: none !important;
+        text-shadow: none !important;
+        box-shadow: none !important;
+        opacity: 1 !important;
+        color: inherit !important;
+        background-color: inherit !important;
+    }
+
     .hide-on-mobile {
         display: none !important;
     }
+    
     .show-on-mobile-block {
         display: block !important;
     }
+    
     .show-on-mobile-flex {
         display: flex !important;
     }
+    
     .show-on-mobile-inline-block {
         display: inline-block !important;
     }
-    /* --- END UTILITY CLASSES --- */
-
+    
     h1 {
         font-size: 3.5rem;
     }
@@ -1374,8 +1446,7 @@ section {
         align-self: flex-start;     /* Align to start */
     }
 
-    /* --- MOBILE HERO & HEADER ADJUSTMENTS --- */
-
+    /* MOBILE HERO & HEADER ADJUSTMENTS */
     .header-container {
         flex-direction: row; 
         align-items: center; 
@@ -1412,97 +1483,12 @@ section {
         transform: scale(1.0); 
         box-shadow: none;
         text-shadow: none;
-        transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out, background-color 0.4s ease-in-out, color 0.4s ease-in-out, border-color 0.4s ease-in-out;
+        transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out, background-color 0.4s ease-in-out, color 0.4s ease-in-out;
     }
     
-    /* --- Styles ONLY for Scroll Animation --- */
-    section.hero.scrolling-active {
-        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/gaelhp.jpg') !important; 
+    body, html {
+        transform: none !important;
     }
-    
-    section.hero.scrolling-active h1 {
-        transform: scale(1.05); 
-        text-shadow: 0 0 15px rgba(255, 255, 255, 0.6); 
-        color: rgba(255, 255, 255, 1); 
-    }
-    
-    section.hero.scrolling-active .tagline {
-        color: rgba(255, 255, 255, 1); 
-        transform: scale(1.05); 
-        text-shadow: 0 0 12px rgba(255, 255, 255, 0.6); 
-    }
-    
-    section.hero.scrolling-active .hero-btn {
-        transform: scale(1.05); 
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgb(255, 255, 255); 
-        background-color: #fff; 
-        border-color: #fff;  
-        color: #000 !important; 
-        text-shadow: none; 
-    }
-    /* --- END Scroll Animation Styles --- */
-
-    /* --- END MOBILE HERO & HEADER ADJUSTMENTS --- */
-
-    .hero {
-        background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../images/gaelhp.jpg') !important;
-        background-size: cover !important; 
-        background-repeat: no-repeat !important; 
-        background-position: center center !important; 
-        transition: none !important; /* FORCE no transitions on hero */
-        transform: none !important; /* FORCE no transforms on hero */
-    }
-
-    .hero::before {
-        display: none !important;
-    }
-
-    /* Keep transitions/transforms on inner elements */
-    .hero h1 { 
-        transition: transform 0.4s ease-in-out, text-shadow 0.4s ease-in-out, color 0.4s ease-in-out; 
-    }
-    .hero .tagline {
-        transition: transform 0.4s ease-in-out, text-shadow 0.4s ease-in-out, color 0.4s ease-in-out; 
-    }
-    .hero .cal-trigger-btn.hero-btn {
-        transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out, background-color 0.4s ease-in-out, color 0.4s ease-in-out, border-color 0.4s ease-in-out;
-        /* Ensure initial transform is none */
-        transform: none;
-    }
-    
-    /* --- Styles ONLY for Scroll Animation --- */
-    section.hero.scrolling-active {
-        /* ONLY change background gradient */
-        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/gaelhp.jpg') !important; 
-        /* DO NOT change size/repeat/position */
-        /* FORCE no transform even when active */
-        transform: none !important; 
-    }
-    
-    /* Apply transforms ONLY to inner elements when scrolling */
-    section.hero.scrolling-active h1 {
-        transform: scale(1.05); 
-        text-shadow: 0 0 15px rgba(255, 255, 255, 0.6); 
-        color: rgba(255, 255, 255, 1); 
-    }
-    section.hero.scrolling-active .tagline {
-        color: rgba(255, 255, 255, 1); 
-        transform: scale(1.05); 
-        text-shadow: 0 0 12px rgba(255, 255, 255, 0.6); 
-    }
-    section.hero.scrolling-active .hero-btn {
-        transform: scale(1.05); 
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgb(255, 255, 255); 
-        background-color: #fff; 
-        border-color: #fff;  
-        color: #000 !important; 
-        text-shadow: none; 
-    }
-    /* --- END Scroll Animation Styles --- */
-
-    /* --- END MOBILE HERO & HEADER ADJUSTMENTS --- */
-
-    
 }
 
 @media screen and (max-width: 576px) {

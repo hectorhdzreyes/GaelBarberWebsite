@@ -4,10 +4,17 @@
  * This script handles the hover effect for the hero section:
  * - Initial background with opacity 0.3
  * - On hover, background darkens to opacity 0.5
+ * - Completely disabled on mobile devices
  */
 
 // Hero hover effect - simplified and reliable implementation
 (function() {
+    // Check if we're on mobile immediately
+    if (window.innerWidth <= 768) {
+        console.log('Hero hover effect disabled on mobile');
+        return; // Exit immediately on mobile
+    }
+    
     // Run this immediately without waiting for DOMContentLoaded
     console.log('Initializing hero hover effect...');
     
@@ -20,6 +27,12 @@
     window.addEventListener('load', setupHeroHoverEffect);
     
     function setupHeroHoverEffect() {
+        // Exit immediately if on mobile
+        if (window.innerWidth <= 768) {
+            console.log('Hero hover effect disabled on mobile');
+            return;
+        }
+        
         console.log('Setting up hero hover effect');
         
         // Target both the regular hero section and the one in the page container
@@ -36,7 +49,7 @@
             
             // Function for when mouse moves in the hero section
             const handleMouseMove = function(e) {
-                if (window.innerWidth <= 768) return; // Don't run hover effect on mobile
+                if (window.innerWidth <= 768) return; // Extra check - don't run hover effect on mobile
                 
                 if (bookingModal && bookingModal.style.display === 'block') {
                     return;
@@ -59,7 +72,7 @@
             
             // Also handle mouse enter to ensure effect triggers right away
             const handleMouseEnter = function() {
-                if (window.innerWidth <= 768) return; // Don't run hover effect on mobile
+                if (window.innerWidth <= 768) return; // Extra check - don't run hover effect on mobile
                 
                 if (bookingModal && bookingModal.style.display === 'block') {
                     return;
@@ -78,6 +91,8 @@
             
             // Handle mouse leave
             const handleMouseLeave = function() {
+                if (window.innerWidth <= 768) return; // Extra check - don't run hover effect on mobile
+                
                 clearTimeout(mouseTimer);
                 heroSection.classList.remove('darkened');
                 heroSection.classList.remove('hover-active');
@@ -88,18 +103,22 @@
             heroSection.removeEventListener('mouseenter', handleMouseEnter);
             heroSection.removeEventListener('mouseleave', handleMouseLeave);
             
-            // Add event listeners
-            heroSection.addEventListener('mousemove', handleMouseMove);
-            heroSection.addEventListener('mouseenter', handleMouseEnter);
-            heroSection.addEventListener('mouseleave', handleMouseLeave);
-            
-            console.log('Hero hover effect applied to:', heroSection);
+            // Add event listeners ONLY if not mobile
+            if (window.innerWidth > 768) {
+                heroSection.addEventListener('mousemove', handleMouseMove);
+                heroSection.addEventListener('mouseenter', handleMouseEnter);
+                heroSection.addEventListener('mouseleave', handleMouseLeave);
+                console.log('Hero hover effect applied to:', heroSection);
+            }
         });
     }
     
     // Watch for DOM changes (like after transitions or AJAX updates)
     if (typeof MutationObserver !== 'undefined') {
         const observer = new MutationObserver(function(mutations) {
+            // Exit immediately if on mobile
+            if (window.innerWidth <= 768) return;
+            
             let shouldReapply = false;
             
             for (let i = 0; i < mutations.length; i++) {
@@ -137,14 +156,34 @@
             }
         });
         
-        // Start observing the document body
-        observer.observe(document.body, {
-            childList: true,
-            subtree: true,
-            attributes: true,
-            attributeFilter: ['class']
-        });
-        
-        console.log('MutationObserver set up for hero hover effect');
+        // Start observing the document body ONLY if not mobile
+        if (window.innerWidth > 768) {
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true,
+                attributes: true,
+                attributeFilter: ['class']
+            });
+            console.log('MutationObserver set up for hero hover effect');
+        }
     }
+    
+    // Add resize listener to stop all effects if window resizes to mobile
+    window.addEventListener('resize', function() {
+        if (window.innerWidth <= 768) {
+            // On mobile, find all hero sections and remove any applied classes
+            const heroSections = document.querySelectorAll('.hero');
+            heroSections.forEach(function(heroSection) {
+                if (heroSection) {
+                    heroSection.classList.remove('darkened');
+                    heroSection.classList.remove('hover-active');
+                    
+                    // Also force inline styles to prevent any animations
+                    heroSection.style.transition = "none";
+                    heroSection.style.animation = "none";
+                    heroSection.style.transform = "none";
+                }
+            });
+        }
+    });
 })(); 

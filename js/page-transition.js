@@ -6,17 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 100);
     
     function setupPageTransition() {
-        // Disable this entire transition logic on mobile screens
-        if (window.innerWidth <= 768) {
-            console.log('Page transition disabled on mobile.');
-            // Ensure original hero/about are visible if they exist initially
-            // (This might not be strictly necessary if CSS handles mobile layout well)
-            const hero = document.querySelector('#home'); 
-            const about = document.querySelector('#about');
-            if (hero) hero.style.display = 'flex'; // Or block, depending on original style
-            if (about) about.style.display = 'block';
-            return; 
-        }
+        // Now include mobile devices, but with different behavior
+        const isMobile = window.innerWidth <= 768;
         
         // Get elements
         const hero = document.querySelector('.hero');
@@ -44,6 +35,11 @@ document.addEventListener('DOMContentLoaded', function() {
             // Create container for transition
             const pageContainer = document.createElement('div');
             pageContainer.className = 'page-container';
+            
+            if (isMobile) {
+                // For mobile, add special mobile class
+                pageContainer.classList.add('mobile-container');
+            }
             
             // Store the original sections
             const originalHero = hero.cloneNode(true);
@@ -86,7 +82,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         current.classList.contains('book-now-btn') ||
                         current.classList.contains('mobile-menu-btn') ||
                         current.id === 'bookingModal' ||
-                        current.classList.contains('modal-content')
+                        current.classList.contains('modal-content') ||
+                        // Cal.com elements
+                        current.classList.contains('cal-trigger-item')
                     ) {
                         return true;
                     }
@@ -142,6 +140,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     return;
                 }
                 
+                console.log('Hero clicked, transitioning to about');
+                
                 // Add class to show about section
                 pageContainer.classList.add('show-about');
                 
@@ -156,6 +156,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     return;
                 }
                 
+                console.log('About clicked, transitioning to hero');
+                
                 // Remove class to show hero section
                 pageContainer.classList.remove('show-about');
                 
@@ -168,22 +170,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 heroSection.addEventListener('click', handleHeroClick);
                 
                 // Add event listeners for all book now buttons in the hero section
-                const bookNowBtns = heroSection.querySelectorAll('.book-now-btn');
+                const bookNowBtns = heroSection.querySelectorAll('.book-now-btn, .cal-trigger-btn');
                 bookNowBtns.forEach(btn => {
                     btn.addEventListener('click', function(e) {
                         e.stopPropagation(); // Prevent click from reaching the hero section
-                        
-                        // Get booking modal
-                        const bookingModal = document.getElementById('bookingModal');
-                        if (bookingModal) {
-                            // Show booking modal
-                            bookingModal.style.display = 'block';
-                            document.body.style.overflow = 'hidden'; // Prevent scrolling
-                        }
                     }, { capture: true }); // Use capture phase to ensure this runs first
                 });
                 
-                // ADDED: Special smooth scrolling handler for hero-left-panel links in the cloned hero
+                // Special handling for left panel links in the cloned hero
                 const heroLeftPanelLinks = heroSection.querySelectorAll('.hero-left-panel a');
                 
                 heroLeftPanelLinks.forEach(link => {
@@ -192,28 +186,43 @@ document.addEventListener('DOMContentLoaded', function() {
                         
                         // Only process links to sections on this page
                         const targetId = this.getAttribute('href');
-                        if (targetId.startsWith('#')) {
+                        if (targetId && targetId.startsWith('#')) {
                             e.preventDefault();
                             
                             // Get target section directly by ID
                             const targetSection = document.querySelector(targetId);
                             
                             if (targetSection) {
-                                // Disable transition mode to allow normal scrolling
-                                toggleTransitionMode(false);
-                                
-                                // Smooth scroll to section with offset for fixed header
-                                let headerOffset = 160; // Offset value for header
-                                
-                                // Directly get the element's position
-                                const sectionRect = targetSection.getBoundingClientRect();
-                                const absolutePosition = sectionRect.top + window.pageYOffset;
-                                
-                                // Scroll to the exact section position minus header offset
-                                window.scrollTo({
-                                    top: absolutePosition - headerOffset,
-                                    behavior: 'smooth'
-                                });
+                                // Disable transition mode on mobile to allow normal scrolling
+                                if (isMobile) {
+                                    // For mobile, just let the links work normally
+                                    // First go back to hero view
+                                    pageContainer.classList.remove('show-about');
+                                    
+                                    // Then scroll after a short delay
+                                    setTimeout(() => {
+                                        let headerOffset = 160; // Offset value for header
+                                        const sectionRect = targetSection.getBoundingClientRect();
+                                        const absolutePosition = sectionRect.top + window.pageYOffset;
+                                        
+                                        window.scrollTo({
+                                            top: absolutePosition - headerOffset,
+                                            behavior: 'smooth'
+                                        });
+                                    }, 100);
+                                } else {
+                                    // Original desktop behavior
+                                    toggleTransitionMode(false);
+                                    
+                                    let headerOffset = 160;
+                                    const sectionRect = targetSection.getBoundingClientRect();
+                                    const absolutePosition = sectionRect.top + window.pageYOffset;
+                                    
+                                    window.scrollTo({
+                                        top: absolutePosition - headerOffset,
+                                        behavior: 'smooth'
+                                    });
+                                }
                             }
                         }
                     });
@@ -256,42 +265,37 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
             
-            // Handle scroll events to toggle between transition and scroll modes
-            let lastScrollPos = 0;
-            let isScrollingPastHero = false;
-            
-            window.addEventListener('scroll', function() {
-                const currentScrollPos = window.scrollY;
+            // For desktop only - Handle scroll events to toggle between transition and scroll modes
+            if (!isMobile) {
+                let lastScrollPos = window.scrollY;
+                let ticking = false;
                 
-                // If scrolling down past the hero/about section
-                if (currentScrollPos > window.innerHeight * 0.6) { // Lower threshold for earlier transition
-                    // Only toggle once when first scrolling past
-                    if (!isScrollingPastHero) {
-                        isScrollingPastHero = true;
-                        toggleTransitionMode(false);
+                window.addEventListener('scroll', function() {
+                    lastScrollPos = window.scrollY;
+                    
+                    if (!ticking) {
+                        window.requestAnimationFrame(function() {
+                            const currentScrollPos = lastScrollPos;
+                            
+                            // If scrolled down past a threshold, disable transition mode
+                            if (currentScrollPos > window.innerHeight * 0.6) { // Lower threshold for earlier transition
+                                if (isTransitionModeActive) {
+                                    toggleTransitionMode(false);
+                                }
+                            } else if (currentScrollPos < 50) {
+                                // If scrolling back to top, enable transition mode
+                                if (!isTransitionModeActive) {
+                                    toggleTransitionMode(true);
+                                }
+                            }
+                            
+                            ticking = false;
+                        });
+                        
+                        ticking = true;
                     }
-                } else if (currentScrollPos < 50) {
-                    // If scrolling back to top, enable transition mode
-                    isScrollingPastHero = false;
-                    toggleTransitionMode(true);
-                }
-                
-                lastScrollPos = currentScrollPos;
-            });
-            
-            // Add regular scroll event to ensure smooth scrolling
-            window.addEventListener('wheel', function(e) {
-                // If in transition mode, don't interfere with normal scrolling
-                if (!isTransitionModeActive) {
-                    // Make sure sections are visible
-                    allSections.forEach(section => {
-                        if (section) {
-                            section.style.display = 'block';
-                            section.style.visibility = 'visible';
-                        }
-                    });
-                }
-            }, { passive: true });
+                });
+            }
             
             // Check if URL has #about on page load and set initial state
             if (window.location.hash === '#about') {
@@ -300,15 +304,6 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Initialize in transition mode
             toggleTransitionMode(true);
-            
-            // Ensure services section is visible after a short delay
-            setTimeout(function() {
-                if (services) {
-                    services.style.display = 'block';
-                    services.style.visibility = 'visible';
-                    services.style.opacity = '1';
-                }
-            }, 300);
         }
     }
 }); 

@@ -1282,7 +1282,41 @@ section {
     /* MOBILE-SPECIFIC EFFECTS FOR HERO ELEMENTS */
     /* Same effects as desktop but applied differently for mobile */
     
-    /* Allow animations ONLY for these specific elements */
+    /* Enable page transitions for mobile */
+    .page-container.mobile-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 200%;
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+        overflow: hidden;
+        height: 100vh;
+        z-index: 5;
+    }
+    
+    /* Show about page when clicked */
+    .page-container.mobile-container.show-about {
+        transform: translateX(-50%);
+    }
+    
+    /* For the two pages inside the container */
+    .page-container.mobile-container .page {
+        width: 50%;
+        flex-shrink: 0;
+        position: relative;
+        height: 100vh;
+    }
+    
+    /* Make sure both hero and about sections are clickable */
+    .page-container.mobile-container .hero,
+    .page-container.mobile-container #about {
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+    }
+    
+    /* Allow animations ONLY for specific elements */
     .hero h1,
     .hero .tagline,
     .hero .cal-trigger-btn.hero-btn {

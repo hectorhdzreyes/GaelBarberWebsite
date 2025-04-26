@@ -216,12 +216,7 @@ ul {
 }
 
 .mobile-corner-logo {
-    display: block; /* Show the mobile version */
-    margin-top: 1px; /* Reduced space between logo and image */
-    width: 80px; /* Adjust size as needed */
-    height: auto;
-    align-self: flex-start; /* Ensure it stays left-aligned */
-    margin-left: 0.5rem; /* Move slightly to the right */
+    display: none; /* Hide the mobile version on desktop */
 }
 
 .logo a {
@@ -1303,11 +1298,10 @@ section {
     
     .mobile-corner-logo {
         display: block; /* Show the mobile version */
-        margin-top: 1px; /* Reduced space between logo and image */
+        margin-top: 0; /* No space between logo and image */
         width: 80px; /* Adjust size as needed */
         height: auto;
         align-self: flex-start; /* Ensure it stays left-aligned */
-        margin-left: 0.5rem; /* Move slightly to the right */
     }
     
     .logo-wrapper {
@@ -2183,22 +2177,24 @@ html {
     right: 15px;
     flex-direction: column;
     align-items: flex-end;
-    gap: 6px; /* Use the smaller gap value */
-    z-index: 20;
+    gap: 7px;
+    z-index: 50; /* Increased z-index to ensure it's above other elements */
+    pointer-events: auto !important; /* Force pointer events */
 }
 
 .hero-mobile-panel a,
 .hero-mobile-panel div {
     color: rgba(255, 255, 255, 0.8);
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.7rem; /* Use the smaller font size */
-    font-weight: 550; /* Use the higher font weight for better visibility */
+    font-size: 0.7rem;
+    font-weight: 500;
     text-transform: uppercase;
     text-decoration: none;
     letter-spacing: 1px;
     padding: 2px 0;
     cursor: pointer;
     transition: color 0.2s ease, transform 0.2s ease;
+    pointer-events: auto !important; /* Force pointer events */
 }
 
 .hero-mobile-panel a:hover,
@@ -2207,50 +2203,3 @@ html {
     transform: scale(1.05);
 }
 
-.hero-mobile-panel .cal-trigger-item {
-    background-color: rgba(255, 255, 255, 0.2);
-    padding: 2px 8px;
-    border-radius: 4px;
-}
-
-/* Desktop view */
-.mobile-corner-logo {
-    display: none; /* Hide by default in desktop */
-}
-
-/* Mobile navigation buttons */
-.mobile-nav-btn {
-    background: none;
-    border: none;
-    color: rgba(255, 255, 255, 0.8);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 550; /* Match the other elements */
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    padding: 2px 0;
-    cursor: pointer;
-    transition: color 0.2s ease, transform 0.2s ease;
-    text-align: right;
-}
-
-.mobile-nav-btn:hover {
-    color: #ffffff;
-    transform: scale(1.05);
-}
-
-/* Hero mobile panel update */
-.hero-mobile-panel a,
-.hero-mobile-panel div,
-.hero-mobile-panel button {
-    color: rgba(255, 255, 255, 0.8);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 550; /* Match the other elements */
-    text-transform: uppercase;
-    text-decoration: none;
-    letter-spacing: 1px;
-    padding: 2px 0;
-    cursor: pointer;
-    transition: color 0.2s ease, transform 0.2s ease;
-}

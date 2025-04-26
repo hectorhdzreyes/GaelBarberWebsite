@@ -19,36 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // NEW: Mobile navigation buttons
-    const mobileNavBtns = document.querySelectorAll('.mobile-nav-btn');
-    mobileNavBtns.forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.stopPropagation(); // Prevent click from reaching hero
-            
-            // Get target section from data-target attribute
-            const targetId = '#' + this.getAttribute('data-target');
-            const targetSection = document.querySelector(targetId);
-            
-            if (targetSection) {
-                // Scroll to section
-                const headerOffset = 100; // Adjust as needed
-                const elementPosition = targetSection.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
-                
-                // If we're in the about view, transition back to home view
-                const pageContainer = document.querySelector('.page-container.mobile-container');
-                if (pageContainer && pageContainer.classList.contains('show-about')) {
-                    pageContainer.classList.remove('show-about');
-                }
-            }
-        });
-    });
-    
     // Header scroll effect
     const header = document.querySelector('.header');
     if (header) {
@@ -190,6 +160,62 @@ document.addEventListener('DOMContentLoaded', function() {
     const heroElement = document.querySelector('.hero');
     const isMobile = window.innerWidth <= 768; // Check initial width
     
+    // Fix mobile navigation links functionality
+    function setupMobileNavigation() {
+        if (!isMobile) return;
+        
+        console.log('Setting up mobile navigation links');
+        
+        // Get all mobile navigation links
+        const mobileLinks = document.querySelectorAll('.hero-mobile-panel a.mobile-link');
+        
+        // Add click handlers to each link
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.stopPropagation(); // Prevent bubbling to hero section
+                
+                const href = this.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                    e.preventDefault();
+                    
+                    // Get target section
+                    const targetSection = document.querySelector(href);
+                    if (targetSection) {
+                        console.log('Mobile link clicked: ' + href);
+                        
+                        // Scroll to target section
+                        let headerOffset = 100; // Adjust as needed
+                        let elementPosition = targetSection.getBoundingClientRect().top;
+                        let offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+        
+        // Handle the about me link
+        const aboutLink = document.querySelector('#mobile-about-link');
+        if (aboutLink) {
+            aboutLink.addEventListener('click', function(e) {
+                e.stopPropagation(); // Prevent bubbling to hero section
+                
+                console.log('Mobile about link clicked');
+                
+                // Find page container
+                const pageContainer = document.querySelector('.page-container.mobile-container');
+                if (pageContainer) {
+                    // Transition to about page
+                    pageContainer.classList.add('show-about');
+                    window.history.pushState({page: 'about'}, 'About Me', '#about');
+                }
+            });
+        }
+    }
+    
     // Mobile-specific scroll effects setup
     function setupMobileScrollEffects() {
         if (!heroElement) return;
@@ -241,13 +267,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 300);
     }
     
-    // Run on load if mobile
-    if (isMobile) {
-        document.addEventListener('DOMContentLoaded', setupMobileScrollEffects);
-        
-        // Also try immediately in case DOM is already loaded
+    // Run setup functions on load
+    document.addEventListener('DOMContentLoaded', function() {
         setupMobileScrollEffects();
-    }
+        setupMobileNavigation();
+    });
+    
+    // Also try immediately in case DOM is already loaded
+    setupMobileScrollEffects();
+    setupMobileNavigation();
     
     // Update on resize
     window.addEventListener('resize', function() {

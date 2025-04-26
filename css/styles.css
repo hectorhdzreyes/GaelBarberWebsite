@@ -2207,15 +2207,4 @@ html {
     border-radius: 4px;
 }
 
-/* Make about link visually distinct */
-#mobile-about-link {
-    background-color: rgba(255, 255, 255, 0.2);
-    padding: 2px 8px;
-    border-radius: 4px;
-}
 
-/* Mobile links style for active state */
-.mobile-link.active {
-    color: #ffffff !important;
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-}

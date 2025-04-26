@@ -19,6 +19,36 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
+    // NEW: Mobile navigation buttons
+    const mobileNavBtns = document.querySelectorAll('.mobile-nav-btn');
+    mobileNavBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation(); // Prevent click from reaching hero
+            
+            // Get target section from data-target attribute
+            const targetId = '#' + this.getAttribute('data-target');
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                // Scroll to section
+                const headerOffset = 100; // Adjust as needed
+                const elementPosition = targetSection.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+                
+                // If we're in the about view, transition back to home view
+                const pageContainer = document.querySelector('.page-container.mobile-container');
+                if (pageContainer && pageContainer.classList.contains('show-about')) {
+                    pageContainer.classList.remove('show-about');
+                }
+            }
+        });
+    });
+    
     // Header scroll effect
     const header = document.querySelector('.header');
     if (header) {

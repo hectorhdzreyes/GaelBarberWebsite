@@ -216,7 +216,12 @@ ul {
 }
 
 .mobile-corner-logo {
-    display: none; /* Hide the mobile version on desktop */
+    display: block; /* Show the mobile version */
+    margin-top: 1px; /* Reduced space between logo and image */
+    width: 80px; /* Adjust size as needed */
+    height: auto;
+    align-self: flex-start; /* Ensure it stays left-aligned */
+    margin-left: 0.5rem; /* Move slightly to the right */
 }
 
 .logo a {
@@ -1298,10 +1303,11 @@ section {
     
     .mobile-corner-logo {
         display: block; /* Show the mobile version */
-        margin-top: 5px; /* Reduced space between logo and image */
+        margin-top: 1px; /* Reduced space between logo and image */
         width: 80px; /* Adjust size as needed */
         height: auto;
         align-self: flex-start; /* Ensure it stays left-aligned */
+        margin-left: 0.5rem; /* Move slightly to the right */
     }
     
     .logo-wrapper {
@@ -1581,7 +1587,7 @@ section {
     }
     
     .logo a {
-        gap: 5px; 
+        gap: 1px!important; 
         text-decoration: none; 
         align-items: center; /* Vertically align logo image and text */
     }
@@ -2177,7 +2183,7 @@ html {
     right: 15px;
     flex-direction: column;
     align-items: flex-end;
-    gap: 12px;
+    gap: 7px;
     z-index: 20;
 }
 
@@ -2185,7 +2191,7 @@ html {
 .hero-mobile-panel div {
     color: rgba(255, 255, 255, 0.8);
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.9rem;
+    font-size: 0.7rem;
     font-weight: 500;
     text-transform: uppercase;
     text-decoration: none;
@@ -2207,15 +2213,45 @@ html {
     border-radius: 4px;
 }
 
-/* Make about link visually distinct */
-#mobile-about-link {
-    background-color: rgba(255, 255, 255, 0.2);
-    padding: 2px 8px;
-    border-radius: 4px;
+/* Desktop view */
+.mobile-corner-logo {
+    display: none; /* Hide by default in desktop */
 }
 
-/* Mobile links style for active state */
-.mobile-link.active {
-    color: #ffffff !important;
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+/* Mobile navigation buttons */
+.mobile-nav-btn {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.8);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 2px 0;
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s ease;
+    text-align: right;
 }
+
+.mobile-nav-btn:hover {
+    color: #ffffff;
+    transform: scale(1.05);
+}
+
+/* Hero mobile panel update */
+.hero-mobile-panel a,
+.hero-mobile-panel div,
+.hero-mobile-panel button {
+    color: rgba(255, 255, 255, 0.8);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 1px;
+    padding: 2px 0;
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+

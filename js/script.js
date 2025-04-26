@@ -160,62 +160,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const heroElement = document.querySelector('.hero');
     const isMobile = window.innerWidth <= 768; // Check initial width
     
-    // Fix mobile navigation links functionality
-    function setupMobileNavigation() {
-        if (!isMobile) return;
-        
-        console.log('Setting up mobile navigation links');
-        
-        // Get all mobile navigation links
-        const mobileLinks = document.querySelectorAll('.hero-mobile-panel a.mobile-link');
-        
-        // Add click handlers to each link
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.stopPropagation(); // Prevent bubbling to hero section
-                
-                const href = this.getAttribute('href');
-                if (href && href.startsWith('#')) {
-                    e.preventDefault();
-                    
-                    // Get target section
-                    const targetSection = document.querySelector(href);
-                    if (targetSection) {
-                        console.log('Mobile link clicked: ' + href);
-                        
-                        // Scroll to target section
-                        let headerOffset = 100; // Adjust as needed
-                        let elementPosition = targetSection.getBoundingClientRect().top;
-                        let offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                        
-                        window.scrollTo({
-                            top: offsetPosition,
-                            behavior: 'smooth'
-                        });
-                    }
-                }
-            });
-        });
-        
-        // Handle the about me link
-        const aboutLink = document.querySelector('#mobile-about-link');
-        if (aboutLink) {
-            aboutLink.addEventListener('click', function(e) {
-                e.stopPropagation(); // Prevent bubbling to hero section
-                
-                console.log('Mobile about link clicked');
-                
-                // Find page container
-                const pageContainer = document.querySelector('.page-container.mobile-container');
-                if (pageContainer) {
-                    // Transition to about page
-                    pageContainer.classList.add('show-about');
-                    window.history.pushState({page: 'about'}, 'About Me', '#about');
-                }
-            });
-        }
-    }
-    
     // Mobile-specific scroll effects setup
     function setupMobileScrollEffects() {
         if (!heroElement) return;
@@ -267,15 +211,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 300);
     }
     
-    // Run setup functions on load
-    document.addEventListener('DOMContentLoaded', function() {
+    // Run on load if mobile
+    if (isMobile) {
+        document.addEventListener('DOMContentLoaded', setupMobileScrollEffects);
+        
+        // Also try immediately in case DOM is already loaded
         setupMobileScrollEffects();
-        setupMobileNavigation();
-    });
-    
-    // Also try immediately in case DOM is already loaded
-    setupMobileScrollEffects();
-    setupMobileNavigation();
+    }
     
     // Update on resize
     window.addEventListener('resize', function() {
@@ -294,4 +236,41 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     // --- END: Mobile Hero Scroll Effects ---
-}); 
+});
+
+// Function to handle mobile navigation
+function scrollToSection(sectionId, event) {
+    // Prevent default action if event is provided
+    if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+    
+    console.log(`Scrolling to section: ${sectionId}`);
+    
+    // Get the section
+    const section = document.getElementById(sectionId);
+    if (!section) {
+        console.error(`Section #${sectionId} not found`);
+        return;
+    }
+    
+    // Calculate position to scroll to
+    const headerHeight = 100; // Adjust based on your header height
+    const sectionRect = section.getBoundingClientRect();
+    const offsetPosition = sectionRect.top + window.pageYOffset - headerHeight;
+    
+    // Scroll to the section
+    window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+    });
+    
+    // Wait a bit, then flash the section to highlight it
+    setTimeout(() => {
+        section.classList.add('highlight-section');
+        setTimeout(() => {
+            section.classList.remove('highlight-section');
+        }, 1000);
+    }, 500);
+} 

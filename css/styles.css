@@ -220,11 +220,10 @@ ul {
 }
 
 .logo a {
-    display: flex;               /* Flexbox layout */
-    align-items: self-start;     /* Align to top */
-    gap: 10px;                  /* Space between image and text */
-    text-decoration: line-through;  /* Strikethrough effect */
-    text-decoration-thickness: 1.5px;  /* Thicker strikethrough */
+    display: flex;
+    gap: 5px; /* Default gap for desktop */
+    text-decoration: none;
+    align-items: center;
 }
   
 .gaellogo-jpg {
@@ -1298,7 +1297,7 @@ section {
     
     .mobile-corner-logo {
         display: block; /* Show the mobile version */
-        margin-top: 0; /* No space between logo and image */
+        margin-top: 0px; /* Minimal space between logo and image */
         width: 80px; /* Adjust size as needed */
         height: auto;
         align-self: flex-start; /* Ensure it stays left-aligned */
@@ -1581,7 +1580,7 @@ section {
     }
     
     .logo a {
-        gap: 1px!important; 
+        gap: 5px; /* Keep normal spacing between THE, logo and BARBER */
         text-decoration: none; 
         align-items: center; /* Vertically align logo image and text */
     }
@@ -2178,8 +2177,7 @@ html {
     flex-direction: column;
     align-items: flex-end;
     gap: 7px;
-    z-index: 50; /* Increased z-index to ensure it's above other elements */
-    pointer-events: auto !important; /* Force pointer events */
+    z-index: 20;
 }
 
 .hero-mobile-panel a,
@@ -2194,7 +2192,6 @@ html {
     padding: 2px 0;
     cursor: pointer;
     transition: color 0.2s ease, transform 0.2s ease;
-    pointer-events: auto !important; /* Force pointer events */
 }
 
 .hero-mobile-panel a:hover,
@@ -2202,4 +2199,23 @@ html {
     color: #ffffff;
     transform: scale(1.05);
 }
+
+.hero-mobile-panel .cal-trigger-item {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+/* Section highlight effect */
+.highlight-section {
+    animation: section-highlight 1s ease;
+}
+
+@keyframes section-highlight {
+    0% { box-shadow: 0 0 0 rgba(255, 255, 255, 0); }
+    50% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.3); }
+    100% { box-shadow: 0 0 0 rgba(255, 255, 255, 0); }
+}
+
+/* Mobile Hero Right Panel - Only for mobile */
 

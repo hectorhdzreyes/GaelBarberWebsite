@@ -1581,7 +1581,7 @@ section {
     }
     
     .logo a {
-        gap: 5px; 
+        gap: 1px; 
         text-decoration: none; 
         align-items: center; /* Vertically align logo image and text */
     }

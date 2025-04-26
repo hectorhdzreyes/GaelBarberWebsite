@@ -8,6 +8,12 @@
     --transition: all 0.3s ease;  /* Default transition timing */
     --border-radius: 0px;         /* Default border radius */
     --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);  /* Default shadow effect */
+    --accent-color: #f5f5f5;     /* Accent color (light gray) */
+    --text-color: #ffffff;       /* Text color (white) */
+    --heading-font: 'Montserrat', sans-serif;  /* Heading font */
+    --body-font: 'Montserrat', sans-serif;     /* Body font */
+    --container-width: 1400px;   /* Container max width */
+    --header-height: 80px;       /* Header height */
 }
 
 /* Custom Scissors Cursor */
@@ -1279,6 +1285,72 @@ section {
 }
 
 @media screen and (max-width: 768px) {
+    /* Mobile-specific visibility classes */
+    .hide-on-desktop {
+        display: initial !important; /* Reset to default display */
+    }
+    
+    .hide-on-mobile {
+        display: none !important;
+    }
+    
+    .show-on-mobile-block {
+        display: block !important;
+    }
+    
+    .show-on-mobile-flex {
+        display: flex !important;
+    }
+    
+    .show-on-mobile-inline-block {
+        display: inline-block !important;
+    }
+    
+    /* Mobile under-logo image styling */
+    .mobile-under-logo {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        margin: 5px auto 0;
+        display: block;
+        border-radius: 4px;
+    }
+    
+    /* Mobile nav panel in top right */
+    .mobile-nav-panel {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 5px;
+        background: transparent;
+        padding: 5px;
+        z-index: 100;
+    }
+    
+    .mobile-nav-panel a {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        text-decoration: none;
+        letter-spacing: 1px;
+        background: transparent;
+        padding: 2px 5px;
+        transition: color 0.3s ease;
+    }
+    
+    .mobile-nav-panel a:hover {
+        color: #ffffff;
+    }
+    
+    /* Adjust header container for mobile layout */
+    .header-container {
+        position: relative;
+        padding: 10px 15px;
+    }
+    
     /* MOBILE-SPECIFIC EFFECTS FOR HERO ELEMENTS */
     /* Same effects as desktop but applied differently for mobile */
     
@@ -1288,74 +1360,6 @@ section {
         position: relative !important;
         touch-action: pan-y !important;  /* Only allow vertical scrolling */
         -webkit-overflow-scrolling: touch !important;
-    }
-    
-    /* HEADER ADJUSTMENTS FOR MOBILE */
-    /* Move top-right image closer to logo */
-    .header-container {
-        flex-direction: row;
-        align-items: center;
-        padding: 0 0.5rem;
-        gap: 5px; /* Minimize spacing */
-    }
-    
-    .gaellogo-jpg {
-        height: 50px;
-        width: auto;
-    }
-    
-    .logo-text {
-        font-size: 12px;
-    }
-    
-    .logo a {
-        gap: 2px; /* Minimize spacing between logo elements */
-    }
-    
-    .header-corner-logo {
-        height: 40px;
-        margin-left: -10px; /* Pull it closer to the logo */
-    }
-    
-    /* MOBILE TOP-RIGHT NAVIGATION PANEL */
-    /* Create a smaller version of the left panel in the top right for mobile */
-    .hero-left-panel.hide-on-mobile {
-        display: none; /* Hide the desktop version */
-    }
-    
-    /* Create mobile version of the nav panel */
-    .hero-mobile-panel {
-        display: flex !important;
-        position: absolute;
-        top: 65px; /* Position below header */
-        right: 10px;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: flex-end;
-        gap: 8px;
-        max-width: 120px;
-        z-index: 20;
-    }
-    
-    /* Style mobile panel items */
-    .hero-mobile-panel a,
-    .hero-mobile-panel div {
-        color: rgba(255, 255, 255, 0.8);
-        font-size: 0.75rem;
-        font-weight: 500;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        padding: 3px 5px;
-        background-color: rgba(0, 0, 0, 0.5);
-        border-radius: 3px;
-        text-decoration: none;
-    }
-    
-    /* Hover/active state for mobile panel items */
-    .hero-mobile-panel a:active,
-    .hero-mobile-panel div:active {
-        color: #fff;
-        background-color: rgba(0, 0, 0, 0.7);
     }
     
     /* Ensure non-hero sections don't allow transitions */
@@ -1379,6 +1383,19 @@ section {
     body.at-hero .page-container.mobile-container {
         pointer-events: auto !important;
         transition: transform 0.5s ease-in-out !important;
+    }
+    
+    /* Enable page transitions for mobile */
+    .page-container.mobile-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 200%;
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+        overflow: hidden;
+        height: 100vh;
+        z-index: 5;
     }
     
     /* Show about page when clicked */
@@ -1468,22 +1485,6 @@ section {
         transition: none !important;
         animation: none !important;
         transform: none !important;
-    }
-    
-    .hide-on-mobile {
-        display: none !important;
-    }
-    
-    .show-on-mobile-block {
-        display: block !important;
-    }
-    
-    .show-on-mobile-flex {
-        display: flex !important;
-    }
-    
-    .show-on-mobile-inline-block {
-        display: inline-block !important;
     }
     
     h1 {
@@ -1902,26 +1903,11 @@ html {
     /* No margin needed due to absolute positioning */
 }
 
-/* Limit transitions to when at hero section only */
-body.at-hero .page-container.mobile-container {
-    pointer-events: auto !important;
-    transition: transform 0.5s ease-in-out !important;
+/* Desktop/Mobile visibility classes */
+.hide-on-desktop {
+    display: none !important;
 }
 
-/* Enable page transitions for mobile */
-.page-container.mobile-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 200%;
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-    overflow: hidden;
-    height: 100vh;
-    z-index: 5;
-}
-
-/* Show about page when clicked */
-.page-container.mobile-container.show-about {
-    transform: translateX(-50%);
+.hide-on-mobile {
+    display: block !important;
 }

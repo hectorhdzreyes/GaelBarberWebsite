@@ -1291,16 +1291,26 @@ section {
     }
     
     /* Ensure non-hero sections don't allow transitions */
-    body:not(.at-hero) .page-container.mobile-container,
+    body:not(.at-hero) .page-container.mobile-container {
+        pointer-events: none !important;
+    }
+    
+    /* But keep the current state visible when scrolling */
     body:not(.at-hero) .page-container.mobile-container.show-about {
+        transform: translateX(-50%) !important; /* Keep showing about page */
+        transition: none !important;
+    }
+    
+    /* Keep hero view when scrolling from hero */
+    body:not(.at-hero) .page-container.mobile-container:not(.show-about) {
         transform: none !important;
         transition: none !important;
-        pointer-events: none !important;
     }
     
     /* Limit transitions to when at hero section only */
     body.at-hero .page-container.mobile-container {
         pointer-events: auto !important;
+        transition: transform 0.5s ease-in-out !important;
     }
     
     /* Enable page transitions for mobile */

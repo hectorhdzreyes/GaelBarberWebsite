@@ -29,11 +29,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     // Moved away from hero section
                     document.body.classList.remove('at-hero');
-                    // If showing about section, revert back to hero when scrolling
-                    const pageContainer = document.querySelector('.page-container.mobile-container');
-                    if (pageContainer && pageContainer.classList.contains('show-about')) {
-                        pageContainer.classList.remove('show-about');
-                    }
+                    // Don't automatically transition back when scrolling, only when specifically clicking
+                    // Allow scrolling on about page without transitioning back
                 }
             });
         }

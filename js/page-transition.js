@@ -16,6 +16,28 @@ document.addEventListener('DOMContentLoaded', function() {
         const navAboutLink = document.querySelector('#about-link');
         const navHomeLink = document.querySelector('#home-link');
         
+        // For mobile: Track scroll position to enable/disable transitions
+        if (isMobile) {
+            // Initially, at the top of the page, set the at-hero class
+            document.body.classList.add('at-hero');
+            
+            // Add scroll listener to check if we're at hero section
+            window.addEventListener('scroll', function() {
+                // If at top of page (hero section)
+                if (window.scrollY < 100) {
+                    document.body.classList.add('at-hero');
+                } else {
+                    // Moved away from hero section
+                    document.body.classList.remove('at-hero');
+                    // If showing about section, revert back to hero when scrolling
+                    const pageContainer = document.querySelector('.page-container.mobile-container');
+                    if (pageContainer && pageContainer.classList.contains('show-about')) {
+                        pageContainer.classList.remove('show-about');
+                    }
+                }
+            });
+        }
+        
         // Ensure all sections are properly visible
         const allSections = document.querySelectorAll('#services, #pricing, #gallery, #contact');
         allSections.forEach(section => {
@@ -140,6 +162,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     return;
                 }
                 
+                // For mobile, only allow transitions at the hero section
+                if (isMobile && !isAtTopSection()) {
+                    return;
+                }
+                
                 console.log('Hero clicked, transitioning to about');
                 
                 // Add class to show about section
@@ -153,6 +180,11 @@ document.addEventListener('DOMContentLoaded', function() {
             function handleAboutClick(e) {
                 // Don't trigger transition if clicking on a button or link
                 if (isClickableElement(e.target)) {
+                    return;
+                }
+                
+                // For mobile, only allow transitions at the hero section
+                if (isMobile && !isAtTopSection()) {
                     return;
                 }
                 

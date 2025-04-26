@@ -1282,6 +1282,27 @@ section {
     /* MOBILE-SPECIFIC EFFECTS FOR HERO ELEMENTS */
     /* Same effects as desktop but applied differently for mobile */
     
+    /* Prevent horizontal scrolling on mobile */
+    html, body {
+        overflow-x: hidden !important;
+        position: relative !important;
+        touch-action: pan-y !important;  /* Only allow vertical scrolling */
+        -webkit-overflow-scrolling: touch !important;
+    }
+    
+    /* Ensure non-hero sections don't allow transitions */
+    body:not(.at-hero) .page-container.mobile-container,
+    body:not(.at-hero) .page-container.mobile-container.show-about {
+        transform: none !important;
+        transition: none !important;
+        pointer-events: none !important;
+    }
+    
+    /* Limit transitions to when at hero section only */
+    body.at-hero .page-container.mobile-container {
+        pointer-events: auto !important;
+    }
+    
     /* Enable page transitions for mobile */
     .page-container.mobile-container {
         position: absolute;

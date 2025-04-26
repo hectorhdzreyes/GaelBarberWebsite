@@ -1298,7 +1298,7 @@ section {
     
     .mobile-corner-logo {
         display: block; /* Show the mobile version */
-        margin-top: 5px; /* Reduced space between logo and image */
+        margin-top: 1px; /* Reduced space between logo and image */
         width: 80px; /* Adjust size as needed */
         height: auto;
         align-self: flex-start; /* Ensure it stays left-aligned */

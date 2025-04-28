@@ -237,52 +237,60 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     // --- END: Mobile Hero Scroll Effects ---
 
-    // Handle mobile navigation links in hero-mobile-panel
+    // NEW: Dedicated Mobile Panel Link Handler
+    function handleMobilePanelLinkClick(event) {
+        // Only run on mobile
+        if (window.innerWidth > 768) return;
+
+        // Ensure it's a link within the mobile panel we care about
+        const link = event.target.closest('.hero-mobile-panel a.mobile-link');
+        if (!link) return;
+
+        // Check if it's the 'about me' link (handle differently or ignore if needed)
+        if (link.id === 'mobile-about-link') {
+            // If 'about me' requires special handling (like page transition), 
+            // you might let its existing handler run or add specific logic here.
+            // For now, let's just scroll to 'about' section directly.
+            event.preventDefault();
+            event.stopImmediatePropagation(); // Stop other listeners on this specific link
+            console.log("Mobile panel 'About Me' link clicked");
+            scrollToSection('about');
+            return; // Stop further processing for 'about me'
+        }
+        
+        // For other links (Services, Pricing, Gallery, Contact)
+        const targetId = link.getAttribute('href')?.substring(1);
+        if (!targetId) return;
+
+        event.preventDefault(); // Prevent default link navigation
+        event.stopImmediatePropagation(); // Crucial: Stop other JS listeners (e.g., from page-transition.js)
+        
+        console.log(`Mobile panel link clicked: ${targetId}`);
+        
+        // Directly scroll to the target section
+        scrollToSection(targetId);
+    }
+
+    // Attach the new handler to the document, using event delegation
+    // This is more robust than querying links directly on load
+    document.addEventListener('click', handleMobilePanelLinkClick, true); // Use capture phase
+
+    /* 
+    // OLD Mobile Panel Handlers (Commented out or remove) 
     const mobilePanelLinks = document.querySelectorAll('.hero-mobile-panel .mobile-link');
     mobilePanelLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            // Get the target section ID
-            const targetId = this.getAttribute('href')?.substring(1) || 'about';
-            
-            // For mobile, ensure we're in the hero view first
-            if (window.innerWidth <= 768) {
-                const pageContainer = document.querySelector('.page-container.mobile-container');
-                if (pageContainer) {
-                    pageContainer.classList.remove('show-about');
-                }
-            }
-            
-            // Scroll to the section after a short delay
-            setTimeout(() => {
-                scrollToSection(targetId);
-            }, 100);
+            // ... old logic ...
         });
     });
     
-    // Handle mobile about link separately
     const mobileAboutLink = document.getElementById('mobile-about-link');
     if (mobileAboutLink) {
         mobileAboutLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            // For mobile, ensure we're in the hero view first
-            if (window.innerWidth <= 768) {
-                const pageContainer = document.querySelector('.page-container.mobile-container');
-                if (pageContainer) {
-                    pageContainer.classList.remove('show-about');
-                }
-            }
-            
-            // Scroll to about section after a short delay
-            setTimeout(() => {
-                scrollToSection('about');
-            }, 100);
+            // ... old logic ...
         });
     }
+    */
 });
 
 // Update scrollToSection function to handle mobile navigation
@@ -290,9 +298,12 @@ function scrollToSection(sectionId) {
     const section = document.getElementById(sectionId);
     if (section) {
         const isMobile = window.innerWidth <= 768;
-        const offset = isMobile ? 80 : 0; // Adjust offset for mobile header
-        const targetPosition = section.offsetTop - offset;
+        // REFINED OFFSET: Use a slightly larger offset for mobile to ensure content isn't hidden
+        const offset = isMobile ? 100 : 0; // Increased mobile offset to 100px
+        const targetPosition = section.getBoundingClientRect().top + window.pageYOffset - offset;
         
+        console.log(`Scrolling to ${sectionId} at position ${targetPosition} (mobile: ${isMobile}, offset: ${offset})`);
+
         window.scrollTo({
             top: targetPosition,
             behavior: 'smooth'

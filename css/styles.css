@@ -189,14 +189,14 @@ ul {
 
 /* Header Styles */
 .header {
-    position: fixed;             /* Fixed position */
-    top: 0;                      /* Top of viewport */
-    left: 0;                     /* Left edge */
-    width: 100%;                 /* Full width */
-    background-color: transparent;  /* Transparent background */
-    z-index: 1000;              /* High z-index for overlay */
-    padding: 1.5rem 0;          /* Vertical padding */
-    transition: var(--transition);  /* Smooth transitions */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem 0;
+    background-color: transparent;
+    z-index: 100; /* Default z-index (Desktop) */
+    transition: background-color 0.3s ease, padding 0.3s ease;
 }
 
 .header.scrolled {
@@ -2171,20 +2171,20 @@ html {
 /* Mobile Hero Right Panel - Only for mobile */
 .hero-mobile-panel {
     display: none; /* Hidden by default (desktop) */
-    position: absolute;
+    position: absolute; /* Crucial for z-index */
     top: 20px;
     right: 15px;
     flex-direction: column;
     align-items: flex-end;
     gap: 7px;
-    z-index: 20;
+    z-index: 110; /* Higher than mobile header */
 }
 
 .hero-mobile-panel a,
 .hero-mobile-panel div {
     color: rgba(255, 255, 255, 0.8);
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.7rem;
+    font-size: 0.7rem; /* Consistent small size */
     font-weight: 500;
     text-transform: uppercase;
     text-decoration: none;

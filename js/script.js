@@ -236,41 +236,66 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     // --- END: Mobile Hero Scroll Effects ---
-});
 
-// Function to handle mobile navigation
-function scrollToSection(sectionId, event) {
-    // Prevent default action if event is provided
-    if (event) {
-        event.preventDefault();
-        event.stopPropagation();
-    }
-    
-    console.log(`Scrolling to section: ${sectionId}`);
-    
-    // Get the section
-    const section = document.getElementById(sectionId);
-    if (!section) {
-        console.error(`Section #${sectionId} not found`);
-        return;
-    }
-    
-    // Calculate position to scroll to
-    const headerHeight = 100; // Adjust based on your header height
-    const sectionRect = section.getBoundingClientRect();
-    const offsetPosition = sectionRect.top + window.pageYOffset - headerHeight;
-    
-    // Scroll to the section
-    window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
+    // Handle mobile navigation links in hero-mobile-panel
+    const mobilePanelLinks = document.querySelectorAll('.hero-mobile-panel .mobile-link');
+    mobilePanelLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Get the target section ID
+            const targetId = this.getAttribute('href')?.substring(1) || 'about';
+            
+            // For mobile, ensure we're in the hero view first
+            if (window.innerWidth <= 768) {
+                const pageContainer = document.querySelector('.page-container.mobile-container');
+                if (pageContainer) {
+                    pageContainer.classList.remove('show-about');
+                }
+            }
+            
+            // Scroll to the section after a short delay
+            setTimeout(() => {
+                scrollToSection(targetId);
+            }, 100);
+        });
     });
     
-    // Wait a bit, then flash the section to highlight it
-    setTimeout(() => {
-        section.classList.add('highlight-section');
-        setTimeout(() => {
-            section.classList.remove('highlight-section');
-        }, 1000);
-    }, 500);
+    // Handle mobile about link separately
+    const mobileAboutLink = document.getElementById('mobile-about-link');
+    if (mobileAboutLink) {
+        mobileAboutLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // For mobile, ensure we're in the hero view first
+            if (window.innerWidth <= 768) {
+                const pageContainer = document.querySelector('.page-container.mobile-container');
+                if (pageContainer) {
+                    pageContainer.classList.remove('show-about');
+                }
+            }
+            
+            // Scroll to about section after a short delay
+            setTimeout(() => {
+                scrollToSection('about');
+            }, 100);
+        });
+    }
+});
+
+// Update scrollToSection function to handle mobile navigation
+function scrollToSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (section) {
+        const isMobile = window.innerWidth <= 768;
+        const offset = isMobile ? 80 : 0; // Adjust offset for mobile header
+        const targetPosition = section.offsetTop - offset;
+        
+        window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+        });
+    }
 } 

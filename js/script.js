@@ -237,115 +237,103 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     // --- END: Mobile Hero Scroll Effects ---
 
-    // Handle mobile navigation (similar to desktop hero-left-panel but for mobile panel)
+    // Handle mobile navigation links in hero-mobile-panel
     const mobilePanelLinks = document.querySelectorAll('.hero-mobile-panel .mobile-link');
-    
+    console.log(`Found ${mobilePanelLinks.length} mobile panel links.`); // DEBUG
+
     mobilePanelLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            // Only run on mobile
-            if (window.innerWidth > 768) return;
-            
-            // Only process link elements with href attribute (not the about me div)
-            const targetId = this.getAttribute('href');
-            if (!targetId || !targetId.startsWith('#')) return;
-            
-            // Prevent default link behavior
+            console.log('Mobile panel link clicked:', this.getAttribute('href')); // DEBUG
             e.preventDefault();
             e.stopPropagation();
             
-            // Get target section by ID
-            const targetSection = document.querySelector(targetId);
+            // Get the target section ID - handle case where href is just #
+            let targetId = this.getAttribute('href');
+            if (targetId && targetId !== '#') {
+                targetId = targetId.substring(1);
+            } else {
+                // Default or handle invalid href if necessary
+                targetId = 'about'; // Or maybe return/do nothing if href is invalid?
+            }
+            console.log('Target Section ID:', targetId); // DEBUG
             
-            if (targetSection) {
-                // Restore original hero view if we've transitioned to about
+            // For mobile, ensure we're in the hero view first
+            if (window.innerWidth <= 768) {
                 const pageContainer = document.querySelector('.page-container.mobile-container');
                 if (pageContainer && pageContainer.classList.contains('show-about')) {
+                    console.log('Removing show-about class'); // DEBUG
                     pageContainer.classList.remove('show-about');
-                    // Allow a moment for transition back
-                    setTimeout(() => scrollToSectionMobile(targetId), 50);
+                     // Add a slightly longer delay if we were in about view
+                    setTimeout(() => {
+                        console.log('Scrolling after removing show-about'); // DEBUG
+                        scrollToSection(targetId);
+                    }, 300); // Increased delay 
                 } else {
-                    // No transition needed, scroll directly
-                    scrollToSectionMobile(targetId);
+                     // Scroll immediately if already in hero view
+                    console.log('Scrolling directly'); // DEBUG
+                    scrollToSection(targetId);
                 }
+            } else {
+                // Fallback for non-mobile (shouldn't happen if panel is hidden)
+                scrollToSection(targetId);
             }
         });
     });
     
-    // Special handler for mobile about link (which isn't an anchor tag)
+    // Handle mobile about link separately (already seems to work, but add logging)
     const mobileAboutLink = document.getElementById('mobile-about-link');
     if (mobileAboutLink) {
+        console.log('Found mobile about link.'); // DEBUG
         mobileAboutLink.addEventListener('click', function(e) {
-            // Only run on mobile
-            if (window.innerWidth > 768) return;
-            
+            console.log('Mobile about link clicked'); // DEBUG
             e.preventDefault();
             e.stopPropagation();
             
-            // For about link, use the page transition handler if available
-            const pageContainer = document.querySelector('.page-container.mobile-container');
-            if (pageContainer) {
-                // Ensure we're showing the about page
-                pageContainer.classList.add('show-about');
-                // Update URL to match
-                window.history.pushState({page: 'about'}, 'About Me', '#about');
+             const targetId = 'about'; // Target is always 'about'
+             console.log('Target Section ID:', targetId); // DEBUG
+
+            // For mobile, ensure we're in the hero view first
+            if (window.innerWidth <= 768) {
+                const pageContainer = document.querySelector('.page-container.mobile-container');
+                if (pageContainer && pageContainer.classList.contains('show-about')) {
+                    console.log('Removing show-about class for about link'); // DEBUG
+                    pageContainer.classList.remove('show-about');
+                    // Add delay
+                    setTimeout(() => {
+                        console.log('Scrolling to about after removing show-about'); // DEBUG
+                        scrollToSection(targetId);
+                    }, 300);
+                } else {
+                    // Scroll immediately
+                    console.log('Scrolling directly to about'); // DEBUG
+                    scrollToSection(targetId);
+                }
             } else {
-                // Fallback to regular scrolling
-                scrollToSectionMobile('about');
+                 scrollToSection(targetId);
             }
         });
     }
-    
-    // Helper function for mobile scrolling with appropriate offset
-    function scrollToSectionMobile(sectionId) {
-        const section = document.getElementById(sectionId);
-        if (!section) return;
-        
-        // Calculate position with appropriate offset for mobile header
-        // Special case for Services, Pricing and Gallery sections that have special positioning
-        let headerOffset = 100; // Default header offset
-        let additionalOffset = 0;
-        
-        // Define specific offsets for problematic sections 
-        if (sectionId === 'services') {
-            // Services has margin-top: 100vh which affects its position
-            additionalOffset = -50; // Negative offset to counteract margin
-        } else if (sectionId === 'pricing' || sectionId === 'gallery') {
-            // These sections might need different offsets
-            additionalOffset = 20;
-        }
-        
-        // Get absolute position including any scroll position
-        const sectionRect = section.getBoundingClientRect();
-        const absolutePosition = sectionRect.top + window.pageYOffset;
-        
-        // Log for debugging
-        console.log(`Scrolling to ${sectionId} with offsets: header=${headerOffset}, additional=${additionalOffset}`);
-        
-        // Scroll with smooth behavior
-        window.scrollTo({
-            top: absolutePosition - headerOffset + additionalOffset,
-            behavior: 'smooth'
-        });
-        
-        // Add temporary highlight to make section more visible
-        section.classList.add('highlight-section');
-        setTimeout(() => {
-            section.classList.remove('highlight-section');
-        }, 1000);
-    }
 });
-
+    
 // Update scrollToSection function to handle mobile navigation
 function scrollToSection(sectionId) {
+    console.log(`Attempting to scroll to section: ${sectionId}`); // DEBUG
     const section = document.getElementById(sectionId);
     if (section) {
+        console.log(`Section #${sectionId} found.`); // DEBUG
         const isMobile = window.innerWidth <= 768;
-        const offset = isMobile ? 100 : 0; // Adjust for mobile header
-        const targetPosition = section.getBoundingClientRect().top + window.pageYOffset - offset;
+        // INCREASED MOBILE OFFSET - header + panel might take more space
+        const offset = isMobile ? 120 : 0; 
+        console.log(`Using offset: ${offset}`); // DEBUG
+        const targetPosition = section.offsetTop - offset;
+        console.log(`Calculated target position: ${targetPosition}`); // DEBUG
         
         window.scrollTo({
             top: targetPosition,
             behavior: 'smooth'
         });
+        console.log(`Scroll command issued for ${sectionId}.`); // DEBUG
+    } else {
+        console.error(`Section #${sectionId} not found!`); // ERROR
     }
 } 

@@ -301,15 +301,37 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!section) return;
         
         // Calculate position with appropriate offset for mobile header
-        const headerOffset = 100; // Adjust based on your header height
+        // Special case for Services, Pricing and Gallery sections that have special positioning
+        let headerOffset = 100; // Default header offset
+        let additionalOffset = 0;
+        
+        // Define specific offsets for problematic sections 
+        if (sectionId === 'services') {
+            // Services has margin-top: 100vh which affects its position
+            additionalOffset = -50; // Negative offset to counteract margin
+        } else if (sectionId === 'pricing' || sectionId === 'gallery') {
+            // These sections might need different offsets
+            additionalOffset = 20;
+        }
+        
+        // Get absolute position including any scroll position
         const sectionRect = section.getBoundingClientRect();
         const absolutePosition = sectionRect.top + window.pageYOffset;
         
+        // Log for debugging
+        console.log(`Scrolling to ${sectionId} with offsets: header=${headerOffset}, additional=${additionalOffset}`);
+        
         // Scroll with smooth behavior
         window.scrollTo({
-            top: absolutePosition - headerOffset,
+            top: absolutePosition - headerOffset + additionalOffset,
             behavior: 'smooth'
         });
+        
+        // Add temporary highlight to make section more visible
+        section.classList.add('highlight-section');
+        setTimeout(() => {
+            section.classList.remove('highlight-section');
+        }, 1000);
     }
 });
 

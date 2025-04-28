@@ -37,6 +37,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
             
+            // Set up click handler for mobile-specific about link
+            if (mobileAboutLink) {
+                mobileAboutLink.addEventListener('click', function(e) {
+                    e.stopPropagation(); // Prevent bubbling to parent
+                    
+                    const pageContainer = document.querySelector('.page-container.mobile-container');
+                    if (pageContainer) {
+                        console.log('Mobile about link clicked, transitioning to about');
+                        pageContainer.classList.add('show-about');
+                        window.history.pushState({page: 'about'}, 'About Me', '#about');
+                    }
+                });
+            }
+            
             // Fix mobile navigation links to work correctly
             document.querySelectorAll('.mobile-link').forEach(link => {
                 if (link.tagName === 'A') { // Only for actual links, not the about me div

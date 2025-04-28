@@ -237,95 +237,20 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     // --- END: Mobile Hero Scroll Effects ---
 
-    // Handle mobile navigation links in hero-mobile-panel
-    const mobilePanelLinks = document.querySelectorAll('.hero-mobile-panel .mobile-link');
-    console.log(`Found ${mobilePanelLinks.length} mobile panel links.`); // DEBUG
+    // REMOVED Mobile Panel Link Handlers
 
-    mobilePanelLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            console.log('Mobile panel link clicked:', this.getAttribute('href')); // DEBUG
-            e.preventDefault();
-            e.stopPropagation();
-            
-            // Get the target section ID - handle case where href is just #
-            let targetId = this.getAttribute('href');
-            if (targetId && targetId !== '#') {
-                targetId = targetId.substring(1);
-            } else {
-                // Default or handle invalid href if necessary
-                targetId = 'about'; // Or maybe return/do nothing if href is invalid?
-            }
-            console.log('Target Section ID:', targetId); // DEBUG
-            
-            // For mobile, ensure we're in the hero view first
-            if (window.innerWidth <= 768) {
-                const pageContainer = document.querySelector('.page-container.mobile-container');
-                if (pageContainer && pageContainer.classList.contains('show-about')) {
-                    console.log('Removing show-about class'); // DEBUG
-                    pageContainer.classList.remove('show-about');
-                     // Add a slightly longer delay if we were in about view
-                    setTimeout(() => {
-                        console.log('Scrolling after removing show-about'); // DEBUG
-                        scrollToSection(targetId);
-                    }, 300); // Increased delay 
-                } else {
-                     // Scroll immediately if already in hero view
-                    console.log('Scrolling directly'); // DEBUG
-                    scrollToSection(targetId);
-                }
-            } else {
-                // Fallback for non-mobile (shouldn't happen if panel is hidden)
-                scrollToSection(targetId);
-            }
-        });
-    });
-    
-    // Handle mobile about link separately (already seems to work, but add logging)
-    const mobileAboutLink = document.getElementById('mobile-about-link');
-    if (mobileAboutLink) {
-        console.log('Found mobile about link.'); // DEBUG
-        mobileAboutLink.addEventListener('click', function(e) {
-            console.log('Mobile about link clicked'); // DEBUG
-            e.preventDefault();
-            e.stopPropagation();
-            
-             const targetId = 'about'; // Target is always 'about'
-             console.log('Target Section ID:', targetId); // DEBUG
-
-            // For mobile, ensure we're in the hero view first
-            if (window.innerWidth <= 768) {
-                const pageContainer = document.querySelector('.page-container.mobile-container');
-                if (pageContainer && pageContainer.classList.contains('show-about')) {
-                    console.log('Removing show-about class for about link'); // DEBUG
-                    pageContainer.classList.remove('show-about');
-                    // Add delay
-                    setTimeout(() => {
-                        console.log('Scrolling to about after removing show-about'); // DEBUG
-                        scrollToSection(targetId);
-                    }, 300);
-                } else {
-                    // Scroll immediately
-                    console.log('Scrolling directly to about'); // DEBUG
-                    scrollToSection(targetId);
-                }
-            } else {
-                 scrollToSection(targetId);
-            }
-        });
-    }
 });
     
-// Update scrollToSection function to handle mobile navigation
+// Update scrollToSection function - remove mobile specific offset adjustment
 function scrollToSection(sectionId) {
     console.log(`Attempting to scroll to section: ${sectionId}`); // DEBUG
     const section = document.getElementById(sectionId);
     if (section) {
         console.log(`Section #${sectionId} found.`); // DEBUG
-        const isMobile = window.innerWidth <= 768;
-        // INCREASED MOBILE OFFSET - header + panel might take more space
-        const offset = isMobile ? 120 : 0; 
-        console.log(`Using offset: ${offset}`); // DEBUG
-        const targetPosition = section.offsetTop - offset;
+        // Use a consistent offset or adjust based on header only
+        const headerOffset = 100; // Example: adjust as needed for fixed header height
+        const targetPosition = section.offsetTop - headerOffset;
+        console.log(`Using offset: ${headerOffset}`); // DEBUG
         console.log(`Calculated target position: ${targetPosition}`); // DEBUG
         
         window.scrollTo({

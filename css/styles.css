@@ -1875,6 +1875,29 @@ section {
     .contact-value {
         align-self: flex-start;     /* Align to start */
     }
+
+    /* Mobile Hero Panel - Positioned horizontally near bottom */
+    .hero-mobile-panel {
+        display: flex !important; 
+        position: absolute; /* Ensure this is present */
+        bottom: 30px;      /* NEW */
+        left: 0;           /* NEW */
+        width: 100%;       /* NEW */
+        padding: 5px 20px; /* NEW */
+        box-sizing: border-box; /* NEW */
+        flex-direction: row; /* NEW */
+        align-items: center; /* NEW - replaces flex-start */
+        justify-content: space-around; /* NEW */
+        gap: 10px; /* Adjusted */
+        z-index: 110 !important; /* Ensure this is present */
+    }
+
+    .hero-mobile-panel a,
+    .hero-mobile-panel div {
+        font-size: 0.7rem; /* Adjust size if needed */
+        letter-spacing: 0.5px; 
+        padding: 1px 0; 
+    }
 }
 
 @media screen and (max-width: 576px) {

@@ -10,15 +10,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Handle mobile navigation links
-    const mobileLinks = document.querySelectorAll('.mobile-link');
-    mobileLinks.forEach(link => {
+    // Handle mobile navigation links in hero-mobile-panel
+    const mobilePanelLinks = document.querySelectorAll('.hero-mobile-panel .mobile-link');
+    mobilePanelLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
-            const targetId = this.getAttribute('href')?.substring(1);
-            if (targetId) {
-                scrollToSection(targetId);
-            }
+            const targetId = this.getAttribute('href')?.substring(1) || 'about';
+            scrollToSection(targetId);
         });
     });
 

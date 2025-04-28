@@ -2178,6 +2178,40 @@ html {
     align-items: flex-end;
     gap: 7px;
     z-index: 110; /* Higher than mobile header */
+    pointer-events: auto !important; /* Force pointer events */
+    touch-action: auto !important; /* Enable touch actions */
+}
+
+/* Mobile-specific link styling - ensure these are clickable */
+@media screen and (max-width: 768px) {
+    .hero-mobile-panel a,
+    .hero-mobile-panel div.mobile-link {
+        font-size: 14px !important; /* Slightly larger font for better touch target */
+        padding: 5px 8px !important; /* Larger padding for bigger touch target */
+        margin: 2px 0 !important; /* Add some spacing */
+        display: inline-block !important; /* Ensure proper display */
+        pointer-events: auto !important; /* Force pointer events */
+        touch-action: auto !important; /* Enable touch actions */
+        position: relative; /* Needed for z-index */
+        z-index: 200 !important; /* Very high z-index */
+        cursor: pointer !important; /* Ensure pointer cursor */
+        background-color: rgba(0,0,0,0.5) !important; /* Semi-transparent background */
+        border-radius: 4px !important; /* Rounded corners */
+    }
+}
+
+/* Improved tap highlight for mobile */
+@media screen and (max-width: 768px) {
+    .hero-mobile-panel a:active,
+    .hero-mobile-panel div.mobile-link:active {
+        background-color: rgba(255,255,255,0.2) !important; /* Highlight when tapped */
+        transform: scale(1.1) !important; /* Slight scale effect */
+    }
+    
+    /* Lower header z-index on mobile */
+    .header {
+        z-index: 90 !important; 
+    }
 }
 
 .hero-mobile-panel a,

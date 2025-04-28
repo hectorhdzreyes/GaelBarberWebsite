@@ -150,10 +150,10 @@
 
         <!-- Mobile-specific top right panel -->
         <div class="hero-mobile-panel show-on-mobile-flex">
-            <a href="#services" class="mobile-link">services</a>
-            <a href="#pricing" class="mobile-link">pricing</a>
-            <a href="#gallery" class="mobile-link">gallery</a>
-            <a href="#contact" class="mobile-link">contact</a>
+            <a href="javascript:void(0)" onclick="window.location.href='#services'" class="mobile-link">services</a>
+            <a href="javascript:void(0)" onclick="window.location.href='#pricing'" class="mobile-link">pricing</a>
+            <a href="javascript:void(0)" onclick="window.location.href='#gallery'" class="mobile-link">gallery</a>
+            <a href="javascript:void(0)" onclick="window.location.href='#contact'" class="mobile-link">contact</a>
             <div 
                 id="mobile-about-link"
                 class="mobile-link" 
@@ -442,6 +442,34 @@
       </script>
       <!-- Cal element-click embed code ends --> 
 
+    <!-- Mobile-specific scroll helper -->
+    <script>
+        // Only run on mobile
+        if (window.innerWidth <= 768) {
+            // Fix scrolling to sections when anchor links are clicked
+            function scrollToAnchor(anchorId) {
+                console.log('Manually scrolling to:', anchorId);
+                const element = document.getElementById(anchorId);
+                if (!element) return;
+                
+                const yOffset = -100; // Adjust this value as needed for your header height
+                const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                
+                window.scrollTo({top: y, behavior: 'smooth'});
+            }
+            
+            // Handle hash change (when the # part of the URL changes)
+            window.addEventListener('hashchange', function() {
+                const hash = window.location.hash.substring(1); // Remove the # character
+                if (hash) {
+                    // Prevent the default scroll
+                    setTimeout(function() {
+                        scrollToAnchor(hash);
+                    }, 100); // Short delay to override browser's default scroll
+                }
+            });
+        }
+    </script>
 </body>
 </html> 
 

@@ -237,60 +237,80 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     // --- END: Mobile Hero Scroll Effects ---
 
-    // NEW: Dedicated Mobile Panel Link Handler
-    function handleMobilePanelLinkClick(event) {
-        // Only run on mobile
-        if (window.innerWidth > 768) return;
-
-        // Ensure it's a link within the mobile panel we care about
-        const link = event.target.closest('.hero-mobile-panel a.mobile-link');
-        if (!link) return;
-
-        // Check if it's the 'about me' link (handle differently or ignore if needed)
-        if (link.id === 'mobile-about-link') {
-            // If 'about me' requires special handling (like page transition), 
-            // you might let its existing handler run or add specific logic here.
-            // For now, let's just scroll to 'about' section directly.
-            event.preventDefault();
-            event.stopImmediatePropagation(); // Stop other listeners on this specific link
-            console.log("Mobile panel 'About Me' link clicked");
-            scrollToSection('about');
-            return; // Stop further processing for 'about me'
-        }
-        
-        // For other links (Services, Pricing, Gallery, Contact)
-        const targetId = link.getAttribute('href')?.substring(1);
-        if (!targetId) return;
-
-        event.preventDefault(); // Prevent default link navigation
-        event.stopImmediatePropagation(); // Crucial: Stop other JS listeners (e.g., from page-transition.js)
-        
-        console.log(`Mobile panel link clicked: ${targetId}`);
-        
-        // Directly scroll to the target section
-        scrollToSection(targetId);
-    }
-
-    // Attach the new handler to the document, using event delegation
-    // This is more robust than querying links directly on load
-    document.addEventListener('click', handleMobilePanelLinkClick, true); // Use capture phase
-
-    /* 
-    // OLD Mobile Panel Handlers (Commented out or remove) 
+    // Handle mobile navigation (similar to desktop hero-left-panel but for mobile panel)
     const mobilePanelLinks = document.querySelectorAll('.hero-mobile-panel .mobile-link');
+    
     mobilePanelLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            // ... old logic ...
+            // Only run on mobile
+            if (window.innerWidth > 768) return;
+            
+            // Only process link elements with href attribute (not the about me div)
+            const targetId = this.getAttribute('href');
+            if (!targetId || !targetId.startsWith('#')) return;
+            
+            // Prevent default link behavior
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Get target section by ID
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                // Restore original hero view if we've transitioned to about
+                const pageContainer = document.querySelector('.page-container.mobile-container');
+                if (pageContainer && pageContainer.classList.contains('show-about')) {
+                    pageContainer.classList.remove('show-about');
+                    // Allow a moment for transition back
+                    setTimeout(() => scrollToSectionMobile(targetId), 50);
+                } else {
+                    // No transition needed, scroll directly
+                    scrollToSectionMobile(targetId);
+                }
+            }
         });
     });
     
+    // Special handler for mobile about link (which isn't an anchor tag)
     const mobileAboutLink = document.getElementById('mobile-about-link');
     if (mobileAboutLink) {
         mobileAboutLink.addEventListener('click', function(e) {
-            // ... old logic ...
+            // Only run on mobile
+            if (window.innerWidth > 768) return;
+            
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // For about link, use the page transition handler if available
+            const pageContainer = document.querySelector('.page-container.mobile-container');
+            if (pageContainer) {
+                // Ensure we're showing the about page
+                pageContainer.classList.add('show-about');
+                // Update URL to match
+                window.history.pushState({page: 'about'}, 'About Me', '#about');
+            } else {
+                // Fallback to regular scrolling
+                scrollToSectionMobile('about');
+            }
         });
     }
-    */
+    
+    // Helper function for mobile scrolling with appropriate offset
+    function scrollToSectionMobile(sectionId) {
+        const section = document.getElementById(sectionId);
+        if (!section) return;
+        
+        // Calculate position with appropriate offset for mobile header
+        const headerOffset = 100; // Adjust based on your header height
+        const sectionRect = section.getBoundingClientRect();
+        const absolutePosition = sectionRect.top + window.pageYOffset;
+        
+        // Scroll with smooth behavior
+        window.scrollTo({
+            top: absolutePosition - headerOffset,
+            behavior: 'smooth'
+        });
+    }
 });
 
 // Update scrollToSection function to handle mobile navigation
@@ -298,12 +318,9 @@ function scrollToSection(sectionId) {
     const section = document.getElementById(sectionId);
     if (section) {
         const isMobile = window.innerWidth <= 768;
-        // REFINED OFFSET: Use a slightly larger offset for mobile to ensure content isn't hidden
-        const offset = isMobile ? 100 : 0; // Increased mobile offset to 100px
+        const offset = isMobile ? 100 : 0; // Adjust for mobile header
         const targetPosition = section.getBoundingClientRect().top + window.pageYOffset - offset;
         
-        console.log(`Scrolling to ${sectionId} at position ${targetPosition} (mobile: ${isMobile}, offset: ${offset})`);
-
         window.scrollTo({
             top: targetPosition,
             behavior: 'smooth'

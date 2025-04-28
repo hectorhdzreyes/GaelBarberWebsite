@@ -1875,6 +1875,58 @@ section {
     .contact-value {
         align-self: flex-start;     /* Align to start */
     }
+
+    /* --- Mobile Slideshow Styles --- */
+    .hero-slideshow-mobile {
+        display: block !important; /* Ensure visibility */
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100px; /* Adjust height as needed */
+        overflow: hidden;
+        background: rgba(0, 0, 0, 0.5); /* Optional: semi-transparent background */
+        z-index: 6; /* Ensure it's above hero background but potentially below main content if needed */
+    }
+
+    .hero-slideshow-mobile .slideshow-track {
+        display: flex;
+        flex-direction: row; /* Horizontal layout */
+        width: 200%; /* Double width to accommodate duplicated images for looping */
+        height: 100%; 
+        animation: slideLeft 40s linear infinite; /* Use horizontal animation */
+    }
+
+    .hero-slideshow-mobile .slideshow-image {
+        height: 90%; /* Adjust height relative to track */
+        width: auto; /* Let aspect ratio decide width, or set fixed width */
+        min-width: 100px; /* Example minimum width */
+        margin: 5px; /* Adjust margin for horizontal spacing */
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        flex-shrink: 0; /* Prevent images from shrinking */
+    }
+
+    .hero-slideshow-mobile .slideshow-image img {
+        height: 100%;
+        width: 100%; /* Ensure image fills its container */
+        object-fit: cover;
+        transform: none; /* Reset desktop scale */
+        transition: none; /* Reset desktop transition */
+    }
+    
+    .hero-slideshow-mobile .slideshow-image:hover img {
+        transform: none; /* No hover effect on mobile */
+    }
+    
+    /* Hide the desktop vertical slideshow on mobile */
+    .hero-slideshow-desktop {
+        display: none !important;
+    }
+    
+    /* Adjust hero content padding if needed to avoid overlap */
+    .hero-content {
+        padding-bottom: 110px; /* Add padding equal to slideshow height + margin */
+    }
 }
 
 @media screen and (max-width: 576px) {
@@ -2168,43 +2220,13 @@ html {
     /* No margin needed due to absolute positioning */
 }
 
-/* Mobile Hero Right Panel - Only for mobile */
-.hero-mobile-panel {
-    display: none; /* Hidden by default (desktop) */
-    position: absolute; /* Crucial for z-index */
-    bottom: 20px; /* Position from bottom */
-    left: 15px;  /* Position from left */
-    flex-direction: column;
-    align-items: flex-start; /* Align items to the left */
-    gap: 7px;
-    z-index: 110; /* Higher than mobile header */
-}
 
-.hero-mobile-panel a,
-.hero-mobile-panel div {
-    color: rgba(255, 255, 255, 0.8);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.7rem; /* Consistent small size */
-    font-weight: 500;
-    text-transform: uppercase;
-    text-decoration: none;
-    letter-spacing: 1px;
-    padding: 2px 0;
-    cursor: pointer;
-    transition: color 0.2s ease, transform 0.2s ease;
-}
 
-.hero-mobile-panel a:hover,
-.hero-mobile-panel div:hover {
-    color: #ffffff;
-    transform: scale(1.05);
-}
 
-.hero-mobile-panel .cal-trigger-item {
-    background-color: rgba(255, 255, 255, 0.2);
-    padding: 2px 8px;
-    border-radius: 4px;
-}
+
+
+
+
 
 /* Section highlight effect */
 .highlight-section {
@@ -2218,4 +2240,15 @@ html {
 }
 
 /* Mobile Hero Right Panel - Only for mobile */
+
+/* New Animation Keyframes for Horizontal Slide */
+@keyframes slideLeft {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        /* Slides half the track width to the left */
+        transform: translateX(-50%); 
+    }
+}
 

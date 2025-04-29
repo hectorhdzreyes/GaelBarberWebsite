@@ -55,6 +55,8 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Force MOST children to have no transitions/animations
         const allHeroChildren = heroElement.querySelectorAll('*:not(.hero-slideshow-mobile):not(.hero-slideshow-mobile *)'); // Exclude mobile slideshow
+        /* TEMP: Commenting out to test slideshow animation */
+        /*
         allHeroChildren.forEach(child => {
             // Skip the specific elements we DO want to animate/transition
             if (child.tagName === 'H1' || 
@@ -76,6 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
             child.style.animation = "none";
             child.style.transform = "none";
         });
+        */
     }
     
     // Apply styles on load if mobile

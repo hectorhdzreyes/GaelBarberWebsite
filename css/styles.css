@@ -1410,13 +1410,13 @@ section {
         margin-bottom: 0.2rem; /* Keep reduced margin */
         /* transform: translateY(-15px); REMOVED previous transform */
         position: relative; /* Add relative positioning */
-        top: -70px!important; /* Shift upwards relative to its normal position */
+        top: -80px!important; /* Shift upwards relative to its normal position */
         /* Inherit other mobile h1 styles like text-shadow */
     }
     
     .hero .tagline {
         color: rgba(255, 255, 255, 0.9) !important;
-        top: -50px!important;
+        top: -70px!important;
     }
     
     .hero .cal-trigger-btn.hero-btn {
@@ -1424,7 +1424,7 @@ section {
         color: #000 !important;
         background-color: #fff !important;
         border-color: #fff !important;
-        top: 100px!important;
+        top: 120px!important;
     }
     
     /* MOBILE SCROLL EFFECTS - Enhanced effects when scrolling */

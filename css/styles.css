@@ -1329,7 +1329,7 @@ section {
     
     /* Style fixes for mobile hero */
     .hero-content {
-        padding-top: 70px; /* Restore original padding */
+        padding-top: 80px !important; /* Restore original padding with !important */
     }
     
     /* Prevent horizontal scrolling on mobile */
@@ -1407,10 +1407,14 @@ section {
     /* Make them slightly enhanced by default */
     .hero h1 {
         text-shadow: 0 0 10px rgba(255, 255, 255, 0.5) !important;
+        margin-top: 1rem !important; /* Add top margin */
+        margin-bottom: 1rem !important; /* Default margin */
     }
     
     .hero .tagline {
         color: rgba(255, 255, 255, 0.9) !important;
+        margin-top: 1rem !important; /* Default margin */
+        margin-bottom: 2rem !important; /* Default margin */
     }
     
     .hero .cal-trigger-btn.hero-btn {
@@ -1953,23 +1957,35 @@ section {
         margin-bottom: 1rem; /* Reduced from default */
     }
     
-    /* NEW Mobile Schedule Text - Adding it outside media query with !important to ensure it's hidden on desktop */
+    /* NEW Mobile Schedule Text - Making it completely hidden for desktop */
     .mobile-schedule-text {
         display: none !important; /* Force hide by default on all screens */
+    }
+    
+    /* Ensure it NEVER shows on desktop */
+    @media screen and (min-width: 769px) {
+        .mobile-schedule-text,
+        .mobile-schedule-text.show-on-mobile-block {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            height: 0 !important;
+            overflow: hidden !important;
+        }
     }
     
     /* Mobile Schedule Text - Override the default hidden state ONLY for mobile */
     .mobile-schedule-text.show-on-mobile-block {
         display: block !important; /* Force display on mobile */
-        margin-top: 16rem; /* Keep the dramatically increased margin */
-        margin-bottom: 0.1rem;
-        font-size: 0.7rem;
-        line-height: 1.3;
-        color: rgba(255, 255, 255, 0.8);
-        letter-spacing: 0.5px;
-        text-align: center;
-        position: relative;
-        z-index: 15;
+        margin-top: 16rem !important; /* Keep the dramatically increased margin */
+        margin-bottom: 0.1rem !important;
+        font-size: 0.7rem !important;
+        line-height: 1.3 !important;
+        color: rgba(255, 255, 255, 0.8) !important;
+        letter-spacing: 0.5px !important;
+        text-align: center !important;
+        position: relative !important;
+        z-index: 15 !important;
     }
 }
 

@@ -1329,7 +1329,7 @@ section {
     
     /* Style fixes for mobile hero */
     .hero-content {
-        padding-top: 15px; /* Slight padding to move content down a bit */
+        padding-top: 0; /* Reverted padding */
     }
     
     /* Prevent horizontal scrolling on mobile */
@@ -1339,6 +1339,7 @@ section {
         touch-action: pan-y !important;  /* Only allow vertical scrolling */
         -webkit-overflow-scrolling: touch !important;
     }
+    
     
     /* Ensure non-hero sections don't allow transitions */
     body:not(.at-hero) .page-container.mobile-container {
@@ -1958,10 +1959,12 @@ section {
         content: "[Monday - Sunday. 10am - 8am. 7 Days a Week.\A You Decide The Time.]";
         white-space: pre;
         position: absolute;
-        top: -40px; /* Position above the slideshow */
+        /* Adjust positioning: Place it relative to the slideshow container */
+        bottom: 100%; /* Position the bottom of the text at the top of the slideshow */
         left: 50%;
         transform: translateX(-50%);
         width: 90%;
+        margin-bottom: 5px; /* Add a small gap above the slideshow */
         font-size: 0.7rem;
         line-height: 1.3;
         color: rgba(255, 255, 255, 0.8);

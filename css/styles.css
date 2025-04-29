@@ -1416,7 +1416,11 @@ section {
     
     .hero .tagline {
         color: rgba(255, 255, 255, 0.9) !important;
-        top: -80px!important;
+        position: relative; /* Add relative positioning */
+        top: -75px; /* Adjust slightly less than H1's -80px to reduce gap */
+        /* Keep original mobile margins */
+        margin-top: 0.5rem;
+        margin-bottom: 1rem;
     }
     
     .hero .cal-trigger-btn.hero-btn {

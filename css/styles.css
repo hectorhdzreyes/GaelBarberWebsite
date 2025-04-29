@@ -1961,13 +1961,18 @@ section {
         left: 5%!important;
         transform: translateX(-50%);
         width: 90%; /* Control width for centering */
-        font-size: 0.65rem; /* Slightly smaller font */
+        font-size: 1rem; /* Slightly smaller font */
         line-height: 1.2; /* Adjusted line height */
         color: rgba(255, 255, 255, 0.8);
         letter-spacing: 0.5px;
         text-align: center;
         z-index: 15; 
         /* Removed margin properties */
+    }
+
+    .mobile-schedule-text.number2 {
+        bottom: -155px; /* Lowered significantly to be right above slideshow (slideshow starts at bottom: 20px, height: 100px) */
+        left: 5%!important;
     }
     
     /* Prevent horizontal scrolling on mobile */

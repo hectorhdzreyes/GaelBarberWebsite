@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Force static background
         heroElement.style.transition = "none";
-        heroElement.style.animation = "none";
+        // heroElement.style.animation = "none"; // <-- Let's try commenting this out
         heroElement.style.transform = "none";
         heroElement.style.backgroundAttachment = "scroll";
         

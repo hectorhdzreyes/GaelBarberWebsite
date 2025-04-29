@@ -1649,9 +1649,12 @@ section {
     
     /* Style fixes for mobile hero */
     .hero-content {
-        padding-top: 75px !important; /* Small padding to move content slightly down */
+        padding-top: 85px !important; /* Small padding to move content slightly down */
     }
     
+    .hero-bottom-text-under.hide-on-mobile{
+        padding-bottom: 25px !important;
+    }
     /* Prevent horizontal scrolling on mobile */
     html, body {
         overflow-x: hidden !important;

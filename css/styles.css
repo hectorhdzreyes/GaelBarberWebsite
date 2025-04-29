@@ -1329,7 +1329,7 @@ section {
     
     /* Style fixes for mobile hero */
     .hero-content {
-        padding-top: 80px; /* Add some space for the mobile panel */
+        padding-top: 30px; /* Reduced from 80px to shift content up */
     }
     
     /* Prevent horizontal scrolling on mobile */
@@ -1644,7 +1644,7 @@ section {
     
     /* Style fixes for mobile hero */
     .hero-content {
-        padding-top: 80px; /* Add some space for the mobile panel */
+        padding-top: 30px; /* Reduced from 80px to shift content up */
     }
     
     /* Prevent horizontal scrolling on mobile */
@@ -1906,6 +1906,36 @@ section {
     /* Ensure vertical desktop slideshow is hidden */
     .hero-slideshow {
         display: none !important;
+    }
+
+    /* Copied from Desktop: Hero Bottom Text for Mobile */
+    .hero-bottom-text {
+        position: absolute;
+        bottom: 150px; /* Positioned above mobile slideshow */
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%; /* Adjust width for mobile */
+        text-align: center;
+        z-index: 10; 
+        font-size: 1rem; /* Slightly smaller for mobile */         
+        font-weight: 400;            
+        letter-spacing: 1.5px; /* Adjust spacing */       
+        color: rgba(255, 255, 255, 0.7);  
+        text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);  
+    }
+    .hero-bottom-text-under {
+        position: absolute;
+        bottom: 125px; /* Positioned above mobile slideshow */
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%; 
+        text-align: center;
+        z-index: 10; 
+        font-size: 1.2rem; /* Slightly smaller for mobile */           
+        font-weight: 400;            
+        letter-spacing: 1px; /* Adjust spacing */      
+        color: rgb(255, 255, 255);  
+        text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);  
     }
 }
 

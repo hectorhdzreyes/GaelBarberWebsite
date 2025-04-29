@@ -1653,7 +1653,7 @@ section {
     }
     
     .hero-bottom-text-under.hide-on-mobile{
-        padding-bottom: 25px !important;
+        padding-bottom: 35px !important;
     }
     /* Prevent horizontal scrolling on mobile */
     html, body {

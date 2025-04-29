@@ -1912,7 +1912,7 @@ section {
     .hero-bottom-text {
         position: absolute;
         bottom: 150px; /* Positioned above mobile slideshow */
-        left: 50%;
+        margin: 100px;
         transform: translateX(-50%);
         width: 90%; /* Adjust width for mobile */
         text-align: center;
@@ -1926,7 +1926,7 @@ section {
     .hero-bottom-text-under {
         position: absolute;
         bottom: 125px; /* Positioned above mobile slideshow */
-        left: 50%;
+       margin: 100px;
         transform: translateX(-50%);
         width: 90%; 
         text-align: center;

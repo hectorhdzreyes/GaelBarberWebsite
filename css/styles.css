@@ -1410,7 +1410,7 @@ section {
         margin-bottom: 0.2rem; /* Keep reduced margin */
         /* transform: translateY(-15px); REMOVED previous transform */
         position: relative; /* Add relative positioning */
-        top: -50px; /* Shift upwards relative to its normal position */
+        top: -50px!important; /* Shift upwards relative to its normal position */
         /* Inherit other mobile h1 styles like text-shadow */
     }
     

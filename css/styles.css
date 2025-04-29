@@ -1407,7 +1407,11 @@ section {
     
     /* Make them slightly enhanced by default */
     .hero h1 {
-        text-shadow: 0 0 10px rgba(255, 255, 255, 0.5) !important;
+        margin-bottom: 0.2rem; /* Keep reduced margin */
+        /* transform: translateY(-15px); REMOVED previous transform */
+        position: relative; /* Add relative positioning */
+        top: -20px; /* Shift upwards relative to its normal position */
+        /* Inherit other mobile h1 styles like text-shadow */
     }
     
     .hero .tagline {
@@ -1423,7 +1427,9 @@ section {
     
     /* MOBILE SCROLL EFFECTS - Enhanced effects when scrolling */
     .hero.scroll-active h1 {
-        transform: scale(1.1) translateY(-15px) !important; /* Combine scale and translate */
+        /* transform: scale(1.1) translateY(-15px) !important; REMOVED transform */
+        transform: scale(1.1) !important; /* Keep original scale transform */
+        /* The relative positioning with 'top' will still apply */
         text-shadow: 0 0 20px rgba(255, 255, 255, 1) !important;
         color: #ffffff !important;
     }
@@ -1738,7 +1744,9 @@ section {
     
     /* MOBILE SCROLL EFFECTS - Enhanced effects when scrolling */
     .hero.scroll-active h1 {
-        transform: scale(1.1) translateY(-15px) !important; /* Combine scale and translate */
+        /* transform: scale(1.1) translateY(-15px) !important; REMOVED transform */
+        transform: scale(1.1) !important; /* Keep original scale transform */
+        /* The relative positioning with 'top' will still apply */
         text-shadow: 0 0 20px rgba(255, 255, 255, 1) !important;
         color: #ffffff !important;
     }
@@ -1948,7 +1956,9 @@ section {
     /* Reduce margins for h1/tagline specifically on mobile */
     .hero h1 {
         margin-bottom: 0.2rem; /* Keep reduced margin */
-        transform: translateY(-15px); /* Add negative Y translation to shift up */
+        /* transform: translateY(-15px); REMOVED previous transform */
+        position: relative; /* Add relative positioning */
+        top: -20px; /* Shift upwards relative to its normal position */
         /* Inherit other mobile h1 styles like text-shadow */
     }
     .tagline {

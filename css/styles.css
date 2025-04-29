@@ -1973,13 +1973,13 @@ section {
     .mobile-schedule-text-under {
         /* display is handled by show/hide utility classes */
         position: absolute;
-        bottom: -175px!important; /* Lowered significantly to be right above slideshow (slideshow starts at bottom: 20px, height: 100px) */
+        bottom: -180px!important; /* Lowered significantly to be right above slideshow (slideshow starts at bottom: 20px, height: 100px) */
         left: 5%!important;
         transform: translateX(-50%);
         width: 90%; /* Control width for centering */
-        font-size: 0.8rem; /* Slightly smaller font */
+        font-size: 1rem; /* Slightly smaller font */
         line-height: 1.2; /* Adjusted line height */
-        color: rgba(255, 255, 255, 0.8);
+        color: rgb(255, 255, 255);
         letter-spacing: 0.5px;
         text-align: center;
         z-index: 15; 

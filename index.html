@@ -25,20 +25,10 @@
                 <!-- Mobile-specific image that shows under the logo on mobile only -->
                 <img src="images/toprighthero.jpg" alt="Header Corner Logo" class="header-corner-logo mobile-corner-logo">
             </div>
-            <!-- Mobile Header Navigation Panel - MOVED OUTSIDE header -->
             <!-- Keep the original desktop image -->
             <img src="images/toprighthero.jpg" alt="Header Corner Logo" class="header-corner-logo desktop-corner-logo">
         </div>
     </header>
-
-    <!-- Mobile Header Navigation Panel (Positioned with CSS) -->
-    <div class="mobile-header-nav show-on-mobile-flex">
-        <a href="#about" class="mobile-nav-link" id="mobile-header-about">about me</a>
-        <a href="#services" class="mobile-nav-link">services</a>
-        <a href="#pricing" class="mobile-nav-link">pricing</a>
-        <a href="#gallery" class="mobile-nav-link">gallery</a>
-        <a href="#contact" class="mobile-nav-link">contact</a>
-    </div>
 
     <nav class="main-nav">
         <ul>
@@ -55,6 +45,23 @@
         <!-- Left Navigation Panel - Desktop -->
         <div class="hero-left-panel hide-on-mobile">
             <div>about me</div>
+            <a href="#services">services</a>
+            <a href="#pricing">pricing</a>
+            <a href="#gallery">gallery</a>
+            <a href="#contact">contact</a>
+            <div 
+                class="cal-trigger-item" 
+                data-cal-link="hector-hernandez-jng1ej/30min" 
+                data-cal-namespace="book-now"
+                data-cal-config='{"layout":"month_view"}'
+            >
+                book now
+            </div>
+        </div>
+
+        <!-- ADDED: Mobile Top-Right Navigation Panel -->
+        <div class="hero-mobile-nav show-on-mobile-flex">
+            <a href="#about">about me</a> 
             <a href="#services">services</a>
             <a href="#pricing">pricing</a>
             <a href="#gallery">gallery</a>

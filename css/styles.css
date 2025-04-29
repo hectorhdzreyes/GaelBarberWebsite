@@ -1876,6 +1876,16 @@ section {
     .contact-value {
         align-self: flex-start;     /* Align to start */
     }
+
+    /* Ensure the mobile nav panel is displayed */
+    .hero-mobile-nav {
+        display: flex !important; /* Use flex to enable column layout & alignment */
+    }
+    
+    /* Lower header z-index on mobile (should already exist) */
+    .header {
+        z-index: 90 !important; 
+    }
 }
 
 @media screen and (max-width: 576px) {
@@ -2188,58 +2198,47 @@ html {
     100% { box-shadow: 0 0 0 rgba(255, 255, 255, 0); }
 }
 
-/* Mobile Header Nav (hidden on desktop) */
-.mobile-header-nav {
-    display: none;
+/* Mobile Hero Right Panel - Only for mobile */
+
+/* New Mobile Hero Navigation Panel */
+.hero-mobile-nav {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 20px; /* Adjust spacing from top */
+    right: 15px; /* Adjust spacing from right */
+    z-index: 110; /* Higher than mobile header (which is 90) */
+    flex-direction: column;
+    align-items: flex-end; /* Align text to the right */
+    gap: 8px; /* Spacing between links */
 }
 
-@media screen and (max-width: 768px) {
-    /* MOBILE-SPECIFIC EFFECTS FOR HERO ELEMENTS */
-    /* Same effects as desktop but applied differently for mobile */
-    
-   
+/* Styles for links within the mobile nav */
+.hero-mobile-nav a,
+.hero-mobile-nav div { /* Apply to links and the book now div */
+    color: rgba(255, 255, 255, 0.85); /* Slightly brighter white */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem; /* Small font size for mobile */
+    font-weight: 500;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 0.8px;
+    padding: 2px 0; /* Minimal vertical padding */
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s ease;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5); /* Subtle shadow for readability */
+}
 
-    /* Show and style the mobile header navigation */
-    .mobile-header-nav {
-        display: flex !important; /* Override default 'none' */
-        flex-direction: column;  /* Stack links vertically */
-        align-items: flex-end; /* Align text to the right */
-        padding-top: 5px; /* Add some space from the top */
-        gap: 5px; /* Space between links */
-    }
+.hero-mobile-nav a:hover,
+.hero-mobile-nav div:hover {
+    color: #ffffff; /* Full white on hover */
+    transform: scale(1.05); /* Slight scale effect */
+}
 
-    .mobile-nav-link {
-        font-family: 'Montserrat', sans-serif;
-        color: rgba(255, 255, 255, 0.8);
-        font-size: 0.7rem; 
-        font-weight: 500;
-        text-transform: uppercase;
-        text-decoration: none;
-        letter-spacing: 0.5px;
-        padding: 1px 0;
-        cursor: pointer;
-        transition: color 0.2s ease;
-    }
-
-    .mobile-nav-link:hover {
-        color: #ffffff;
-    }
-
-    /* Adjust logo wrapper if needed to make space */
-   
-
-    /* REMOVE unused .mobile-header-nav styles from 576px query if they exist */
-    /* Remove this block if present */
-    /*
-    .mobile-header-nav {
-        gap: 0.5rem;
-        margin: 0 0.5rem;
-    }
-    .mobile-header-nav a,
-    .mobile-header-nav div {
-        font-size: 0.65rem; 
-        padding: 3px;
-    }
-    */
+/* Specific style for the 'book now' item if needed */
+.hero-mobile-nav .cal-trigger-item {
+    /* Optional: Add background/border if desired */
+    /* background-color: rgba(255, 255, 255, 0.1); */
+    /* padding: 2px 6px; */
+    /* border-radius: 3px; */
 }
 

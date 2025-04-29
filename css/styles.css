@@ -1329,7 +1329,7 @@ section {
     
     /* Style fixes for mobile hero */
     .hero-content {
-        padding-top: 30px; /* Reduced from 80px to shift content up */
+        padding-top: 10px; /* Reduced further from 30px to shift content more up */
     }
     
     /* Prevent horizontal scrolling on mobile */
@@ -1644,7 +1644,7 @@ section {
     
     /* Style fixes for mobile hero */
     .hero-content {
-        padding-top: 30px; /* Reduced from 80px to shift content up */
+        padding-top: 10px; /* Reduced further from 30px to shift content more up */
     }
     
     /* Prevent horizontal scrolling on mobile */
@@ -1912,28 +1912,28 @@ section {
     .hero-bottom-text {
         position: absolute;
         bottom: 150px; /* Positioned above mobile slideshow */
-        margin: 100px;
+        left: 50%;
         transform: translateX(-50%);
         width: 90%; /* Adjust width for mobile */
         text-align: center;
         z-index: 10; 
-        font-size: 1rem; /* Slightly smaller for mobile */         
+        font-size: 0.8rem; /* Smaller font size */         
         font-weight: 400;            
-        letter-spacing: 1.5px; /* Adjust spacing */       
+        letter-spacing: 1.2px; /* Adjust spacing */       
         color: rgba(255, 255, 255, 0.7);  
         text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);  
     }
     .hero-bottom-text-under {
         position: absolute;
         bottom: 125px; /* Positioned above mobile slideshow */
-       margin: 100px;
+        left: 50%;
         transform: translateX(-50%);
         width: 90%; 
         text-align: center;
         z-index: 10; 
-        font-size: 1.2rem; /* Slightly smaller for mobile */           
+        font-size: 0.9rem; /* Smaller font size */           
         font-weight: 400;            
-        letter-spacing: 1px; /* Adjust spacing */      
+        letter-spacing: 0.8px; /* Adjust spacing */      
         color: rgb(255, 255, 255);  
         text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);  
     }

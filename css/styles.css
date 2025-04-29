@@ -1327,9 +1327,9 @@ section {
         padding: 1px 0; /* Smaller padding */
     }
     
-    /* Style fixes for mobile hero - ADJUST HEIGHT BUT NOT TOO MUCH */
+    /* Style fixes for mobile hero */
     .hero-content {
-        padding-top: 55px !important; /* Reduced from 80px but not too much */
+        padding-top: 15px; /* Small padding to move content slightly down */
     }
     
     /* Prevent horizontal scrolling on mobile */
@@ -1407,14 +1407,10 @@ section {
     /* Make them slightly enhanced by default */
     .hero h1 {
         text-shadow: 0 0 10px rgba(255, 255, 255, 0.5) !important;
-        margin-top: 0.5rem !important; /* Reduced top margin */
-        margin-bottom: 0.8rem !important; /* Slightly reduced bottom margin */
     }
     
     .hero .tagline {
         color: rgba(255, 255, 255, 0.9) !important;
-        margin-top: 0.5rem !important; /* Reduced top margin */
-        margin-bottom: 1.5rem !important; /* Slightly reduced bottom margin */
     }
     
     .hero .cal-trigger-btn.hero-btn {
@@ -1483,6 +1479,11 @@ section {
     
     .show-on-mobile-inline-block {
         display: inline-block !important;
+    }
+    
+    /* Added for extra safety to hide mobile elements on desktop */
+    .hide-on-desktop {
+        display: none;
     }
     
     h1 {
@@ -1648,7 +1649,7 @@ section {
     
     /* Style fixes for mobile hero */
     .hero-content {
-        padding-top: 70px; /* Restore original padding */
+        padding-top: 15px; /* Small padding to move content slightly down */
     }
     
     /* Prevent horizontal scrolling on mobile */
@@ -1798,6 +1799,11 @@ section {
     
     .show-on-mobile-inline-block {
         display: inline-block !important;
+    }
+    
+    /* Added for extra safety to hide mobile elements on desktop */
+    .hide-on-desktop {
+        display: none;
     }
     
     h1 {
@@ -1957,67 +1963,18 @@ section {
         margin-bottom: 1rem; /* Reduced from default */
     }
     
-    /* NEW Mobile Schedule Text - Making it completely hidden for desktop */
+    /* NEW Mobile Schedule Text (positioned directly below Book Now button) */
     .mobile-schedule-text {
-        display: none !important; /* Force hide by default on all screens */
-    }
-    
-    /* Ensure it NEVER shows on desktop */
-    @media screen and (min-width: 769px) {
-        .mobile-schedule-text,
-        .mobile-schedule-text.show-on-mobile-block {
-            display: none !important;
-            visibility: hidden !important;
-            opacity: 0 !important;
-            height: 0 !important;
-            overflow: hidden !important;
-        }
-    }
-    
-    /* Mobile Schedule Text - Override the default hidden state ONLY for mobile */
-    .mobile-schedule-text.show-on-mobile-block {
-        display: block !important; /* Force display on mobile */
-        margin-top: 16rem !important; /* Keep this exact value - it was working well */
-        margin-bottom: 0.1rem !important;
-        font-size: 0.7rem !important;
-        line-height: 1.3 !important;
-        color: rgba(255, 255, 255, 0.8) !important;
-        letter-spacing: 0.5px !important;
-        text-align: center !important;
-        position: relative !important;
-        z-index: 15 !important;
-    }
-
-    /* !!! CRITICAL MOBILE POSITIONING - DO NOT CHANGE !!! */
-    @media screen and (max-width: 768px) {
-        /* Force hero content up more aggressively */
-        body .hero .container.hero-container .hero-content {
-            padding-top: 30px !important; /* Much more aggressive reduction */
-            position: relative !important;
-        }
-
-        /* Force h1 margins to be smaller */
-        body .hero .container.hero-container .hero-content h1 {
-            margin-top: 0 !important;
-            margin-bottom: 0.5rem !important;
-            padding-top: 0 !important;
-            padding-bottom: 0 !important;
-        }
-        
-        /* Force tagline margins to be smaller */
-        body .hero .container.hero-container .hero-content .tagline {
-            margin-top: 0.3rem !important;
-            margin-bottom: 1rem !important;
-            padding-top: 0 !important;
-            padding-bottom: 0 !important;
-        }
-        
-        /* Force button margins to be smaller */
-        body .hero .container.hero-container .hero-content .cal-trigger-btn.hero-btn {
-            margin-top: 0.5rem !important;
-            padding-top: 0.75rem !important;
-            padding-bottom: 0.75rem !important;
-        }
+        display: none; /* Hide by default for desktop */
+        margin-top: 16rem; /* Dramatically increased margin to position it right above slideshow */
+        margin-bottom: 0.1rem; /* Almost no space between text and slideshow */
+        font-size: 0.7rem; /* Increased font size */
+        line-height: 1.3; /* Slightly increased line height */
+        color: rgba(255, 255, 255, 0.8);
+        letter-spacing: 0.5px;
+        text-align: center;
+        position: relative; /* Add positioning context */
+        z-index: 15; /* Ensure it's above other elements */
     }
 }
 

@@ -1987,6 +1987,38 @@ section {
         position: relative !important;
         z-index: 15 !important;
     }
+
+    /* !!! CRITICAL MOBILE POSITIONING - DO NOT CHANGE !!! */
+    @media screen and (max-width: 768px) {
+        /* Force hero content up more aggressively */
+        body .hero .container.hero-container .hero-content {
+            padding-top: 30px !important; /* Much more aggressive reduction */
+            position: relative !important;
+        }
+
+        /* Force h1 margins to be smaller */
+        body .hero .container.hero-container .hero-content h1 {
+            margin-top: 0 !important;
+            margin-bottom: 0.5rem !important;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+        }
+        
+        /* Force tagline margins to be smaller */
+        body .hero .container.hero-container .hero-content .tagline {
+            margin-top: 0.3rem !important;
+            margin-bottom: 1rem !important;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+        }
+        
+        /* Force button margins to be smaller */
+        body .hero .container.hero-container .hero-content .cal-trigger-btn.hero-btn {
+            margin-top: 0.5rem !important;
+            padding-top: 0.75rem !important;
+            padding-bottom: 0.75rem !important;
+        }
+    }
 }
 
 @media screen and (max-width: 576px) {

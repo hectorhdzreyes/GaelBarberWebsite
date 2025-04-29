@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Add scroll listener to check if we're at hero section
             window.addEventListener('scroll', function() {
                 // If at top of page (hero section)
-                if (window.scrollY < 100) {
+                if (window.scrollY < 50) {
                     document.body.classList.add('at-hero');
                 } else {
                     // Moved away from hero section

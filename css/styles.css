@@ -1329,7 +1329,7 @@ section {
     
     /* Style fixes for mobile hero */
     .hero-content {
-        padding-top: 10px; /* Reduced further from 30px to shift content more up */
+        padding-top: 0; /* Removed padding to shift content more up */
     }
     
     /* Prevent horizontal scrolling on mobile */
@@ -1644,7 +1644,7 @@ section {
     
     /* Style fixes for mobile hero */
     .hero-content {
-        padding-top: 10px; /* Reduced further from 30px to shift content more up */
+        padding-top: 0; /* Removed padding to shift content more up */
     }
     
     /* Prevent horizontal scrolling on mobile */
@@ -1911,29 +1911,29 @@ section {
     /* Copied from Desktop: Hero Bottom Text for Mobile */
     .hero-bottom-text {
         position: absolute;
-        bottom: 150px; /* Positioned above mobile slideshow */
+        bottom: 150px; 
         left: 50%;
         transform: translateX(-50%);
-        width: 90%; /* Adjust width for mobile */
-        text-align: center;
+        width: 90%; 
+        text-align: left; /* Align text to the left within its centered container */
         z-index: 10; 
-        font-size: 0.8rem; /* Smaller font size */         
+        font-size: 0.7rem; /* Even Smaller font size */         
         font-weight: 400;            
-        letter-spacing: 1.2px; /* Adjust spacing */       
+        letter-spacing: 1px; /* Adjust spacing */       
         color: rgba(255, 255, 255, 0.7);  
         text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);  
     }
     .hero-bottom-text-under {
         position: absolute;
-        bottom: 125px; /* Positioned above mobile slideshow */
+        bottom: 125px; 
         left: 50%;
         transform: translateX(-50%);
         width: 90%; 
-        text-align: center;
+        text-align: left; /* Align text to the left within its centered container */
         z-index: 10; 
-        font-size: 0.9rem; /* Smaller font size */           
+        font-size: 0.8rem; /* Even Smaller font size */           
         font-weight: 400;            
-        letter-spacing: 0.8px; /* Adjust spacing */      
+        letter-spacing: 0.7px; /* Adjust spacing */      
         color: rgb(255, 255, 255);  
         text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);  
     }

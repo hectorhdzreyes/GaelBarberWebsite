@@ -105,10 +105,10 @@
             
             // Add event listeners ONLY if not mobile
             if (window.innerWidth > 768) {
-                heroSection.addEventListener('mousemove', handleMouseMove);
-                heroSection.addEventListener('mouseenter', handleMouseEnter);
-                heroSection.addEventListener('mouseleave', handleMouseLeave);
-                console.log('Hero hover effect applied to:', heroSection);
+            heroSection.addEventListener('mousemove', handleMouseMove);
+            heroSection.addEventListener('mouseenter', handleMouseEnter);
+            heroSection.addEventListener('mouseleave', handleMouseLeave);
+            console.log('Hero hover effect applied to:', heroSection);
             }
         });
     }
@@ -158,14 +158,14 @@
         
         // Start observing the document body ONLY if not mobile
         if (window.innerWidth > 768) {
-            observer.observe(document.body, {
-                childList: true,
-                subtree: true,
-                attributes: true,
-                attributeFilter: ['class']
-            });
-            console.log('MutationObserver set up for hero hover effect');
-        }
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true,
+            attributes: true,
+            attributeFilter: ['class']
+        });
+        console.log('MutationObserver set up for hero hover effect');
+    }
     }
     
     // Add resize listener to stop all effects if window resizes to mobile

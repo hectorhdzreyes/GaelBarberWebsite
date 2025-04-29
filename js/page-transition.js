@@ -63,14 +63,14 @@ document.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll('.mobile-link').forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.stopPropagation(); // Stop propagation to hero/about click handlers
+                    e.preventDefault(); // Always prevent default for consistent behavior
                     
                     const href = this.getAttribute('href');
                     if (href && href.startsWith('#')) {
-                        e.preventDefault(); // Prevent default anchor behavior
                         const targetId = href.substring(1);
+                        console.log(`Mobile link clicked, scrolling to: ${targetId}`);
                         scrollToSection(targetId);
                     } else if (this.id === 'mobile-about-link') {
-                        e.preventDefault();
                         // Handle click on "about me" div - Transition page
                         const pageContainer = document.querySelector('.page-container.mobile-container');
                         if (pageContainer) {

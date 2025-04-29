@@ -102,7 +102,7 @@
 </head>
 <body>
     <header class="header">
-        
+        <div class="container header-container">
             <div class="logo-wrapper">
                 <div class="logo">
                     <a href="index.html">
@@ -116,6 +116,20 @@
             </div>
             <!-- Keep the original desktop image -->
             <img src="images/toprighthero.jpg" alt="Header Corner Logo" class="header-corner-logo desktop-corner-logo">
+            
+            <!-- Mobile-specific top right panel - MOVED HERE -->
+            <div class="hero-mobile-panel show-on-mobile-flex">
+                <a href="#services" class="mobile-link">services</a>
+                <a href="#pricing" class="mobile-link">pricing</a>
+                <a href="#gallery" class="mobile-link">gallery</a>
+                <a href="#contact" class="mobile-link">contact</a>
+                <div 
+                    id="mobile-about-link"
+                    class="mobile-link" 
+                >
+                    about me
+                </div>
+            </div>
         </div>
     </header>
 
@@ -148,19 +162,7 @@
             </div>
         </div>
 
-        <!-- Mobile-specific top right panel -->
-        <div class="hero-mobile-panel show-on-mobile-flex">
-            <a href="#services" class="mobile-link">services</a>
-            <a href="#pricing" class="mobile-link">pricing</a>
-            <a href="#gallery" class="mobile-link">gallery</a>
-            <a href="#contact" class="mobile-link">contact</a>
-            <div 
-                id="mobile-about-link"
-                class="mobile-link" 
-            >
-                about me
-            </div>
-        </div>
+        <!-- Mobile-specific top right panel - REMOVED FROM HERE -->
 
         <!-- Vertical image slideshow on right side -->
         <div class="hero-slideshow hide-on-mobile">

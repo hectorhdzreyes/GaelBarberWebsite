@@ -201,7 +201,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Add the class when scrolling starts
         heroElement.classList.add('scroll-active');
-        
+
         // Clear existing timeout
         clearTimeout(scrollTimeout);
         
@@ -209,8 +209,8 @@ document.addEventListener('DOMContentLoaded', function() {
         scrollTimeout = setTimeout(function() {
             heroElement.classList.remove('scroll-active');
         }, 300);
-    }
-    
+        }
+
     // Run on load if mobile
     if (isMobile) {
         document.addEventListener('DOMContentLoaded', setupMobileScrollEffects);

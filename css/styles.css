@@ -2243,6 +2243,6 @@ html {
 
 .header-corner-logo.mobile-corner-logo {
     margin-left: 15px; /* No space between selectors means both classes on same element */
-    margin-top: -15px;
+    margin-top: -10px;
 }
 

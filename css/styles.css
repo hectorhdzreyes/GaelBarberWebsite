@@ -1957,8 +1957,8 @@ section {
     .mobile-schedule-text {
         /* display is handled by show/hide utility classes */
         position: absolute;
-        bottom: 115px; /* Lowered significantly to be right above slideshow (slideshow starts at bottom: 20px, height: 100px) */
-        left: 50%;
+        bottom: 25px; /* Lowered significantly to be right above slideshow (slideshow starts at bottom: 20px, height: 100px) */
+        left: 80%!important;
         transform: translateX(-50%);
         width: 90%; /* Control width for centering */
         font-size: 0.65rem; /* Slightly smaller font */

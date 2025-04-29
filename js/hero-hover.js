@@ -11,12 +11,10 @@
 (function() {
     // Check if we're on mobile immediately
     if (window.innerWidth <= 768) {
-        console.log('Hero hover effect disabled on mobile');
         return; // Exit immediately on mobile
     }
     
     // Run this immediately without waiting for DOMContentLoaded
-    console.log('Initializing hero hover effect...');
     
     // Initialize on load and again after a slight delay to catch post-transition elements
     setupHeroHoverEffect();
@@ -29,18 +27,13 @@
     function setupHeroHoverEffect() {
         // Exit immediately if on mobile
         if (window.innerWidth <= 768) {
-            console.log('Hero hover effect disabled on mobile');
             return;
         }
-        
-        console.log('Setting up hero hover effect');
         
         // Target both the regular hero section and the one in the page container
         const heroSections = document.querySelectorAll('.hero');
         const inactivityDelay = 600; // 0.6 seconds
         const bookingModal = document.getElementById('bookingModal');
-        
-        console.log('Found hero sections:', heroSections.length);
         
         heroSections.forEach(function(heroSection) {
             if (!heroSection) return;
@@ -108,7 +101,6 @@
                 heroSection.addEventListener('mousemove', handleMouseMove);
                 heroSection.addEventListener('mouseenter', handleMouseEnter);
                 heroSection.addEventListener('mouseleave', handleMouseLeave);
-                console.log('Hero hover effect applied to:', heroSection);
             }
         });
     }
@@ -151,7 +143,6 @@
             }
             
             if (shouldReapply) {
-                console.log('DOM changed, reapplying hero hover effect');
                 setTimeout(setupHeroHoverEffect, 50);
             }
         });
@@ -164,7 +155,6 @@
                 attributes: true,
                 attributeFilter: ['class']
             });
-            console.log('MutationObserver set up for hero hover effect');
         }
     }
     

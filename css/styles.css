@@ -496,12 +496,13 @@ section {
 }
 
 .about-image::before {
-    content: "Placeholder - Add barber-portrait.jpg";  /* Placeholder text */
-    position: absolute;         /* Absolute positioning */
-    font-size: 0.9rem;          /* Small text size */
-    text-transform: uppercase;  /* All caps */
-    letter-spacing: 1px;        /* Wide letter spacing */
-    z-index: 1;                 /* Above background */
+    content: "";  /* REMOVED Placeholder text */
+    /* Keep other styles if needed, e.g., for background or overlay */
+    position: absolute;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 1; 
 }
 
 .about-image img {
@@ -882,37 +883,36 @@ section {
     text-align: center;         
     margin-bottom: 5rem;         
     position: relative;         
-    z-index: 100; /* Keep high z-index */
-    display: block !important; /* FORCE display */
-    visibility: visible !important; /* FORCE visibility */
-    opacity: 1 !important; /* FORCE opacity */
-    padding: 10px; /* TEMPORARY: Add padding to make border visible */
-    color: #ffffff !important; /* TEMPORARY: Magenta color for all text inside */
+    z-index: auto; /* Reset z-index */
+    /* Removed forced display/visibility/opacity/color */
 }
 
 .gallery .section-header .section-number {
-    color: inherit !important; /* Inherit magenta */
+    /* Reset color */
+    color: rgba(0, 0, 0, 0.5); 
     /* Keep other defaults */
     font-size: 0.875rem;        
-    display: block !important; /* Force display */          
+    display: block;          
     margin-bottom: 0.5rem;      
     font-family: 'Courier New', Courier, monospace;  
     letter-spacing: 1px;        
 }
 
 .gallery .section-header h2 {
-    color: inherit !important; /* Inherit magenta */
+    /* Reset color */
+    color: var(--dark-color); 
     /* Keep other defaults */
     font-size: 2.5rem;           
     font-weight: 700;            
     letter-spacing: 2px;         
     position: relative;          
-    display: inline-block !important; /* Force display */  
+    display: inline-block; 
     margin-bottom: 0.75rem;     
 }
 
 .gallery .section-header h2::after {
-    background-color: rgb(255, 255, 255) !important;  /* Match text color */
+    /* Reset color */
+    background-color: var(--dark-color); 
     /* Keep other defaults */
     content: "";                 
     position: absolute;          
@@ -924,16 +924,17 @@ section {
 }
 
 .gallery .section-header .section-tagline {
-    color: inherit !important; /* Inherit magenta */
+    /* Reset color */
+    color: rgba(0, 0, 0, 0.6); 
      /* Keep other defaults */
     font-size: 1rem;            
     font-style: italic;         
-    opacity: 1 !important; /* Force opacity */            
+    opacity: 0.8;           
     margin-top: 1rem;           
     font-family: 'Courier New', Courier, monospace;  
     font-weight: 300;           
     letter-spacing: -0.5px;   
-    display: block !important; /* Force display */  
+    display: block;   
 }
 
 .gallery-grid {
@@ -1875,58 +1876,6 @@ section {
     .contact-value {
         align-self: flex-start;     /* Align to start */
     }
-
-    /* --- Mobile Slideshow Styles --- */
-    .hero-slideshow-mobile {
-        display: block !important; /* Ensure visibility */
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 100px; /* Adjust height as needed */
-        overflow: hidden;
-        background: rgba(0, 0, 0, 0.5); /* Optional: semi-transparent background */
-        z-index: 6; /* Ensure it's above hero background but potentially below main content if needed */
-    }
-
-    .hero-slideshow-mobile .slideshow-track {
-        display: flex;
-        flex-direction: row; /* Horizontal layout */
-        width: 200%; /* Double width to accommodate duplicated images for looping */
-        height: 100%; 
-        animation: slideLeft 40s linear infinite; /* Use horizontal animation */
-    }
-
-    .hero-slideshow-mobile .slideshow-image {
-        height: 90%; /* Adjust height relative to track */
-        width: auto; /* Let aspect ratio decide width, or set fixed width */
-        min-width: 100px; /* Example minimum width */
-        margin: 5px; /* Adjust margin for horizontal spacing */
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        flex-shrink: 0; /* Prevent images from shrinking */
-    }
-
-    .hero-slideshow-mobile .slideshow-image img {
-        height: 100%;
-        width: 100%; /* Ensure image fills its container */
-        object-fit: cover;
-        transform: none; /* Reset desktop scale */
-        transition: none; /* Reset desktop transition */
-    }
-    
-    .hero-slideshow-mobile .slideshow-image:hover img {
-        transform: none; /* No hover effect on mobile */
-    }
-    
-    /* Hide the desktop vertical slideshow on mobile */
-    .hero-slideshow-desktop {
-        display: none !important;
-    }
-    
-    /* Adjust hero content padding if needed to avoid overlap */
-    .hero-content {
-        padding-bottom: 110px; /* Add padding equal to slideshow height + margin */
-    }
 }
 
 @media screen and (max-width: 576px) {
@@ -2239,16 +2188,67 @@ html {
     100% { box-shadow: 0 0 0 rgba(255, 255, 255, 0); }
 }
 
-/* Mobile Hero Right Panel - Only for mobile */
+/* Mobile Header Nav (hidden on desktop) */
+.mobile-header-nav {
+    display: none;
+}
 
-/* New Animation Keyframes for Horizontal Slide */
-@keyframes slideLeft {
-    0% {
-        transform: translateX(0);
+@media screen and (max-width: 768px) {
+    /* MOBILE-SPECIFIC EFFECTS FOR HERO ELEMENTS */
+    /* Same effects as desktop but applied differently for mobile */
+    
+    .header-container {
+        flex-direction: row; 
+        align-items: flex-start; /* Align items to top */
+        padding: 0 1rem; 
+        justify-content: space-between; 
+        position: relative; /* Needed for absolute positioning of children if used */
     }
-    100% {
-        /* Slides half the track width to the left */
-        transform: translateX(-50%); 
+
+    /* Show and style the mobile header navigation */
+    .mobile-header-nav {
+        display: flex !important; /* Override default 'none' */
+        flex-direction: column;  /* Stack links vertically */
+        align-items: flex-end; /* Align text to the right */
+        padding-top: 5px; /* Add some space from the top */
+        gap: 5px; /* Space between links */
     }
+
+    .mobile-nav-link {
+        font-family: 'Montserrat', sans-serif;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.7rem; 
+        font-weight: 500;
+        text-transform: uppercase;
+        text-decoration: none;
+        letter-spacing: 0.5px;
+        padding: 1px 0;
+        cursor: pointer;
+        transition: color 0.2s ease;
+    }
+
+    .mobile-nav-link:hover {
+        color: #ffffff;
+    }
+
+    /* Adjust logo wrapper if needed to make space */
+    .logo-wrapper {
+        /* Existing styles */
+        margin-top: 5px; /* Ensure it aligns nicely with the nav */
+    }
+
+    /* REMOVE unused .mobile-header-nav styles from 576px query if they exist */
+    /* Remove this block if present */
+    /*
+    .mobile-header-nav {
+        gap: 0.5rem;
+        margin: 0 0.5rem;
+    }
+    .mobile-header-nav a,
+    .mobile-header-nav div {
+        font-size: 0.65rem; 
+        padding: 3px;
+    }
+    */
 }
 

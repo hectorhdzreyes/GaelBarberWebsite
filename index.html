@@ -6,99 +6,10 @@
     <title>THEBARBERGP | Premium Haircuts & Styling</title>
     <meta name="description" content="Elevate your look with premium haircuts and styling at THEBARBERGP. Book your appointment today for a transformative grooming experience.">
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/hero-hover.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Mobile hero effects initialization -->
-    <script>
-        (function() {
-            // Only run on mobile
-            if (window.innerWidth <= 768) {
-                // Function to apply scroll effects
-                function applyScrollEffects() {
-                    var hero = document.querySelector('.hero');
-                    if (!hero) return;
-                    
-                    console.log("Applying mobile hero effects");
-                    
-                    // 1. Static background
-                    hero.style.background = "linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/gaelhp.jpg')";
-                    hero.style.backgroundSize = "cover";
-                    hero.style.backgroundPosition = "center center";
-                    hero.style.backgroundRepeat = "no-repeat";
-                    hero.style.backgroundAttachment = "scroll";
-                    
-                    // 2. Hide slideshow
-                    var slideshow = document.querySelector('.hero-slideshow');
-                    if (slideshow) {
-                        slideshow.style.display = "none";
-                    }
-                    
-                    // 3. Get the specific elements we want to animate
-                    var title = hero.querySelector('h1');
-                    var tagline = hero.querySelector('.tagline');
-                    var bookButton = hero.querySelector('.cal-trigger-btn');
-                    
-                    // 4. Enable transitions for these specific elements
-                    if (title) {
-                        title.style.transition = "transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease";
-                        title.style.textShadow = "0 0 10px rgba(255, 255, 255, 0.5)";
-                    }
-                    
-                    if (tagline) {
-                        tagline.style.transition = "transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease, opacity 0.3s ease";
-                        tagline.style.color = "rgba(255, 255, 255, 0.9)";
-                    }
-                    
-                    if (bookButton) {
-                        bookButton.style.transition = "transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease";
-                        bookButton.style.backgroundColor = "#fff";
-                        bookButton.style.color = "#000";
-                        bookButton.style.borderColor = "#fff";
-                        bookButton.style.boxShadow = "0 4px 10px rgba(0, 0, 0, 0.3)";
-                    }
-                    
-                    // 5. Set up scroll handler for enhanced effects
-                    var scrollTimeout;
-                    
-                    function handleScroll() {
-                        // Add enhancement class
-                        hero.classList.add('scroll-active');
-                        
-                        // Remove class after delay when scrolling stops
-                        clearTimeout(scrollTimeout);
-                        scrollTimeout = setTimeout(function() {
-                            hero.classList.remove('scroll-active');
-                        }, 300);
-                    }
-                    
-                    // Apply scroll handler
-                    window.addEventListener('scroll', handleScroll);
-                    
-                    // Trigger effect briefly on load for visual feedback
-                    setTimeout(function() {
-                        hero.classList.add('scroll-active');
-                        setTimeout(function() {
-                            hero.classList.remove('scroll-active');
-                        }, 800);
-                    }, 1000);
-                }
-                
-                // Run when DOM is ready
-                if (document.readyState === 'loading') {
-                    document.addEventListener('DOMContentLoaded', applyScrollEffects);
-                } else {
-                    applyScrollEffects();
-                }
-                
-                // Also try again after a delay in case elements were slow to load
-                setTimeout(applyScrollEffects, 500);
-            }
-        })();
-    </script>
 </head>
 <body>
     <header class="header">
@@ -114,6 +25,16 @@
                 <!-- Mobile-specific image that shows under the logo on mobile only -->
                 <img src="images/toprighthero.jpg" alt="Header Corner Logo" class="header-corner-logo mobile-corner-logo">
             </div>
+
+            <!-- Mobile Header Navigation Panel -->
+            <div class="mobile-header-nav show-on-mobile-flex">
+                 <a href="#about" class="mobile-nav-link" id="mobile-header-about">about me</a>
+                 <a href="#services" class="mobile-nav-link">services</a>
+                 <a href="#pricing" class="mobile-nav-link">pricing</a>
+                 <a href="#gallery" class="mobile-nav-link">gallery</a>
+                 <a href="#contact" class="mobile-nav-link">contact</a>
+            </div>
+
             <!-- Keep the original desktop image -->
             <img src="images/toprighthero.jpg" alt="Header Corner Logo" class="header-corner-logo desktop-corner-logo">
         </div>
@@ -148,8 +69,8 @@
             </div>
         </div>
 
-        <!-- Vertical image slideshow on right side (Desktop) -->
-        <div class="hero-slideshow hero-slideshow-desktop hide-on-mobile">
+        <!-- Vertical image slideshow on right side -->
+        <div class="hero-slideshow hide-on-mobile">
             <div class="slideshow-track">
                 <!-- First set of images -->
                 <div class="slideshow-image">
@@ -182,56 +103,6 @@
             
                 <!-- Duplicated for seamless loop -->
                 <div class="slideshow-image">
-                    <img src="images/slideshow1.jpg" alt="Haircut style 1">
-                </div>
-                <div class="slideshow-image">
-                    <img src="images/slideshow2.jpg" alt="Haircut style 2">
-                </div>
-                <div class="slideshow-image">
-                    <img src="images/slideshow3.jpg" alt="Haircut style 3">
-                </div>
-                <div class="slideshow-image">
-                    <img src="images/slideshow4.jpg" alt="Haircut style 4">
-                </div>
-                <div class="slideshow-image">
-                    <img src="images/slideshow5.jpg" alt="Haircut style 5">
-                </div>
-            </div>
-        </div>
-
-        <!-- Horizontal image slideshow at bottom (Mobile) -->
-        <div class="hero-slideshow hero-slideshow-mobile show-on-mobile-block">
-            <div class="slideshow-track">
-                <!-- First set of images -->
-                <div class="slideshow-image">
-                    <img src="images/slideshow1.jpg" alt="Haircut style 1">
-                </div>
-                <div class="slideshow-image">
-                    <img src="images/slideshow2.jpg" alt="Haircut style 2">
-                </div>
-                <div class="slideshow-image">
-                    <img src="images/slideshow3.jpg" alt="Haircut style 3">
-                </div>
-                <div class="slideshow-image">
-                    <img src="images/slideshow4.jpg" alt="Haircut style 4">
-                </div>
-                <div class="slideshow-image">
-                    <img src="images/slideshow5.jpg" alt="Haircut style 5">
-                </div>
-                 <div class="slideshow-image">
-                    <img src="images/slideshow6.jpg" alt="Haircut style 1">
-                </div>
-                <div class="slideshow-image">
-                    <img src="images/slideshow7.jpg" alt="Haircut style 2">
-                </div>
-                <div class="slideshow-image">
-                    <img src="images/slideshow8.jpg" alt="Haircut style 3">
-                </div>
-                <div class="slideshow-image">
-                    <img src="images/slideshow9.jpg" alt="Haircut style 4">
-                </div>
-                <!-- Duplicated for seamless loop -->
-                 <div class="slideshow-image">
                     <img src="images/slideshow1.jpg" alt="Haircut style 1">
                 </div>
                 <div class="slideshow-image">
@@ -285,24 +156,13 @@
             </div>
             <div class="services-grid">
                 <div class="service-card">
-                    <div class="service-icon">
-                        
-                    </div>
                     <h3>Clipper Cut + Scissors Work</h3>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">
-                        
-                    </div>
                     <h3>Clipper Cut Only</h3>
-
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">
-                        
-                    </div>
                     <h3>Beard Work Add On</h3>
-
                 </div>
             </div>
         </div>
@@ -394,7 +254,7 @@
         <div class="container contact-container">
             <div class="section-header">
                 <span class="section-number">05</span>
-                <h2></h2>
+                <h2>Contact</h2>
             </div>
             <div class="contact-content">
                 <div class="contact-column">

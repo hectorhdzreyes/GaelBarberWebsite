@@ -393,7 +393,7 @@ ul {
 
 /* Style the Cal.com trigger button specifically in the hero */
 .hero .cal-trigger-btn.hero-btn {
-    transform: scale(1.05); 
+    transform: scale(1.30); 
     display: block; /* Force onto new line */
     margin-top: 2rem; /* Add space below tagline */
     border-radius: 25px; /* Add rounded corners */
@@ -403,7 +403,7 @@ ul {
 /* Original Hover effect for general hero button */
 /* This rule will now correctly apply black text to the Cal button on hover */
 .hero:hover .hero-btn {
-    transform: scale(1.25); 
+    transform: scale(1.45); 
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgb(255, 255, 255); 
     background-color: #fff; 
     border-color: #fff;  

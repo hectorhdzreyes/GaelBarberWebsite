@@ -1733,12 +1733,7 @@ section {
         color: #ffffff !important;
     }
     
-    .hero.scroll-active .tagline {
-        transform: scale(1.08) !important;
-        text-shadow: 0 0 10px rgba(255, 255, 255, 0.8) !important;
-        color: #ffffff !important;
-        opacity: 1 !important;
-    }
+   
     
     .hero.scroll-active .cal-trigger-btn.hero-btn {
         transform: scale(1.08) !important;
@@ -1764,28 +1759,7 @@ section {
         display: none !important;
     }
     
-    /* Make sure only our targeted elements have effects */
-    .hero *:not(h1):not(.tagline):not(.cal-trigger-btn):not(.hero-slideshow-mobile):not(.slideshow-track-mobile):not(.slideshow-image-mobile) {
-        transition: none !important;
-        animation: none !important;
-        transform: none !important;
-    }
     
-    .hide-on-mobile {
-        display: none !important;
-    }
-    
-    .show-on-mobile-block {
-        display: block !important;
-    }
-    
-    .show-on-mobile-flex {
-        display: flex !important;
-    }
-    
-    .show-on-mobile-inline-block {
-        display: inline-block !important;
-    }
     
     h1 {
         font-size: 3.5rem;

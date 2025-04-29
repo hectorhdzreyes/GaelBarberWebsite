@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         window.scrollTo({ top: 0, behavior: 'instant' });
                         
                         // Ensure body class doesn't prevent transition
-                        //document.body.classList.add('at-hero'); 
+                        document.body.classList.add('at-hero'); 
                         
                         // Add slight delay to allow scroll and class change to register before transition
                         setTimeout(() => {

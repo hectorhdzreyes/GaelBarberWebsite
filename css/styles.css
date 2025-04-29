@@ -189,14 +189,14 @@ ul {
 
 /* Header Styles */
 .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 1rem 0;
-    background-color: transparent;
-    z-index: 100; /* Default z-index (Desktop) */
-    transition: background-color 0.3s ease, padding 0.3s ease;
+    position: fixed;             /* Fixed position */
+    top: 0;                      /* Top of viewport */
+    left: 0;                     /* Left edge */
+    width: 100%;                 /* Full width */
+    background-color: transparent;  /* Transparent background */
+    z-index: 1000;              /* High z-index for overlay */
+    padding: 1.5rem 0;          /* Vertical padding */
+    transition: var(--transition);  /* Smooth transitions */
 }
 
 .header.scrolled {
@@ -496,13 +496,12 @@ section {
 }
 
 .about-image::before {
-    content: "";  /* REMOVED Placeholder text */
-    /* Keep other styles if needed, e.g., for background or overlay */
-    position: absolute;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    z-index: 1; 
+    content: "Placeholder - Add barber-portrait.jpg";  /* Placeholder text */
+    position: absolute;         /* Absolute positioning */
+    font-size: 0.9rem;          /* Small text size */
+    text-transform: uppercase;  /* All caps */
+    letter-spacing: 1px;        /* Wide letter spacing */
+    z-index: 1;                 /* Above background */
 }
 
 .about-image img {
@@ -883,36 +882,37 @@ section {
     text-align: center;         
     margin-bottom: 5rem;         
     position: relative;         
-    z-index: auto; /* Reset z-index */
-    /* Removed forced display/visibility/opacity/color */
+    z-index: 100; /* Keep high z-index */
+    display: block !important; /* FORCE display */
+    visibility: visible !important; /* FORCE visibility */
+    opacity: 1 !important; /* FORCE opacity */
+    padding: 10px; /* TEMPORARY: Add padding to make border visible */
+    color: #ffffff !important; /* TEMPORARY: Magenta color for all text inside */
 }
 
 .gallery .section-header .section-number {
-    /* Reset color */
-    color: rgba(0, 0, 0, 0.5); 
+    color: inherit !important; /* Inherit magenta */
     /* Keep other defaults */
     font-size: 0.875rem;        
-    display: block;          
+    display: block !important; /* Force display */          
     margin-bottom: 0.5rem;      
     font-family: 'Courier New', Courier, monospace;  
     letter-spacing: 1px;        
 }
 
 .gallery .section-header h2 {
-    /* Reset color */
-    color: var(--dark-color); 
+    color: inherit !important; /* Inherit magenta */
     /* Keep other defaults */
     font-size: 2.5rem;           
     font-weight: 700;            
     letter-spacing: 2px;         
     position: relative;          
-    display: inline-block; 
+    display: inline-block !important; /* Force display */  
     margin-bottom: 0.75rem;     
 }
 
 .gallery .section-header h2::after {
-    /* Reset color */
-    background-color: var(--dark-color); 
+    background-color: rgb(255, 255, 255) !important;  /* Match text color */
     /* Keep other defaults */
     content: "";                 
     position: absolute;          
@@ -924,17 +924,16 @@ section {
 }
 
 .gallery .section-header .section-tagline {
-    /* Reset color */
-    color: rgba(0, 0, 0, 0.6); 
+    color: inherit !important; /* Inherit magenta */
      /* Keep other defaults */
     font-size: 1rem;            
     font-style: italic;         
-    opacity: 0.8;           
+    opacity: 1 !important; /* Force opacity */            
     margin-top: 1rem;           
     font-family: 'Courier New', Courier, monospace;  
     font-weight: 300;           
     letter-spacing: -0.5px;   
-    display: block;   
+    display: block !important; /* Force display */  
 }
 
 .gallery-grid {
@@ -1876,16 +1875,6 @@ section {
     .contact-value {
         align-self: flex-start;     /* Align to start */
     }
-
-    /* Ensure the mobile nav panel is displayed */
-    .hero-mobile-nav {
-        display: flex !important; /* Use flex to enable column layout & alignment */
-    }
-    
-    /* Lower header z-index on mobile (should already exist) */
-    .header {
-        z-index: 90 !important; 
-    }
 }
 
 @media screen and (max-width: 576px) {
@@ -2179,13 +2168,43 @@ html {
     /* No margin needed due to absolute positioning */
 }
 
+/* Mobile Hero Right Panel - Only for mobile */
+.hero-mobile-panel {
+    display: none; /* Hidden by default (desktop) */
+    position: absolute;
+    top: 20px;
+    right: 15px;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 7px;
+    z-index: 20;
+}
 
+.hero-mobile-panel a,
+.hero-mobile-panel div {
+    color: rgba(255, 255, 255, 0.8);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 1px;
+    padding: 2px 0;
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
 
+.hero-mobile-panel a:hover,
+.hero-mobile-panel div:hover {
+    color: #ffffff;
+    transform: scale(1.05);
+}
 
-
-
-
-
+.hero-mobile-panel .cal-trigger-item {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 2px 8px;
+    border-radius: 4px;
+}
 
 /* Section highlight effect */
 .highlight-section {
@@ -2199,38 +2218,4 @@ html {
 }
 
 /* Mobile Hero Right Panel - Only for mobile */
-
-/* New Mobile Hero Navigation Panel */
-.hero-mobile-nav {
-    display: none; 
-    position: absolute;
-    top: 25px; /* Slightly increased spacing from top */
-    right: 15px; 
-    z-index: 110; 
-    flex-direction: column;
-    align-items: flex-end; 
-    gap: 4px; /* Reduced spacing between links */
-}
-
-/* Styles for links within the mobile nav */
-.hero-mobile-nav a { /* Only target links now */
-    color: rgba(255, 255, 255, 0.85); 
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.7rem; /* Reduced font size */
-    font-weight: 500;
-    text-transform: uppercase;
-    text-decoration: none;
-    letter-spacing: 0.8px;
-    padding: 1px 0; /* Minimal vertical padding */
-    cursor: pointer;
-    transition: color 0.2s ease, transform 0.2s ease;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.5); 
-}
-
-.hero-mobile-nav a:hover { 
-    color: #ffffff; 
-    transform: scale(1.05); 
-}
-
-/* REMOVED Styles for .hero-mobile-nav div and .cal-trigger-item */
 

@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 100);
     
     function setupPageTransition() {
+        // Now include mobile devices, but with different behavior
         const isMobile = window.innerWidth <= 768;
         
         // Get elements
@@ -15,6 +16,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const navAboutLink = document.querySelector('#about-link');
         const navHomeLink = document.querySelector('#home-link');
         
+        // Mobile specific elements
+        const mobileAboutLink = document.querySelector('#mobile-about-link');
+        
         // For mobile: Track scroll position to enable/disable transitions
         if (isMobile) {
             // Initially, at the top of the page, set the at-hero class
@@ -22,11 +26,60 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Add scroll listener to check if we're at hero section
             window.addEventListener('scroll', function() {
+                // If at top of page (hero section)
                 if (window.scrollY < 100) {
                     document.body.classList.add('at-hero');
                 } else {
+                    // Moved away from hero section
                     document.body.classList.remove('at-hero');
+                    // Don't automatically transition back when scrolling, only when specifically clicking
+                    // Allow scrolling on about page without transitioning back
                 }
+            });
+            
+            // Function to handle mobile navigation clicks
+            function scrollToSection(sectionId) {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    const offset = 80; // Offset for mobile header
+                    const targetPosition = section.getBoundingClientRect().top + window.pageYOffset - offset;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Highlight section briefly
+                    setTimeout(() => {
+                        section.classList.add('highlight-section');
+                        setTimeout(() => {
+                            section.classList.remove('highlight-section');
+                        }, 1000);
+                    }, 500);
+                }
+            }
+
+            // Setup click handlers for mobile navigation links
+            document.querySelectorAll('.mobile-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.stopPropagation(); // Stop propagation to hero/about click handlers
+                    
+                    const href = this.getAttribute('href');
+                    if (href && href.startsWith('#')) {
+                        e.preventDefault(); // Prevent default anchor behavior
+                        const targetId = href.substring(1);
+                        scrollToSection(targetId);
+                    } else if (this.id === 'mobile-about-link') {
+                        e.preventDefault();
+                        // Handle click on "about me" div - Transition page
+                        const pageContainer = document.querySelector('.page-container.mobile-container');
+                        if (pageContainer) {
+                            console.log('Mobile about link clicked, transitioning to about');
+                            pageContainer.classList.add('show-about');
+                            window.history.pushState({page: 'about'}, 'About Me', '#about');
+                        }
+                    }
+                });
             });
         }
         
@@ -159,7 +212,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     return;
                 }
                 
+                console.log('Hero clicked, transitioning to about');
+                
+                // Add class to show about section
                 pageContainer.classList.add('show-about');
+                
+                // Update URL without page reload
                 window.history.pushState({page: 'about'}, 'About Me', '#about');
             }
             
@@ -175,7 +233,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     return;
                 }
                 
+                console.log('About clicked, transitioning to hero');
+                
+                // Remove class to show hero section
                 pageContainer.classList.remove('show-about');
+                
+                // Update URL without page reload
                 window.history.pushState({page: 'home'}, 'Home', '#');
             }
             

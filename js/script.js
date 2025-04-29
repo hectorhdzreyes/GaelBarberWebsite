@@ -236,44 +236,41 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     // --- END: Mobile Hero Scroll Effects ---
-
-    // --- START: Mobile Top-Right Nav Link Handling ---
-    const mobileNavLinks = document.querySelectorAll('.hero-mobile-nav a');
-    if (mobileNavLinks.length > 0) {
-        mobileNavLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                // Only run this logic on mobile
-                if (window.innerWidth <= 768) {
-                    e.preventDefault();
-                    // e.stopPropagation(); // Optional: Uncomment if needed
-                    
-                    const targetId = this.getAttribute('href')?.substring(1);
-                    if (targetId) {
-                        // Use existing scroll function
-                        scrollToSection(targetId);
-                    }
-                }
-                // On desktop, let links behave normally (though panel is hidden)
-            });
-        });
-    }
-    // --- END: Mobile Top-Right Nav Link Handling ---
-
 });
-    
-// Update scrollToSection function (keep previous version without mobile-panel specific logic)
-function scrollToSection(sectionId) {
-    const section = document.getElementById(sectionId);
-    if (section) {
-        // Use a consistent offset based on header height
-        const headerOffset = 100; // Adjust as needed for fixed header
-        const targetPosition = section.offsetTop - headerOffset;
-        
-        window.scrollTo({
-            top: targetPosition,
-            behavior: 'smooth'
-        });
-    } else {
-        console.error(`Section #${sectionId} not found!`);
+
+// Function to handle mobile navigation
+function scrollToSection(sectionId, event) {
+    // Prevent default action if event is provided
+    if (event) {
+        event.preventDefault();
+        event.stopPropagation();
     }
+    
+    console.log(`Scrolling to section: ${sectionId}`);
+    
+    // Get the section
+    const section = document.getElementById(sectionId);
+    if (!section) {
+        console.error(`Section #${sectionId} not found`);
+        return;
+    }
+    
+    // Calculate position to scroll to
+    const headerHeight = 100; // Adjust based on your header height
+    const sectionRect = section.getBoundingClientRect();
+    const offsetPosition = sectionRect.top + window.pageYOffset - headerHeight;
+    
+    // Scroll to the section
+    window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+    });
+    
+    // Wait a bit, then flash the section to highlight it
+    setTimeout(() => {
+        section.classList.add('highlight-section');
+        setTimeout(() => {
+            section.classList.remove('highlight-section');
+        }, 1000);
+    }, 500);
 } 

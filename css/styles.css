@@ -1956,7 +1956,7 @@ section {
     /* NEW Mobile Schedule Text (positioned directly below Book Now button) */
     .mobile-schedule-text {
         display: none; /* Hide by default for desktop */
-        margin-top: 3.5rem; /* Increased margin to position it lower */
+        margin-top: 5rem; /* Increased margin to position it lower */
         margin-bottom: 1rem; /* Add space between text and slideshow */
         font-size: 0.6rem;
         line-height: 1.2;

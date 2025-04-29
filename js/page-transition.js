@@ -86,16 +86,19 @@ document.addEventListener('DOMContentLoaded', function() {
                     
                     const pageContainer = document.querySelector('.page-container.mobile-container');
                     if (pageContainer) {
-                        console.log('Mobile about link clicked, forcing transition to about');
+                        console.log('Mobile about link clicked, scrolling top and forcing transition to about');
+                        
+                        // Scroll to top instantly before doing anything else
+                        window.scrollTo({ top: 0, behavior: 'instant' });
+                        
                         // Ensure body class doesn't prevent transition
                         document.body.classList.add('at-hero'); 
-                        // Add slight delay to allow class change to register before transition
+                        
+                        // Add slight delay to allow scroll and class change to register before transition
                         setTimeout(() => {
                             pageContainer.classList.add('show-about');
                             window.history.pushState({page: 'about'}, 'About Me', '#about');
-                            // Optional: Scroll to top of about section if needed
-                            // setTimeout(() => { pageContainer.scrollIntoView({ behavior: 'smooth' }); }, 50); 
-                        }, 50);
+                        }, 50); // Keep a small delay
                     }
                 });
             }

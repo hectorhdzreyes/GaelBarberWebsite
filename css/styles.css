@@ -1327,9 +1327,9 @@ section {
         padding: 1px 0; /* Smaller padding */
     }
     
-    /* Style fixes for mobile hero */
+    /* Style fixes for mobile hero - ADJUST HEIGHT BUT NOT TOO MUCH */
     .hero-content {
-        padding-top: 80px !important; /* Restore original padding with !important */
+        padding-top: 55px !important; /* Reduced from 80px but not too much */
     }
     
     /* Prevent horizontal scrolling on mobile */
@@ -1407,14 +1407,14 @@ section {
     /* Make them slightly enhanced by default */
     .hero h1 {
         text-shadow: 0 0 10px rgba(255, 255, 255, 0.5) !important;
-        margin-top: 1rem !important; /* Add top margin */
-        margin-bottom: 1rem !important; /* Default margin */
+        margin-top: 0.5rem !important; /* Reduced top margin */
+        margin-bottom: 0.8rem !important; /* Slightly reduced bottom margin */
     }
     
     .hero .tagline {
         color: rgba(255, 255, 255, 0.9) !important;
-        margin-top: 1rem !important; /* Default margin */
-        margin-bottom: 2rem !important; /* Default margin */
+        margin-top: 0.5rem !important; /* Reduced top margin */
+        margin-bottom: 1.5rem !important; /* Slightly reduced bottom margin */
     }
     
     .hero .cal-trigger-btn.hero-btn {
@@ -1977,7 +1977,7 @@ section {
     /* Mobile Schedule Text - Override the default hidden state ONLY for mobile */
     .mobile-schedule-text.show-on-mobile-block {
         display: block !important; /* Force display on mobile */
-        margin-top: 16rem !important; /* Keep the dramatically increased margin */
+        margin-top: 16rem !important; /* Keep this exact value - it was working well */
         margin-bottom: 0.1rem !important;
         font-size: 0.7rem !important;
         line-height: 1.3 !important;

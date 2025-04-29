@@ -2355,7 +2355,7 @@ html {
 .hero-slideshow-mobile {
     display: none; /* Hidden by default */
     position: absolute;
-    bottom: 20px; /* Position at the bottom */
+    bottom: 5px!important; /* Position at the bottom */
     left: 0;
     width: 100%;
     height: 100px; /* Adjust height as needed */

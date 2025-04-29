@@ -1970,10 +1970,7 @@ section {
         /* Removed margin properties */
     }
 
-    .mobile-schedule-text.number2 {
-        bottom: -155px!important; /* Lowered significantly to be right above slideshow (slideshow starts at bottom: 20px, height: 100px) */
-        left: 5%!important;
-    }
+    
     
     /* Prevent horizontal scrolling on mobile */
     html, body {

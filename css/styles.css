@@ -1957,17 +1957,17 @@ section {
     .mobile-schedule-text {
         /* display is handled by show/hide utility classes */
         position: absolute;
-        bottom: 125px; /* Position slightly above the slideshow's top edge (120px) */
+        bottom: 115px; /* Lowered significantly to be right above slideshow (slideshow starts at bottom: 20px, height: 100px) */
         left: 50%;
         transform: translateX(-50%);
-        width: 90%; /* Control width when centered */
-        font-size: 0.7rem; 
-        line-height: 1.3; 
+        width: 90%; /* Control width for centering */
+        font-size: 0.65rem; /* Slightly smaller font */
+        line-height: 1.2; /* Adjusted line height */
         color: rgba(255, 255, 255, 0.8);
         letter-spacing: 0.5px;
         text-align: center;
-        z-index: 15; /* Ensure it's above slideshow */
-        /* Removed margins */
+        z-index: 15; 
+        /* Removed margin properties */
     }
     
     /* Prevent horizontal scrolling on mobile */

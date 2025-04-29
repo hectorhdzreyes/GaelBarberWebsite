@@ -1459,7 +1459,7 @@ section {
     }
     
     /* Make sure only our targeted elements have effects */
-    .hero *:not(h1):not(.tagline):not(.cal-trigger-btn) {
+    .hero *:not(h1):not(.tagline):not(.cal-trigger-btn):not(.hero-slideshow-mobile):not(.slideshow-track-mobile):not(.slideshow-image-mobile) {
         transition: none !important;
         animation: none !important;
         transform: none !important;
@@ -1774,7 +1774,7 @@ section {
     }
     
     /* Make sure only our targeted elements have effects */
-    .hero *:not(h1):not(.tagline):not(.cal-trigger-btn) {
+    .hero *:not(h1):not(.tagline):not(.cal-trigger-btn):not(.hero-slideshow-mobile):not(.slideshow-track-mobile):not(.slideshow-image-mobile) {
         transition: none !important;
         animation: none !important;
         transform: none !important;

@@ -104,13 +104,13 @@
     <header class="header">
         <div class="container header-container">
             <div class="logo-wrapper">
-                <div class="logo">
-                    <a href="index.html">
-                    <span class="logo-text">THE</span>
-                    <img src="images/gaellogo.jpg" alt="Logo" class="gaellogo-jpg">
-                    <span class="logo-text">BARBER</span>
-                    </a>
-                </div>
+            <div class="logo">
+                <a href="index.html">
+                <span class="logo-text">THE</span>
+                <img src="images/gaellogo.jpg" alt="Logo" class="gaellogo-jpg">
+                <span class="logo-text">BARBER</span>
+                </a>
+              </div>
                 <!-- Mobile-specific image that shows under the logo on mobile only -->
                 <img src="images/toprighthero.jpg" alt="Header Corner Logo" class="header-corner-logo mobile-corner-logo">
             </div>
@@ -131,7 +131,8 @@
                     about me
                 </div>
                 <div 
-                    class= "cal-trigger-item" 
+                    
+                    class="cal-trigger-item" 
                     data-cal-link="hector-hernandez-jng1ej/30min" 
                     data-cal-namespace="book-now"
                     data-cal-config='{"layout":"month_view"}'
@@ -171,7 +172,19 @@
             </div>
         </div>
 
-       
+        <!-- Mobile-specific top right panel -->
+        <div class="hero-mobile-panel show-on-mobile-flex">
+            <a href="#services" class="mobile-link">services</a>
+            <a href="#pricing" class="mobile-link">pricing</a>
+            <a href="#gallery" class="mobile-link">gallery</a>
+            <a href="#contact" class="mobile-link">contact</a>
+            <div 
+                id="mobile-about-link"
+                class="mobile-link" 
+            >
+                about me
+            </div>
+        </div>
 
         <!-- Vertical image slideshow on right side - Desktop -->
         <div class="hero-slideshow hide-on-mobile">
@@ -240,17 +253,15 @@
             <div class="hero-content">
                 <h1>THEBARBERGP</h1>
                 <p class="tagline">[Precision. Passion. Proffesionalism.]</p>
-                <!-- Cal.com Trigger Button - Changed to DIV -->
-                <div 
-                    class="cal-trigger-btn hero-btn cal-trigger-item" 
+                <!-- Cal.com Trigger Button -->
+                <button 
+                    class="cal-trigger-btn hero-btn" 
                     data-cal-link="hector-hernandez-jng1ej/30min" 
                     data-cal-namespace="book-now"
                     data-cal-config='{"layout":"month_view"}'
-                    role="button"
-                    tabindex="0"
                 >
                     BOOK NOW
-                </div>
+                </button>
                 
                 <!-- NEW Mobile Schedule Text (shown only on mobile) -->
                 <p class="mobile-schedule-text show-on-mobile-block hide-on-desktop">
@@ -267,7 +278,7 @@
             [Monday - Sunday. 10am - 8am. 7 Days a Week. 
         </p>
             <br>
-        <p class="hero-bottom-text-under hide-on-mobile">
+            <p class="hero-bottom-text-under hide-on-mobile">
              You Decide The Time.]
         </p>
         
@@ -491,19 +502,15 @@
     <!-- Cal element-click embed code begins -->
     <script type="text/javascript">
       (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
-      
-      // Ensure Cal.com init runs after DOM is ready
-      document.addEventListener("DOMContentLoaded", function() {
-          Cal("init", "book-now", {origin:"https://cal.com"});
+    Cal("init", "book-now", {origin:"https://cal.com"});
 
-          // NOTE: The data attributes on the button element handle the triggering.
-          // The data-cal-link attribute specifies which calendar to open.
-          // The data-cal-namespace attribute should match the namespace used in Cal("init", ...)
-          // The data-cal-config attribute sets options like layout.
-        
-          // This UI call is optional for element-click, but can configure the modal appearance
-          Cal.ns["book-now"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
-      });
+      // NOTE: The data attributes on the button element handle the triggering.
+      // The data-cal-link attribute specifies which calendar to open.
+      // The data-cal-namespace attribute should match the namespace used in Cal("init", ...)
+      // The data-cal-config attribute sets options like layout.
+    
+      // This UI call is optional for element-click, but can configure the modal appearance
+      Cal.ns["book-now"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
       </script>
       <!-- Cal element-click embed code ends --> 
 

@@ -157,8 +157,6 @@ ul {
     letter-spacing: 0px;        /* No letter spacing */
     padding: 1rem 2rem;         /* Comfortable padding */
     transition: all 0.4s ease;  /* Smooth transitions */
-    display: inline-block; /* Ensure it behaves like a block element */
-    text-align: center;   /* Center text inside if it's a div */
 }
 
 /* UPDATED: Apply effects when hovering the entire hero section */
@@ -394,7 +392,7 @@ ul {
 }
 
 /* Style the Cal.com trigger button specifically in the hero */
-.hero-content .cal-trigger-btn.hero-btn.cal-trigger-item {
+.hero .cal-trigger-btn.hero-btn {
     transform: scale(1.30); 
     display: block; /* Force onto new line */
     margin-top: 2rem; /* Add space below tagline */
@@ -848,7 +846,7 @@ section {
 }
 
 /* Styles for the button in Pricing section */
-.pricing .cal-trigger-btn.hero-btn.cal-trigger-item {
+.pricing .cal-trigger-btn.hero-btn {
     display: block; 
     transform: scale(1.10); /* Keep reasonable scale */
     /* Reset width and margin for full width */
@@ -1403,7 +1401,7 @@ section {
     /* Allow animations ONLY for specific elements */
     .hero h1,
     .hero .tagline,
-    .hero .cal-trigger-btn.hero-btn.cal-trigger-item {
+    .hero .cal-trigger-btn.hero-btn {
         transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease !important;
     }
     
@@ -1425,7 +1423,7 @@ section {
         margin-bottom: 1rem;
     }
     
-    .hero .cal-trigger-btn.hero-btn.cal-trigger-item {
+    .hero .cal-trigger-btn.hero-btn {
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3) !important;
         color: #000 !important;
         background-color: #fff !important;
@@ -1606,7 +1604,7 @@ section {
     }
 
     /* Explicit initial state for Hero Cal Button on Mobile */
-    .hero .cal-trigger-btn.hero-btn.cal-trigger-item {
+    .hero .cal-trigger-btn.hero-btn {
         color: #000;
         background-color: #fff;
         border-color: #fff;
@@ -1741,7 +1739,7 @@ section {
     
    
     
-    .hero.scroll-active .cal-trigger-btn.hero-btn.cal-trigger-item {
+    .hero.scroll-active .cal-trigger-btn.hero-btn {
         transform: scale(1.08) !important;
         box-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 8px 20px rgba(0, 0, 0, 0.4) !important;
         background-color: #fff !important;

@@ -1957,7 +1957,7 @@ section {
     .mobile-schedule-text {
         /* display is handled by show/hide utility classes */
         position: absolute;
-        bottom: -150px; /* Lowered significantly to be right above slideshow (slideshow starts at bottom: 20px, height: 100px) */
+        bottom: -155px; /* Lowered significantly to be right above slideshow (slideshow starts at bottom: 20px, height: 100px) */
         left: 5%!important;
         transform: translateX(-50%);
         width: 90%; /* Control width for centering */
@@ -1973,7 +1973,7 @@ section {
     .mobile-schedule-text-under {
         /* display is handled by show/hide utility classes */
         position: absolute;
-        bottom: -160px!important; /* Lowered significantly to be right above slideshow (slideshow starts at bottom: 20px, height: 100px) */
+        bottom: -175px!important; /* Lowered significantly to be right above slideshow (slideshow starts at bottom: 20px, height: 100px) */
         left: 5%!important;
         transform: translateX(-50%);
         width: 90%; /* Control width for centering */

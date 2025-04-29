@@ -67,20 +67,38 @@ document.addEventListener('DOMContentLoaded', function() {
                     
                     const href = this.getAttribute('href');
                     if (href && href.startsWith('#')) {
+                        // This handles scrolling for section links (services, pricing, etc.)
                         const targetId = href.substring(1);
                         console.log(`Mobile link clicked, scrolling to: ${targetId}`);
                         scrollToSection(targetId);
-                    } else if (this.id === 'mobile-about-link') {
-                        // Handle click on "about me" div - Transition page
-                        const pageContainer = document.querySelector('.page-container.mobile-container');
-                        if (pageContainer) {
-                            console.log('Mobile about link clicked, transitioning to about');
-                            pageContainer.classList.add('show-about');
-                            window.history.pushState({page: 'about'}, 'About Me', '#about');
-                        }
-                    }
+                    } 
+                    // Keep the 'about me' click separate and always functional
+                    // else if (this.id === 'mobile-about-link') { ... }
                 });
             });
+            
+            // Separate handler for the mobile "about me" link to ALWAYS trigger transition
+            const mobileAboutDiv = document.getElementById('mobile-about-link');
+            if (mobileAboutDiv) {
+                mobileAboutDiv.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    
+                    const pageContainer = document.querySelector('.page-container.mobile-container');
+                    if (pageContainer) {
+                        console.log('Mobile about link clicked, forcing transition to about');
+                        // Ensure body class doesn't prevent transition
+                        document.body.classList.add('at-hero'); 
+                        // Add slight delay to allow class change to register before transition
+                        setTimeout(() => {
+                            pageContainer.classList.add('show-about');
+                            window.history.pushState({page: 'about'}, 'About Me', '#about');
+                            // Optional: Scroll to top of about section if needed
+                            // setTimeout(() => { pageContainer.scrollIntoView({ behavior: 'smooth' }); }, 50); 
+                        }, 50);
+                    }
+                });
+            }
         }
         
         // Ensure all sections are properly visible

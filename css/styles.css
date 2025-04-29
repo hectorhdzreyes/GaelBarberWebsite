@@ -2197,13 +2197,7 @@ html {
     /* MOBILE-SPECIFIC EFFECTS FOR HERO ELEMENTS */
     /* Same effects as desktop but applied differently for mobile */
     
-    .header-container {
-        flex-direction: row; 
-        align-items: flex-start; /* Align items to top */
-        padding: 0 1rem; 
-        justify-content: space-between; 
-        position: relative; /* Needed for absolute positioning of children if used */
-    }
+   
 
     /* Show and style the mobile header navigation */
     .mobile-header-nav {
@@ -2232,10 +2226,7 @@ html {
     }
 
     /* Adjust logo wrapper if needed to make space */
-    .logo-wrapper {
-        /* Existing styles */
-        margin-top: 5px; /* Ensure it aligns nicely with the nav */
-    }
+   
 
     /* REMOVE unused .mobile-header-nav styles from 576px query if they exist */
     /* Remove this block if present */

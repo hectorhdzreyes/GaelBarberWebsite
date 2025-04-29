@@ -1911,31 +1911,37 @@ section {
     /* Copied from Desktop: Hero Bottom Text for Mobile */
     .hero-bottom-text {
         position: absolute;
-        bottom: 150px; 
+        bottom: 120px; /* Position closer to the slideshow */
         left: 50%;
         transform: translateX(-50%);
         width: 90%; 
-        text-align: center; /* Reverted to center */
+        text-align: center; /* Keep centered */
         z-index: 10; 
-        font-size: 0.6rem; /* Even Smaller font size */         
+        font-size: 0.55rem; /* Even smaller font */      
         font-weight: 400;            
-        letter-spacing: 0.8px; /* Adjust spacing */       
+        letter-spacing: 0.6px;      
         color: rgba(255, 255, 255, 0.7);  
-        text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);  
+        text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+        margin: 0; /* Remove any margin */
+        padding: 0; /* Remove any padding */
+        line-height: 1.2; /* Tighter line height */
     }
     .hero-bottom-text-under {
         position: absolute;
-        bottom: 125px; 
+        bottom: 105px; /* Position it closer to the slideshow */
         left: 50%;
         transform: translateX(-50%);
         width: 90%; 
-        text-align: center; /* Reverted to center */
+        text-align: center; /* Keep centered */
         z-index: 10; 
-        font-size: 0.7rem; /* Even Smaller font size */           
+        font-size: 0.65rem; /* Even smaller font */           
         font-weight: 400;            
-        letter-spacing: 0.6px; /* Adjust spacing */      
+        letter-spacing: 0.5px;     
         color: rgb(255, 255, 255);  
-        text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);  
+        text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+        margin: 0; /* Remove any margin */
+        padding: 0; /* Remove any padding */
+        line-height: 1.2; /* Tighter line height */
     }
 }
 

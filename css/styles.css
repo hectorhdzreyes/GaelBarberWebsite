@@ -1966,18 +1966,27 @@ section {
         margin-bottom: 1rem; /* Reduced from default */
     }
     
-    /* NEW Mobile Schedule Text (positioned directly below Book Now button) */
+    /* NEW Mobile Schedule Text - ABSOLUTE POSITIONING VERSION */
     .mobile-schedule-text {
         display: none; /* Hide by default for desktop */
-        margin-top: 16rem; /* Dramatically increased margin to position it right above slideshow */
-        margin-bottom: 0.1rem; /* Almost no space between text and slideshow */
-        font-size: 0.7rem; /* Increased font size */
-        line-height: 1.3; /* Slightly increased line height */
+        position: absolute; /* Use absolute positioning instead of relying on margin */
+        bottom: 120px; /* Position from bottom of the hero section */
+        left: 0;
+        width: 100%;
+        font-size: 0.7rem;
+        line-height: 1.3;
         color: rgba(255, 255, 255, 0.8);
         letter-spacing: 0.5px;
         text-align: center;
-        position: relative; /* Add positioning context */
-        z-index: 15; /* Ensure it's above other elements */
+        z-index: 100; /* Very high z-index to ensure visibility */
+    }
+    
+    /* Prevent horizontal scrolling on mobile */
+    html, body {
+        overflow-x: hidden !important;
+        position: relative !important;
+        touch-action: pan-y !important;  /* Only allow vertical scrolling */
+        -webkit-overflow-scrolling: touch !important;
     }
 }
 

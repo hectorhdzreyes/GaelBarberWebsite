@@ -1422,7 +1422,7 @@ section {
     
     /* MOBILE SCROLL EFFECTS - Enhanced effects when scrolling */
     .hero.scroll-active h1 {
-        transform: scale(1.1) !important;
+        transform: scale(1.1) translateY(-15px) !important; /* Combine scale and translate */
         text-shadow: 0 0 20px rgba(255, 255, 255, 1) !important;
         color: #ffffff !important;
     }
@@ -1737,7 +1737,7 @@ section {
     
     /* MOBILE SCROLL EFFECTS - Enhanced effects when scrolling */
     .hero.scroll-active h1 {
-        transform: scale(1.1) !important;
+        transform: scale(1.1) translateY(-15px) !important; /* Combine scale and translate */
         text-shadow: 0 0 20px rgba(255, 255, 255, 1) !important;
         color: #ffffff !important;
     }
@@ -1946,7 +1946,9 @@ section {
 
     /* Reduce margins for h1/tagline specifically on mobile */
     .hero h1 {
-        margin-bottom: 0.2rem; /* Reduced further to shift it up more */
+        margin-bottom: 0.2rem; /* Keep reduced margin */
+        transform: translateY(-15px); /* Add negative Y translation to shift up */
+        /* Inherit other mobile h1 styles like text-shadow */
     }
     .tagline {
         margin-top: 0.5rem; /* Reduced from default */

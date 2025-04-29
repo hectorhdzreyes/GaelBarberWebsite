@@ -2271,11 +2271,9 @@ html {
 .slideshow-track-mobile {
     display: flex;
     flex-direction: row; /* Horizontal layout */
-    /* Calculate width: (num_images * 2) * (image_width + margin_right) */
-    /* Example: 18 images * (80px + 10px) = 1620px */
     width: calc(18 * 90px); 
     height: 100%;
-    animation: slideRight 40s linear infinite;
+    animation: slideRight 40s linear infinite; /* Apply the existing animation */
 }
 
 .slideshow-image-mobile {
@@ -2292,15 +2290,5 @@ html {
     width: 100%;
     height: 100%;
     object-fit: cover;
-}
-
-/* Ensure the existing slideRight animation exists */
-@keyframes slideRight {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-50%); /* Scroll half the track width */
-    }
 }
 

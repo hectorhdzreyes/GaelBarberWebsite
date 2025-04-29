@@ -1722,27 +1722,7 @@ section {
     }
     
     /* Allow animations ONLY for specific elements */
-    .hero h1,
-    .hero .tagline,
-    .hero .cal-trigger-btn.hero-btn {
-        transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease !important;
-    }
     
-    /* Make them slightly enhanced by default */
-    .hero h1 {
-        text-shadow: 0 0 10px rgba(255, 255, 255, 0.5) !important;
-    }
-    
-    .hero .tagline {
-        color: rgba(255, 255, 255, 0.9) !important;
-    }
-    
-    .hero .cal-trigger-btn.hero-btn {
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3) !important;
-        color: #000 !important;
-        background-color: #fff !important;
-        border-color: #fff !important;
-    }
     
     /* MOBILE SCROLL EFFECTS - Enhanced effects when scrolling */
     .hero.scroll-active h1 {

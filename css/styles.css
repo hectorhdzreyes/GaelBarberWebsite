@@ -1416,7 +1416,7 @@ section {
     
     .hero .tagline {
         color: rgba(255, 255, 255, 0.9) !important;
-        top: -70px!important;
+        top: -80px!important;
     }
     
     .hero .cal-trigger-btn.hero-btn {
@@ -1424,7 +1424,7 @@ section {
         color: #000 !important;
         background-color: #fff !important;
         border-color: #fff !important;
-        top: 120px!important;
+        top: 125px!important;
     }
     
     /* MOBILE SCROLL EFFECTS - Enhanced effects when scrolling */

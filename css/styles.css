@@ -1649,7 +1649,7 @@ section {
     
     /* Style fixes for mobile hero */
     .hero-content {
-        padding-top: 30px !important; /* Small padding to move content slightly down */
+        padding-top: 50px !important; /* Small padding to move content slightly down */
     }
     
     /* Prevent horizontal scrolling on mobile */

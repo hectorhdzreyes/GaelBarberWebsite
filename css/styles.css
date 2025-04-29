@@ -1943,6 +1943,26 @@ section {
         padding: 0; /* Remove any padding */
         line-height: 1.2; /* Tighter line height */
     }
+
+    /* Reduce margins for h1/tagline specifically on mobile */
+    .hero h1 {
+        margin-bottom: 0.5rem; /* Reduced from default */
+    }
+    .tagline {
+        margin-top: 0.5rem; /* Reduced from default */
+        margin-bottom: 1rem; /* Reduced from default */
+    }
+    
+    /* NEW Mobile Schedule Text (positioned directly below Book Now button) */
+    .mobile-schedule-text {
+        display: block;
+        margin-top: 0.8rem;
+        font-size: 0.6rem;
+        line-height: 1.2;
+        color: rgba(255, 255, 255, 0.8);
+        letter-spacing: 0.5px;
+        text-align: center;
+    }
 }
 
 @media screen and (max-width: 576px) {

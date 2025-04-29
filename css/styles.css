@@ -2202,43 +2202,35 @@ html {
 
 /* New Mobile Hero Navigation Panel */
 .hero-mobile-nav {
-    display: none; /* Hidden by default */
+    display: none; 
     position: absolute;
-    top: 20px; /* Adjust spacing from top */
-    right: 15px; /* Adjust spacing from right */
-    z-index: 110; /* Higher than mobile header (which is 90) */
+    top: 25px; /* Slightly increased spacing from top */
+    right: 15px; 
+    z-index: 110; 
     flex-direction: column;
-    align-items: flex-end; /* Align text to the right */
-    gap: 8px; /* Spacing between links */
+    align-items: flex-end; 
+    gap: 4px; /* Reduced spacing between links */
 }
 
 /* Styles for links within the mobile nav */
-.hero-mobile-nav a,
-.hero-mobile-nav div { /* Apply to links and the book now div */
-    color: rgba(255, 255, 255, 0.85); /* Slightly brighter white */
+.hero-mobile-nav a { /* Only target links now */
+    color: rgba(255, 255, 255, 0.85); 
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.8rem; /* Small font size for mobile */
+    font-size: 0.7rem; /* Reduced font size */
     font-weight: 500;
     text-transform: uppercase;
     text-decoration: none;
     letter-spacing: 0.8px;
-    padding: 2px 0; /* Minimal vertical padding */
+    padding: 1px 0; /* Minimal vertical padding */
     cursor: pointer;
     transition: color 0.2s ease, transform 0.2s ease;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.5); /* Subtle shadow for readability */
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5); 
 }
 
-.hero-mobile-nav a:hover,
-.hero-mobile-nav div:hover {
-    color: #ffffff; /* Full white on hover */
-    transform: scale(1.05); /* Slight scale effect */
+.hero-mobile-nav a:hover { 
+    color: #ffffff; 
+    transform: scale(1.05); 
 }
 
-/* Specific style for the 'book now' item if needed */
-.hero-mobile-nav .cal-trigger-item {
-    /* Optional: Add background/border if desired */
-    /* background-color: rgba(255, 255, 255, 0.1); */
-    /* padding: 2px 6px; */
-    /* border-radius: 3px; */
-}
+/* REMOVED Styles for .hero-mobile-nav div and .cal-trigger-item */
 

@@ -2241,11 +2241,7 @@ html {
 
 /* Mobile Hero Right Panel - Only for mobile */
 
-.header-corner-logo .mobile-corner-logo {
-    margin-left: 8px; /* Adds space to the left, moving text right */
-    /* or */
-    padding-left: 8px; /* Alternative approach */
-    /* or */
-    transform: translateX(8px);
+.header-corner-logo.mobile-corner-logo {
+    margin-left: 8px; /* No space between selectors means both classes on same element */
 }
 

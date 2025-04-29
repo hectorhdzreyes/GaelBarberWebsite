@@ -1410,14 +1410,14 @@ section {
         margin-bottom: 0.2rem; /* Keep reduced margin */
         /* transform: translateY(-15px); REMOVED previous transform */
         position: relative; /* Add relative positioning */
-        top: -80px!important; /* Shift upwards relative to its normal position */
+        top: -50px!important; /* Shift upwards relative to its normal position */
         /* Inherit other mobile h1 styles like text-shadow */
     }
     
     .hero .tagline {
         color: rgba(255, 255, 255, 0.9) !important;
         position: relative; /* Add relative positioning */
-        top: -75px; /* Adjust slightly less than H1's -80px to reduce gap */
+        top: -45px; /* Adjust slightly less than H1's -80px to reduce gap */
         /* Keep original mobile margins */
         margin-top: 0.5rem;
         margin-bottom: 1rem;

@@ -1946,7 +1946,7 @@ section {
 
     /* Reduce margins for h1/tagline specifically on mobile */
     .hero h1 {
-        margin-bottom: 0.5rem; /* Reduced from default */
+        margin-bottom: 0.2rem; /* Reduced further to shift it up more */
     }
     .tagline {
         margin-top: 0.5rem; /* Reduced from default */

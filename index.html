@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THEBARBERGP | Premium Haircuts & Styling</title>
+    <title>THEBARBERGP | Precision. Passion. Proffesionalism.</title>
     <meta name="description" content="Elevate your look with premium haircuts and styling at THEBARBERGP. Book your appointment today for a transformative grooming experience.">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/hero-hover.css">
@@ -253,15 +253,14 @@
             <div class="hero-content">
                 <h1>THEBARBERGP</h1>
                 <p class="tagline">[Precision. Passion. Proffesionalism.]</p>
-                <!-- Cal.com Trigger Button -->
-                <button 
-                    class="cal-trigger-btn hero-btn cal-trigger-item" 
+                <div 
+                    class="cal-trigger-item" 
                     data-cal-link="hector-hernandez-jng1ej/30min" 
                     data-cal-namespace="book-now"
                     data-cal-config='{"layout":"month_view"}'
                 >
                     BOOK NOW
-                </button>
+                </div>
                 
                 <!-- NEW Mobile Schedule Text (shown only on mobile) -->
                 <p class="mobile-schedule-text show-on-mobile-block hide-on-desktop">
@@ -373,14 +372,14 @@
                         <div class="price-amount">$5</div>
                     </div>
                 </div>
-                <button 
-                    class="cal-trigger-btn hero-btn cal-trigger-item" 
+                <div 
+                    class="cal-trigger-item" 
                     data-cal-link="hector-hernandez-jng1ej/30min" 
                     data-cal-namespace="book-now"
                     data-cal-config='{"layout":"month_view"}'
                 >
                     BOOK NOW
-                </button>
+                </div>
             </div>
         </div>
     </section>
@@ -501,16 +500,19 @@
 
     <!-- Cal element-click embed code begins -->
     <script type="text/javascript">
-      (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
-    Cal("init", "book-now", {origin:"https://cal.com"});
+      // Delay initialization slightly to ensure page-transition.js has finished DOM manipulation
+      setTimeout(function() {
+        (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+        Cal("init", "book-now", {origin:"https://cal.com"});
 
-      // NOTE: The data attributes on the button element handle the triggering.
-      // The data-cal-link attribute specifies which calendar to open.
-      // The data-cal-namespace attribute should match the namespace used in Cal("init", ...)
-      // The data-cal-config attribute sets options like layout.
-    
-      // This UI call is optional for element-click, but can configure the modal appearance
-      Cal.ns["book-now"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+        // NOTE: The data attributes on the button element handle the triggering.
+        // The data-cal-link attribute specifies which calendar to open.
+        // The data-cal-namespace attribute should match the namespace used in Cal("init", ...)
+        // The data-cal-config attribute sets options like layout.
+      
+        // This UI call is optional for element-click, but can configure the modal appearance
+        Cal.ns["book-now"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+      }, 200); // 200ms delay should be sufficient
       </script>
       <!-- Cal element-click embed code ends --> 
 

@@ -1458,7 +1458,7 @@ section {
     
     /* Static background for hero */
     .hero {
-        background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../images/gaelhp.jpg') !important;
+        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../images/gaelhp.jpg') !important;
         background-size: cover !important;
         background-position: center center !important;
         background-repeat: no-repeat !important;
@@ -1751,7 +1751,7 @@ section {
     
     /* Static background for hero */
     .hero {
-        background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../images/gaelhp.jpg') !important;
+        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4 )), url('../images/gaelhp.jpg') !important;
         background-size: cover !important;
         background-position: center center !important;
         background-repeat: no-repeat !important;

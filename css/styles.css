@@ -1970,6 +1970,25 @@ section {
         touch-action: pan-y !important;  /* Only allow vertical scrolling */
         -webkit-overflow-scrolling: touch !important;
     }
+
+    /* About Section Mobile Layout */
+    .about-content {
+        grid-template-columns: 1fr; /* Stack elements */
+        flex-direction: column; /* Ensure vertical stacking for flex fallback */
+        gap: 2rem; /* Reduce gap for vertical layout */
+    }
+
+    .about-image {
+        order: -1; /* Move image visually above text */
+        max-width: 80%; /* Make image smaller */
+        height: auto; /* Adjust height automatically */
+        margin: 0 auto; /* Center the smaller image */
+    }
+
+    .about-text p {
+        font-size: 1.1rem; /* Smaller font size for mobile */
+        text-align: center; /* Center text below image */
+    }
 }
 
 @media screen and (max-width: 576px) {

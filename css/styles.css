@@ -157,6 +157,7 @@ ul {
     letter-spacing: 0px;        /* No letter spacing */
     padding: 1rem 2rem;         /* Comfortable padding */
     transition: all 0.4s ease;  /* Smooth transitions */
+    border-radius: 25px;
 }
 
 /* UPDATED: Apply effects when hovering the entire hero section */

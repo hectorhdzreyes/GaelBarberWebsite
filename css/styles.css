@@ -474,7 +474,7 @@ section {
 .about-content {
     display: grid;              /* Grid layout */
     grid-template-columns: 1fr 1fr;  /* Two equal columns */
-    gap: 5rem;                  /* Space between columns */
+    gap: 2rem;                  /* Space between columns */
     align-items: center;        /* Center vertically */
 }
 
@@ -1978,7 +1978,7 @@ section {
 
     .about-image {
         grid-row: 2; /* Ensure image is below tagline, above text */
-        height: 350px; /* Adjust height for mobile */
+        height: 300px; /* Adjust height for mobile */
         margin-bottom: 1rem; /* Add space below image */
     }
 

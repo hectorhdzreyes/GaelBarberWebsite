@@ -2203,6 +2203,129 @@ section {
     /* ... existing spacing styles ... */
     
     /* ... rest of mobile styles ... */
+
+    /* 1. Contact Section - 2 Columns + Icons Below */
+    .contact-content {
+        display: flex; /* Re-assert flex */
+        flex-wrap: wrap; 
+        justify-content: space-between; 
+        gap: 1rem; 
+    }
+
+    .contact-column:nth-child(1),
+    .contact-column:nth-child(2) {
+        flex: 1; 
+        min-width: 120px; 
+        text-align: center; 
+        padding: 0 0.2rem; 
+        /* Explicitly center items within the column */
+        display: flex; 
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .contact-column:nth-child(3) {
+        flex: 0 0 100%; 
+        padding: 0.5rem 0 0 0; 
+        margin-top: 1rem; 
+        border-top: 1px solid rgba(255, 255, 255, 0.1); 
+        text-align: center; /* Center icons */
+    }
+
+    .contact-column:nth-child(3) h3 {
+        display: none;
+    }
+
+    .contact-item {
+        display: flex; /* Use flex for label/value */
+        flex-direction: column; 
+        align-items: center; 
+        gap: 0.1rem; /* Very small gap */
+        width: 100%; /* Take full width */
+        margin-bottom: 0.5rem; /* Space between items */
+    }
+    
+    /* Center divider within second column */
+    .contact-column:nth-child(2) .contact-divider {
+        height: 1px;
+        background-color: rgba(255, 255, 255, 0.1);
+        width: 80%; /* Shorter divider */
+        margin: 0.5rem auto 0.5rem auto; /* Center horizontally */
+    }
+    
+    /* Ensure label/value are centered */
+    .contact-label,
+    .contact-value {
+        font-size: 0.7rem; 
+        text-align: center; 
+        width: auto; /* Let text width determine itself */
+    }
+
+    .social-icons {
+        justify-content: center; 
+        gap: 1rem; 
+        margin-top: 0;
+    }
+    .social-icons a {
+        width: 35px; 
+        height: 35px;
+        font-size: 1.2rem;
+    }
+    
+    /* 2. Footer - Vertical Stack, Centered + Logo nudge */
+    .footer-container {
+        grid-template-columns: 1fr; 
+        gap: 1.5rem;                  
+        justify-items: center; 
+        text-align: center; 
+    }
+
+    .footer-logo {
+       padding-left: 20px; /* Increased padding again */
+    }
+    
+    .footer-logo a {
+       display: flex; /* Ensure flex for centering */
+       justify-content: center; 
+       align-items: center;
+       text-decoration: none; 
+       gap: 5px;
+    }
+    .footer-logo-img {
+        height: 40px;
+    }
+
+    .footer-nav ul {
+        display: flex;
+        flex-direction: row;     
+        justify-content: center; 
+        gap: 1rem;               
+        flex-wrap: wrap; 
+        width: 100%; 
+        padding: 0;
+        list-style: none;
+    }
+    
+    .copyright {
+        text-align: center;
+        margin-top: 0.5rem; 
+        font-size: 0.7rem;
+    }
+    
+    /* 3. Section Spacing */
+    section#gallery {
+        padding-bottom: 1.5rem; 
+    }
+    section#contact {
+        padding-top: 1.5rem; 
+        padding-bottom: 1.5rem; 
+    }
+    .footer {
+        padding-top: 1rem; 
+        padding-bottom: 1.5rem; 
+    }
+
+    /* ... rest of mobile styles ... */
 }
 
 @media screen and (max-width: 576px) {

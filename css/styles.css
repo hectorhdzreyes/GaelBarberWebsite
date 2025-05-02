@@ -1331,64 +1331,89 @@ section {
     .page-container.mobile-container .page { width: 50%; flex-shrink: 0; position: relative; height: 100vh; }
     .page-container.mobile-container .hero, .page-container.mobile-container #about { cursor: pointer; width: 100%; height: 100%; }
 
-    /* --- About Section Mobile Layout --- */
+    /* --- About Section Mobile Layout (Reverted to Stacked) --- */
     .about {
-        /* Remove previous layout styles */
-        padding: 0 !important; /* Remove padding */
+        padding-top: 4rem; 
+        padding-bottom: 4rem;
         min-height: 100vh;
-        height: auto; /* Allow height based on content */
+        height: auto; 
         display: flex; 
         flex-direction: column;
-        align-items: center; /* Center align items */
-        justify-content: center; /* Center content vertically */
-        position: relative; /* Needed for pseudo-element overlay */
-        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/barber-portrait.jpg'); /* Background image with overlay */
-        background-size: cover;
-        background-position: center;
-        color: #ffffff; /* Set text color to white */
-        text-align: center;
+        justify-content: center; 
+        background-color: var(--light-color); /* Restore light background */
+        color: var(--dark-color); /* Restore dark text */
+        position: relative;
     }
-    .about::before { /* Remove original ::before styling */
+    .about::before { /* Remove background image pseudo-element for mobile */
         content: none;
     }
-    .about-container { /* Adjust container */
-        padding: 4rem 1rem; /* Add padding for content */
+    .about-container { 
+        padding: 0 1rem; /* Restore basic padding */
     }
     .about-content {
-        /* Remove grid/flex specific styles */
+        display: flex; /* Use flex for simpler stacking control */
+        flex-direction: column; 
         gap: 1.5rem; 
         width: 100%; 
         max-width: 90%; 
         margin: 0 auto; 
-        padding-bottom: 0; /* Remove extra padding */
+        padding-bottom: 0; /* Reset padding */
     }
-    .about-image { /* Hide the explicit image element */
-        display: none;
+    .about-image { /* Restore image element display */
+        display: block;
+        order: -1; 
+        max-width: 60%; 
+        height: auto; 
+        margin: 0 auto 1.5rem auto; 
+        aspect-ratio: 1 / 1; 
+        object-fit: cover; 
+        border-radius: 15px; 
+        background-color: #ddd; /* Restore placeholder background */
+    }
+    .about-image img { 
+        width: 100%;
+        height: 100%;
+        object-fit: cover; 
+        border-radius: inherit; 
     }
     .about-text p {
-        font-size: 1.1rem; /* Adjust font size as needed */
+        font-size: 1.0rem; /* Restore font size */
+        text-align: center; 
         padding: 0 0.5rem; 
-        line-height: 1.7; 
-        color: #ffffff; /* Ensure text is white */
-        margin-bottom: 0; /* Remove bottom margin */
+        line-height: 1.6; 
+        color: var(--dark-color); /* Ensure dark text */
+        margin-bottom: 1rem;
     }
      .about .section-header {
-        margin-bottom: 2rem; /* Adjust spacing */
-        color: #ffffff; /* White header */
+        margin-bottom: 2rem; 
+        color: var(--dark-color); /* Restore dark header color */
     }
     .about .section-number {
-        color: rgba(255, 255, 255, 0.6); /* Lighter number */
+        color: rgba(0, 0, 0, 0.5); /* Restore dark number color */
     }
     .about .section-tagline {
-         color: rgba(255, 255, 255, 0.8); /* Lighter tagline */
-         opacity: 1;
+         color: rgba(0, 0, 0, 0.6); /* Restore dark tagline color */
+         opacity: 0.8;
     }
      .about h2 {
-        color: #ffffff; /* White heading */
+        color: var(--dark-color); /* Restore dark heading color */
     }
-    .about h2:after { /* Remove or restyle the underline if desired */
-        content: none; 
-        /* background-color: #ffffff; */
+    .about h2:after { /* Restore underline */
+        content: "";               
+        position: absolute;         
+        bottom: -10px;             
+        left: 50%;                 
+        transform: translateX(-50%);
+        width: 50px;               
+        height: 1px;               
+        background-color: var(--dark-color);
+    }
+
+    /* Keep rule allowing container to grow */
+    .page-container.mobile-container .about-page {
+        height: auto; 
+        min-height: 100vh;
+        overflow-y: auto; 
     }
 
     /* General Mobile Adjustments */

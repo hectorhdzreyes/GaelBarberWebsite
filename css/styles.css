@@ -2326,6 +2326,99 @@ section {
     }
 
     /* ... rest of mobile styles ... */
+
+    /* 1. Contact Section - Revised Layout */
+    .contact-content {
+        display: flex;
+        flex-wrap: wrap; 
+        justify-content: space-between; 
+        gap: 1rem; 
+    }
+
+    /* Style for Columns 1 & 2 */
+    .contact-column:nth-child(1),
+    .contact-column:nth-child(2) {
+        flex: 1; 
+        min-width: 130px; /* Slightly more base width */
+        padding: 0 0.5rem; /* Adjust padding */
+        /* Remove forced centering from column itself */
+        /* display: flex; flex-direction: column; align-items: center; */ 
+        text-align: center; /* Center the H3 */
+    }
+
+    /* Keep Icons below */
+    .contact-column:nth-child(3) {
+        flex: 0 0 100%; 
+        padding: 0.5rem 0 0 0; 
+        margin-top: 1rem; 
+        border-top: 1px solid rgba(255, 255, 255, 0.1); 
+        text-align: center; 
+    }
+    .contact-column:nth-child(3) h3 {
+        display: none;
+    }
+
+    /* General Contact Item */
+    .contact-item {
+        width: 100%;
+        margin-bottom: 0.5rem; 
+    }
+    
+    /* --- Column 1 Specific --- */
+    /* Keep items centered */
+    .contact-column:nth-child(1) .contact-item {
+        display: flex; 
+        flex-direction: column;
+        align-items: center;
+        gap: 0.1rem; 
+    }
+    .contact-column:nth-child(1) .contact-label,
+    .contact-column:nth-child(1) .contact-value {
+        font-size: 0.7rem; 
+        text-align: center; 
+    }
+    
+    /* --- Column 2 Specific --- */
+    /* Align label/value horizontally */
+    .contact-column:nth-child(2) .contact-item {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: baseline; /* Align text baselines */
+        gap: 0.5rem; /* Space between label/value */
+    }
+    .contact-column:nth-child(2) .contact-label {
+        font-size: 0.7rem; 
+        text-align: left;
+        flex-shrink: 0; /* Prevent shrinking */
+    }
+    .contact-column:nth-child(2) .contact-value {
+        font-size: 0.7rem; 
+        text-align: right;
+        flex-grow: 1; /* Allow value to take space */
+    }
+    .contact-column:nth-child(2) .contact-divider {
+        height: 1px;
+        background-color: rgba(255, 255, 255, 0.1);
+        width: 100%; /* Full width divider */
+        margin: 0.5rem 0 0.5rem 0; /* Adjust margins */
+    }
+
+    .social-icons {
+        justify-content: center; 
+        gap: 1rem; 
+        margin-top: 0;
+    }
+    .social-icons a {
+        width: 35px; 
+        height: 35px;
+        font-size: 1.2rem;
+    }
+    
+    /* Footer and Spacing Styles Remain Unchanged */
+    /* ... existing footer & spacing styles ... */
+
+    /* ... rest of mobile styles ... */
 }
 
 @media screen and (max-width: 576px) {

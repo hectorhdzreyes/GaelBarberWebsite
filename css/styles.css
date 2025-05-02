@@ -1970,6 +1970,34 @@ section {
         touch-action: pan-y !important;  /* Only allow vertical scrolling */
         -webkit-overflow-scrolling: touch !important;
     }
+
+    .about-content {
+        grid-template-columns: 1fr; /* Stack image and text */
+        gap: 2rem; /* Reduce gap for mobile */
+    }
+
+    .about-image {
+        grid-row: 2; /* Ensure image is below tagline, above text */
+        height: 350px; /* Adjust height for mobile */
+        margin-bottom: 1rem; /* Add space below image */
+    }
+
+    .about-text {
+        grid-row: 3; /* Ensure text is below image */
+    }
+
+    .about-text p {
+        font-size: 1rem; /* Smaller font size for mobile */
+        line-height: 1.7; /* Adjust line height if needed */
+    }
+
+    .about-container {
+        padding: 0 1rem; /* Reduce horizontal padding for more width */
+    }
+
+    .section-header {
+        margin-bottom: 3rem;        /* Reduced spacing */
+    }
 }
 
 @media screen and (max-width: 576px) {

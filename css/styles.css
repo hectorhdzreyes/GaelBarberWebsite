@@ -2017,6 +2017,71 @@ section {
     .gallery-item {
         height: 200px;              /* Reduced height for 2 columns */
     }
+
+    .contact-content {
+        flex-direction: row;     /* Horizontal layout */
+        gap: 1rem; /* Adjust gap between columns */
+        flex-wrap: wrap; /* Allow wrapping if needed */
+    }
+
+    .contact-column {
+        padding: 0 0.5rem; /* Add small horizontal padding */
+        flex: 1 1 150px; /* Allow columns to shrink/grow, base width */
+    }
+
+    .contact-item {
+        flex-direction: row; /* Keep items horizontal */
+        gap: 1rem; /* Adjust gap */
+        align-items: baseline; /* Align text nicely */
+    }
+
+    .contact-column h3 {
+        font-size: 0.9rem; /* Smaller heading */
+        margin-bottom: 1rem;
+    }
+    .contact-label,
+    .contact-value {
+        font-size: 0.8rem; /* Smaller text */
+    }
+
+    .social-icons {
+        gap: 1rem; /* Reduce gap */
+    }
+    .social-icons a {
+        width: 35px;
+        height: 35px;
+        font-size: 1.2rem;
+    }
+
+    .footer-container {
+        grid-template-columns: auto 1fr auto; /* Adjust grid for mobile */
+        gap: 1rem;                  /* Reduce gap */
+        align-items: center;
+        text-align: left; /* Reset text align */
+    }
+
+    .footer-nav ul {
+        flex-direction: row;     /* Horizontal nav */
+        justify-content: center; /* Center nav items */
+        gap: 1rem;               /* Reduce gap */
+        flex-wrap: wrap; /* Allow wrapping */
+    }
+    
+    .footer-nav a {
+        font-size: 0.75rem; /* Smaller nav text */
+    }
+
+    .copyright {
+        text-align: right;         /* Align copyright right */
+        font-size: 0.7rem;
+    }
+    
+    .footer-logo a {
+       justify-content: flex-start;
+    }
+    .footer-logo-img {
+        height: 40px;
+    }
 }
 
 @media screen and (max-width: 576px) {

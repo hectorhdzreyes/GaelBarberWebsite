@@ -1289,169 +1289,688 @@ section {
 }
 
 @media screen and (max-width: 768px) {
-    /* === MOBILE STYLES (<= 768px) === */
-
+    /* MOBILE-SPECIFIC EFFECTS FOR HERO ELEMENTS */
+    /* Same effects as desktop but applied differently for mobile */
+    
     /* Logo and Header Layout */
-    .desktop-corner-logo { display: none; }
-    .mobile-corner-logo { display: block; margin-top: 5px; width: 80px; height: auto; align-self: flex-start; }
-    .logo-wrapper { flex-direction: column; align-items: flex-start; width: 100%; margin-left: 10px; }
-    .logo { align-self: flex-start; }
-    .header-container { flex-direction: row; align-items: center; padding: 0 1rem; justify-content: space-between; }
-    .gaellogo-jpg { height: 50px; width: auto; flex-shrink: 0; }
-    .logo-text { font-size: 12px; }
-    .logo a { gap: 5px; text-decoration: none; align-items: center; }
-    .header-corner-logo { height: 40px; flex-shrink: 0; }
-
-    /* Mobile Hero Panel */
-    .hero-mobile-panel { display: flex !important; gap: 8px; }
-    .hero-mobile-panel a, .hero-mobile-panel div { font-size: 0.75rem; letter-spacing: 0.5px; padding: 1px 0; }
-    body.at-hero .hero-mobile-panel { display: flex !important; opacity: 1; visibility: visible; position: absolute; top: 75px; right: 15px; flex-direction: column; align-items: flex-end; gap: 7px; z-index: 1100; transition: opacity 0.3s ease, visibility 0.3s ease; }
-    body:not(.at-hero) .hero-mobile-panel { display: none !important; } /* Hide if not at hero */
-
-    /* Mobile Hero Content & Effects */
-    .hero-content { padding-top: 0; width: 100%; padding: 0 1rem; text-align: center;}
-    .hero h1 { margin-bottom: 0.2rem; position: relative; top: -20px; transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease !important; }
-    .hero .tagline { color: rgba(255, 255, 255, 0.9) !important; position: relative; top: -15px; margin-top: 0.5rem; margin-bottom: 1rem; transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease !important; }
-    .hero .cal-trigger-btn.hero-btn { box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3) !important; color: #000 !important; background-color: #fff !important; border-color: #fff !important; top: 40px!important; position: relative; transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease !important; transform: scale(1.0); }
-    .hero.scroll-active h1 { transform: scale(1.1) !important; text-shadow: 0 0 20px rgba(255, 255, 255, 1) !important; color: #ffffff !important; }
-    .hero.scroll-active .tagline { transform: scale(1.08) !important; text-shadow: 0 0 10px rgba(255, 255, 255, 0.8) !important; color: #ffffff !important; opacity: 1 !important; }
-    .hero.scroll-active .cal-trigger-btn.hero-btn { transform: scale(1.08) !important; box-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 8px 20px rgba(0, 0, 0, 0.4) !important; background-color: #fff !important; color: #000 !important; border-color: #fff !important; }
-    .hero { background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/gaelhp.jpg') !important; background-size: cover !important; background-position: center center !important; background-repeat: no-repeat !important; background-attachment: scroll !important; }
-    .hero-slideshow, .slideshow-track, .slideshow-image { display: none !important; }
-    .hero *:not(h1):not(.tagline):not(.cal-trigger-btn):not(.hero-slideshow-mobile):not(.slideshow-track-mobile):not(.slideshow-image-mobile):not(.hero-mobile-panel):not(.hero-mobile-panel *):not(.container):not(.hero-content) { transition: none !important; animation: none !important; transform: none !important; }
-
-    /* Prevent horizontal scrolling & Page Transition Mobile Handling */
-    html, body { overflow-x: hidden !important; position: relative !important; touch-action: pan-y !important; -webkit-overflow-scrolling: touch !important; }
-    body:not(.at-hero) .page-container.mobile-container { pointer-events: none !important; }
-    body:not(.at-hero) .page-container.mobile-container.show-about { transform: translateX(-50%) !important; transition: none !important; }
-    body:not(.at-hero) .page-container.mobile-container:not(.show-about) { transform: none !important; transition: none !important; }
-    body.at-hero .page-container.mobile-container { pointer-events: auto !important; transition: transform 0.5s ease-in-out !important; }
-    .page-container.mobile-container { position: absolute; top: 0; left: 0; width: 200%; display: flex; transition: transform 0.5s ease-in-out; overflow: hidden; height: 100vh; z-index: 5; }
-    .page-container.mobile-container.show-about { transform: translateX(-50%); }
-    .page-container.mobile-container .page { width: 50%; flex-shrink: 0; position: relative; height: 100vh; }
-    .page-container.mobile-container .hero, .page-container.mobile-container #about { cursor: pointer; width: 100%; height: 100%; }
-
-    /* --- About Section Mobile Layout (Reverted to Stacked) --- */
-    .about {
-        padding-top: 4rem; 
-        padding-bottom: 4rem;
-        min-height: 100vh;
-        height: auto; 
-        display: flex; 
+    .desktop-corner-logo {
+        display: none; /* Hide the desktop version */
+    }
+    
+    .mobile-corner-logo {
+        display: block; /* Show the mobile version */
+        margin-top: 0px; /* Minimal space between logo and image */
+        width: 80px; /* Adjust size as needed */
+        height: auto;
+        align-self: flex-start; /* Ensure it stays left-aligned */
+    }
+    
+    .logo-wrapper {
         flex-direction: column;
-        justify-content: center; 
-        background-color: var(--light-color); /* Restore light background */
-        color: var(--dark-color); /* Restore dark text */
+        align-items: flex-start; /* Align to the left instead of center */
+        width: 100%;
+        margin-left: 10px; /* Add some left margin */
+    }
+    
+    .logo {
+        align-self: flex-start; /* Ensure logo stays left-aligned */
+    }
+    
+    /* Mobile Hero Panel - smaller text and spacing */
+    .hero-mobile-panel {
+        display: flex !important; /* Force display on mobile */
+        gap: 8px; /* Reduced spacing between items */
+    }
+    
+    .hero-mobile-panel a,
+    .hero-mobile-panel div {
+        font-size: 0.75rem; /* Smaller text */
+        letter-spacing: 0.5px; /* Reduced letter spacing */
+        padding: 1px 0; /* Smaller padding */
+    }
+    
+    /* Style fixes for mobile hero */
+    .hero-content {
+        padding-top: 0; /* Keep padding at 0 */
+    }
+    
+    /* Prevent horizontal scrolling on mobile */
+    html, body {
+        overflow-x: hidden !important;
+        position: relative !important;
+        touch-action: pan-y !important;  /* Only allow vertical scrolling */
+        -webkit-overflow-scrolling: touch !important;
+    }
+    
+    /* Ensure non-hero sections don't allow transitions */
+    body:not(.at-hero) .page-container.mobile-container {
+        pointer-events: none !important;
+    }
+    
+    /* But keep the current state visible when scrolling */
+    body:not(.at-hero) .page-container.mobile-container.show-about {
+        transform: translateX(-50%) !important; /* Keep showing about page */
+        transition: none !important;
+    }
+    
+    /* Keep hero view when scrolling from hero */
+    body:not(.at-hero) .page-container.mobile-container:not(.show-about) {
+        transform: none !important;
+        transition: none !important;
+    }
+    
+    /* Limit transitions to when at hero section only */
+    body.at-hero .page-container.mobile-container {
+        pointer-events: auto !important;
+        transition: transform 0.5s ease-in-out !important;
+    }
+    
+    /* Enable page transitions for mobile */
+    .page-container.mobile-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 200%;
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+        overflow: hidden;
+        height: 100vh;
+        z-index: 5;
+    }
+    
+    /* Show about page when clicked */
+    .page-container.mobile-container.show-about {
+        transform: translateX(-50%);
+    }
+    
+    /* For the two pages inside the container */
+    .page-container.mobile-container .page {
+        width: 50%;
+        flex-shrink: 0;
         position: relative;
+        height: 100vh;
     }
-    .about::before { /* Remove background image pseudo-element for mobile */
-        content: none;
-    }
-    .about-container { 
-        padding: 0 1rem; /* Restore basic padding */
-    }
-    .about-content {
-        display: flex; /* Use flex for simpler stacking control */
-        flex-direction: column; 
-        gap: 1.5rem; 
-        width: 100%; 
-        max-width: 90%; 
-        margin: 0 auto; 
-        padding-bottom: 0; /* Reset padding */
-    }
-    .about-image { /* Restore image element display */
-        display: block;
-        order: -1; 
-        max-width: 60%; 
-        height: auto; 
-        margin: 0 auto 1.5rem auto; 
-        aspect-ratio: 1 / 1; 
-        object-fit: cover; 
-        border-radius: 15px; 
-        background-color: #ddd; /* Restore placeholder background */
-    }
-    .about-image img { 
+    
+    /* Make sure both hero and about sections are clickable */
+    .page-container.mobile-container .hero,
+    .page-container.mobile-container #about {
+        cursor: pointer;
         width: 100%;
         height: 100%;
-        object-fit: cover; 
-        border-radius: inherit; 
     }
-    .about-text p {
-        font-size: 1.0rem; /* Restore font size */
-        text-align: center; 
-        padding: 0 0.5rem; 
-        line-height: 1.6; 
-        color: var(--dark-color); /* Ensure dark text */
+    
+    /* Allow animations ONLY for specific elements */
+    .hero h1,
+    .hero .tagline,
+    .hero .cal-trigger-btn.hero-btn {
+        transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease !important;
+    }
+    
+    /* Make them slightly enhanced by default */
+    .hero h1 {
+        margin-bottom: 0.2rem; /* Keep reduced margin */
+        /* transform: translateY(-15px); REMOVED previous transform */
+        position: relative; /* Add relative positioning */
+        top: -50px!important; /* Shift upwards relative to its normal position */
+        /* Inherit other mobile h1 styles like text-shadow */
+    }
+    
+    .hero .tagline {
+        color: rgba(255, 255, 255, 0.9) !important;
+        position: relative; /* Add relative positioning */
+        top: -45px; /* Adjust slightly less than H1's -80px to reduce gap */
+        /* Keep original mobile margins */
+        margin-top: 0.5rem;
         margin-bottom: 1rem;
     }
-     .about .section-header {
-        margin-bottom: 2rem; 
-        color: var(--dark-color); /* Restore dark header color */
-    }
-    .about .section-number {
-        color: rgba(0, 0, 0, 0.5); /* Restore dark number color */
-    }
-    .about .section-tagline {
-         color: rgba(0, 0, 0, 0.6); /* Restore dark tagline color */
-         opacity: 0.8;
-    }
-     .about h2 {
-        color: var(--dark-color); /* Restore dark heading color */
-    }
-    .about h2:after { /* Restore underline */
-        content: "";               
-        position: absolute;         
-        bottom: -10px;             
-        left: 50%;                 
-        transform: translateX(-50%);
-        width: 50px;               
-        height: 1px;               
-        background-color: var(--dark-color);
-    }
-
-    /* Keep rule allowing container to grow */
-    .page-container.mobile-container .about-page {
-        height: auto; 
-        min-height: 100vh;
-        overflow-y: auto; 
-    }
-
-    /* General Mobile Adjustments */
-    .hide-on-mobile { display: none !important; }
-    .show-on-mobile-block { display: block !important; }
-    .show-on-mobile-flex { display: flex !important; }
-    .show-on-mobile-inline-block { display: inline-block !important; }
-    h1 { font-size: 3.5rem; }
-    h2 { font-size: 2rem; }
-    .services-grid, .gallery-grid { grid-template-columns: 1fr; }
-    .gallery-item { height: 300px; }
-    .contact-info { gap: 2.5rem; }
-    .footer-nav ul { flex-direction: column; gap: 1.5rem; }
-    section { padding: 5rem 0; }
-    .service-card { flex-direction: column; align-items: flex-start; gap: 1rem; padding: 0 0 2rem 0; }
-    .service-icon { margin-bottom: 0.5rem; }
-    .service-card h3 { flex-direction: column; align-items: flex-start; gap: 0.5rem; font-size: 1.5rem; }
-    .service-price { font-size: 1.2rem; padding: 0.2rem 0.8rem; }
-    .service-card p { font-size: 1rem; }
-    .services { padding: 6rem 0; min-height: auto; }
-    .contact-content { flex-direction: column; gap: 3rem; }
-    .contact-column { padding: 0; }
-    .contact-item { flex-direction: column; gap: 0.5rem; }
-    .contact-value { align-self: flex-start; }
     
-    /* Mobile Horizontal Slideshow */
-    .hero-slideshow-mobile { display: flex !important; }
-    .slideshow-track-mobile { display: flex; flex-direction: row; width: calc(18 * 90px); height: 100%; animation: slideRight 40s linear infinite; }
-    .slideshow-image-mobile { height: 80px; width: 80px; margin-right: 10px; flex-shrink: 0; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 5px; overflow: hidden; }
-    .slideshow-image-mobile img { width: 100%; height: 100%; object-fit: cover; }
+    .hero .cal-trigger-btn.hero-btn {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3) !important;
+        color: #000 !important;
+        background-color: #fff !important;
+        border-color: #fff !important;
+        top: 150px!important;
+    }
+    
+    /* MOBILE SCROLL EFFECTS - Enhanced effects when scrolling */
+    .hero.scroll-active h1 {
+        /* transform: scale(1.1) translateY(-15px) !important; REMOVED transform */
+        transform: scale(1.1) !important; /* Keep original scale transform */
+        /* The relative positioning with 'top' will still apply */
+        text-shadow: 0 0 20px rgba(255, 255, 255, 1) !important;
+        color: #ffffff !important;
+    }
+    
+    .hero.scroll-active .tagline {
+        transform: scale(1.08) !important;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.8) !important;
+        color: #ffffff !important;
+        opacity: 1 !important;
+    }
+    
+    .hero.scroll-active .cal-trigger-btn.hero-btn {
+        transform: scale(1.08) !important;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 8px 20px rgba(0, 0, 0, 0.4) !important;
+        background-color: #fff !important;
+        color: #000 !important;
+        border-color: #fff !important;
+    }
+    
+    /* Static background for hero */
+    .hero {
+        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../images/gaelhp.jpg') !important;
+        background-size: cover !important;
+        background-position: center center !important;
+        background-repeat: no-repeat !important;
+        background-attachment: scroll !important;
 
-    /* Mobile Bottom Text Positioning */
-    .hero-bottom-text { position: absolute; bottom: 120px; left: 50%; transform: translateX(-50%); width: 90%; text-align: center; z-index: 10; font-size: 0.55rem; font-weight: 400; letter-spacing: 0.6px; color: rgba(255, 255, 255, 0.7); text-shadow: 0 0 8px rgba(0, 0, 0, 0.6); margin: 0; padding: 0; line-height: 1.2; }
-    .hero-bottom-text-under { position: absolute; bottom: 105px; left: 50%; transform: translateX(-50%); width: 90%; text-align: center; z-index: 10; font-size: 0.65rem; font-weight: 400; letter-spacing: 0.5px; color: rgb(255, 255, 255); text-shadow: 0 0 8px rgba(0, 0, 0, 0.6); margin: 0; padding: 0; line-height: 1.2; }
-    .mobile-schedule-text { position: absolute; bottom: -150px!important; left: 5%!important; transform: translateX(-50%); width: 90%; font-size: 0.8rem; line-height: 1.2; color: rgba(255, 255, 255, 0.8); letter-spacing: 0.5px; text-align: center; z-index: 15; }
-    .mobile-schedule-text-under { position: absolute; bottom: -180px!important; left: 5%!important; transform: translateX(-50%); width: 90%; font-size: 1rem; line-height: 1.2; color: rgb(255, 255, 255); letter-spacing: 0.5px; text-align: center; z-index: 15; }
+    }
+    
+    /* Completely hide slideshow on mobile */
+    .hero-slideshow,
+    .slideshow-track,
+    .slideshow-image {
+        display: none !important;
+    }
+    
+    /* Make sure only our targeted elements have effects */
+    .hero *:not(h1):not(.tagline):not(.cal-trigger-btn):not(.hero-slideshow-mobile):not(.slideshow-track-mobile):not(.slideshow-image-mobile) {
+        transition: none !important;
+        animation: none !important;
+        transform: none !important;
+    }
+    
+    .hide-on-mobile {
+        display: none !important;
+    }
+    
+    .show-on-mobile-block {
+        display: block !important;
+    }
+    
+    .show-on-mobile-flex {
+        display: flex !important;
+    }
+    
+    .show-on-mobile-inline-block {
+        display: inline-block !important;
+    }
+    
+    h1 {
+        font-size: 3.5rem;
+    }
+    
+    h2 {
+        font-size: 2rem;
+    }
+    
+    .services-grid,
+    .gallery-grid {
+        grid-template-columns: 1fr;  /* Single column */
+    }
+    
+    .gallery-item {
+        height: 300px;              /* Reduced height */
+    }
+    
+    .contact-info {
+        gap: 2.5rem;                /* Increased spacing */
+    }
+    
+    .footer-nav ul {
+        flex-direction: column;     /* Stack vertically */
+        gap: 1.5rem;               /* Space between */
+    }
+    
+    section {
+        padding: 5rem 0;            /* Reduced padding */
+    }
+    
+    .service-card {
+        flex-direction: column;     /* Stack vertically */
+        align-items: flex-start;    /* Align to start */
+        gap: 1rem;                  /* Space between */
+        padding: 0 0 2rem 0;        /* Bottom padding */
+    }
+    
+    .service-icon {
+        margin-bottom: 0.5rem;      /* Bottom margin */
+    }
+    
+    .service-card h3 {
+        flex-direction: column;     /* Stack vertically */
+        align-items: flex-start;    /* Align to start */
+        gap: 0.5rem;                /* Space between */
+        font-size: 1.5rem;          /* Medium size */
+    }
+    
+    .service-price {
+        font-size: 1.2rem;          /* Smaller size */
+        padding: 0.2rem 0.8rem;     /* Reduced padding */
+    }
+    
+    .service-card p {
+        font-size: 1rem;            /* Base size */
+    }
+    
+    .services {
+        padding: 6rem 0;            /* Reduced padding */
+        min-height: auto;           /* Auto height */
+    }
+    
+    .contact-content {
+        flex-direction: column;     /* Stack vertically */
+        gap: 3rem;                  /* Space between */
+    }
+    
+    .contact-column {
+        padding: 0;                 /* No padding */
+    }
+    
+    .contact-item {
+        flex-direction: column;     /* Stack vertically */
+        gap: 0.5rem;                /* Space between */
+    }
+    
+    .contact-value {
+        align-self: flex-start;     /* Align to start */
+    }
 
-} /* === END OF @media screen and (max-width: 768px) === */
+    /* MOBILE HERO & HEADER ADJUSTMENTS */
+    .header-container {
+        flex-direction: row; 
+        align-items: center; 
+        padding: 0 1rem; 
+        justify-content: space-between; 
+    }
+
+    .gaellogo-jpg {
+        height: 50px; 
+        width: auto; /* Prevent stretching */
+        flex-shrink: 0; /* Prevent shrinking in flex context */
+    }
+
+    .logo-text {
+        font-size: 12px; 
+    }
+    
+    .logo a {
+        gap: 5px; /* Keep normal spacing between THE, logo and BARBER */
+        text-decoration: none; 
+        align-items: center; /* Vertically align logo image and text */
+    }
+
+    .header-corner-logo {
+        height: 40px; 
+        flex-shrink: 0; 
+    }
+
+    /* Explicit initial state for Hero Cal Button on Mobile */
+    .hero .cal-trigger-btn.hero-btn {
+        color: #000;
+        background-color: #fff;
+        border-color: #fff;
+        transform: scale(1.0); 
+        box-shadow: none;
+        text-shadow: none;
+        transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out, background-color 0.4s ease-in-out, color 0.4s ease-in-out;
+    }
+    
+    body, html {
+        transform: none !important;
+    }
+
+    /* Logo and Header Layout */
+    .desktop-corner-logo {
+        display: none; /* Hide the desktop version */
+    }
+    
+    .mobile-corner-logo {
+        display: block; /* Show the mobile version */
+        margin-top: 5px; /* Reduced space between logo and image */
+        width: 80px; /* Adjust size as needed */
+        height: auto;
+        align-self: flex-start; /* Ensure it stays left-aligned */
+    }
+    
+    .logo-wrapper {
+        flex-direction: column;
+        align-items: flex-start; /* Align to the left instead of center */
+        width: 100%;
+        margin-left: 10px; /* Add some left margin */
+    }
+    
+    .logo {
+        align-self: flex-start; /* Ensure logo stays left-aligned */
+    }
+    
+    /* Mobile Hero Panel - smaller text and spacing */
+    .hero-mobile-panel {
+        display: flex !important; /* Force display on mobile */
+        gap: 8px; /* Reduced spacing between items */
+    }
+    
+    .hero-mobile-panel a,
+    .hero-mobile-panel div {
+        font-size: 0.75rem; /* Smaller text */
+        letter-spacing: 0.5px; /* Reduced letter spacing */
+        padding: 1px 0; /* Smaller padding */
+    }
+    
+    /* Style fixes for mobile hero */
+    .hero-content {
+        padding-top: 0; /* Keep padding at 0 */
+    }
+    
+    /* Prevent horizontal scrolling on mobile */
+    html, body {
+        overflow-x: hidden !important;
+        position: relative !important;
+        touch-action: pan-y !important;  /* Only allow vertical scrolling */
+        -webkit-overflow-scrolling: touch !important;
+    }
+    
+    /* Ensure non-hero sections don't allow transitions */
+    body:not(.at-hero) .page-container.mobile-container {
+        pointer-events: none !important;
+    }
+    
+    /* But keep the current state visible when scrolling */
+    body:not(.at-hero) .page-container.mobile-container.show-about {
+        transform: translateX(-50%) !important; /* Keep showing about page */
+        transition: none !important;
+    }
+    
+    /* Keep hero view when scrolling from hero */
+    body:not(.at-hero) .page-container.mobile-container:not(.show-about) {
+        transform: none !important;
+        transition: none !important;
+    }
+    
+    /* Limit transitions to when at hero section only */
+    body.at-hero .page-container.mobile-container {
+        pointer-events: auto !important;
+        transition: transform 0.5s ease-in-out !important;
+    }
+    
+    /* Enable page transitions for mobile */
+    .page-container.mobile-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 200%;
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+        overflow: hidden;
+        height: 100vh;
+        z-index: 5;
+    }
+    
+    /* Show about page when clicked */
+    .page-container.mobile-container.show-about {
+        transform: translateX(-50%);
+    }
+    
+    /* For the two pages inside the container */
+    .page-container.mobile-container .page {
+        width: 50%;
+        flex-shrink: 0;
+        position: relative;
+        height: 100vh;
+    }
+    
+    /* Make sure both hero and about sections are clickable */
+    .page-container.mobile-container .hero,
+    .page-container.mobile-container #about {
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+    }
+    
+    /* Allow animations ONLY for specific elements */
+    
+    
+    /* MOBILE SCROLL EFFECTS - Enhanced effects when scrolling */
+    .hero.scroll-active h1 {
+        /* transform: scale(1.1) translateY(-15px) !important; REMOVED transform */
+        transform: scale(1.1) !important; /* Keep original scale transform */
+        /* The relative positioning with 'top' will still apply */
+        text-shadow: 0 0 20px rgba(255, 255, 255, 1) !important;
+        color: #ffffff !important;
+    }
+    
+   
+    
+    .hero.scroll-active .cal-trigger-btn.hero-btn {
+        transform: scale(1.08) !important;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 8px 20px rgba(0, 0, 0, 0.4) !important;
+        background-color: #fff !important;
+        color: #000 !important;
+        border-color: #fff !important;
+    }
+    
+    /* Static background for hero */
+    .hero {
+        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4 )), url('../images/gaelhp.jpg') !important;
+        background-size: cover !important;
+        background-position: center center !important;
+        background-repeat: no-repeat !important;
+        background-attachment: scroll !important;
+    }
+    
+    /* Completely hide slideshow on mobile */
+    .hero-slideshow,
+    .slideshow-track,
+    .slideshow-image {
+        display: none !important;
+    }
+    
+    
+    
+    h1 {
+        font-size: 3.5rem;
+    }
+    
+    h2 {
+        font-size: 2rem;
+    }
+    
+    .services-grid,
+    .gallery-grid {
+        grid-template-columns: 1fr;  /* Single column */
+    }
+    
+    .gallery-item {
+        height: 300px;              /* Reduced height */
+    }
+    
+    .contact-info {
+        gap: 2.5rem;                /* Increased spacing */
+    }
+    
+    .footer-nav ul {
+        flex-direction: column;     /* Stack vertically */
+        gap: 1.5rem;               /* Space between */
+    }
+    
+    section {
+        padding: 5rem 0;            /* Reduced padding */
+    }
+    
+    .service-card {
+        flex-direction: column;     /* Stack vertically */
+        align-items: flex-start;    /* Align to start */
+        gap: 1rem;                  /* Space between */
+        padding: 0 0 2rem 0;        /* Bottom padding */
+    }
+    
+    .service-icon {
+        margin-bottom: 0.5rem;      /* Bottom margin */
+    }
+    
+    .service-card h3 {
+        flex-direction: column;     /* Stack vertically */
+        align-items: flex-start;    /* Align to start */
+        gap: 0.5rem;                /* Space between */
+        font-size: 1.5rem;          /* Medium size */
+    }
+    
+    .service-price {
+        font-size: 1.2rem;          /* Smaller size */
+        padding: 0.2rem 0.8rem;     /* Reduced padding */
+    }
+    
+    .service-card p {
+        font-size: 1rem;            /* Base size */
+    }
+    
+    .services {
+        padding: 6rem 0;            /* Reduced padding */
+        min-height: auto;           /* Auto height */
+    }
+    
+    .contact-content {
+        flex-direction: column;     /* Stack vertically */
+        gap: 3rem;                  /* Space between */
+    }
+    
+    .contact-column {
+        padding: 0;                 /* No padding */
+    }
+    
+    .contact-item {
+        flex-direction: column;     /* Stack vertically */
+        gap: 0.5rem;                /* Space between */
+    }
+    
+    .contact-value {
+        align-self: flex-start;     /* Align to start */
+    }
+
+    /* Mobile Hero Right Panel - Base Styles */
+    .hero-mobile-panel {
+        display: none; /* Hidden by default */
+        position: absolute;
+        top: 75px; /* Default top - adjust as needed */
+        right: 15px; /* Default right */
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 7px; /* Reduced spacing */
+        z-index: 1100; /* Ensure it's above header content */
+        transition: opacity 0.3s ease, visibility 0.3s ease; /* Add transition */
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    /* Mobile Hero Right Panel - Show only when at hero */
+    body.at-hero .hero-mobile-panel {
+        display: flex !important; /* Show on mobile */
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* Mobile Horizontal Slideshow - Show */
+    .hero-slideshow-mobile {
+        display: flex !important;
+    }
+    
+    /* Ensure vertical desktop slideshow is hidden */
+    .hero-slideshow {
+        display: none !important;
+    }
+
+    /* Copied from Desktop: Hero Bottom Text for Mobile */
+    .hero-bottom-text {
+        position: absolute;
+        bottom: 120px; /* Position closer to the slideshow */
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%; 
+        text-align: center; /* Keep centered */
+        z-index: 10; 
+        font-size: 0.55rem; /* Even smaller font */      
+        font-weight: 400;            
+        letter-spacing: 0.6px;      
+        color: rgba(255, 255, 255, 0.7);  
+        text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+        margin: 0; /* Remove any margin */
+        padding: 0; /* Remove any padding */
+        line-height: 1.2; /* Tighter line height */
+    }
+    .hero-bottom-text-under {
+        position: absolute;
+        bottom: 105px; /* Position it closer to the slideshow */
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%; 
+        text-align: center; /* Keep centered */
+        z-index: 10; 
+        font-size: 0.65rem; /* Even smaller font */           
+        font-weight: 400;            
+        letter-spacing: 0.5px;     
+        color: rgb(255, 255, 255);  
+        text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+        margin: 0; /* Remove any margin */
+        padding: 0; /* Remove any padding */
+        line-height: 1.2; /* Tighter line height */
+    }
+
+    /* Reduce margins for h1/tagline specifically on mobile */
+    .hero h1 {
+        margin-bottom: 0.2rem; /* Keep reduced margin */
+        /* transform: translateY(-15px); REMOVED previous transform */
+        position: relative; /* Add relative positioning */
+        top: -20px; /* Shift upwards relative to its normal position */
+        /* Inherit other mobile h1 styles like text-shadow */
+    }
+    .tagline {
+        margin-top: 0.5rem; /* Reduced from default */
+        margin-bottom: 1rem; /* Reduced from default */
+    }
+    
+    /* NEW Mobile Schedule Text (positioned right above slideshow) */
+    .mobile-schedule-text {
+        /* display is handled by show/hide utility classes */
+        position: absolute;
+        bottom: -150px!important; /* Lowered significantly to be right above slideshow (slideshow starts at bottom: 20px, height: 100px) */
+        left: 5%!important;
+        transform: translateX(-50%);
+        width: 90%; /* Control width for centering */
+        font-size: 0.8rem; /* Slightly smaller font */
+        line-height: 1.2; /* Adjusted line height */
+        color: rgba(255, 255, 255, 0.8);
+        letter-spacing: 0.5px;
+        text-align: center;
+        z-index: 15; 
+        /* Removed margin properties */
+    }
+
+    .mobile-schedule-text-under {
+        /* display is handled by show/hide utility classes */
+        position: absolute;
+        bottom: -180px!important; /* Lowered significantly to be right above slideshow (slideshow starts at bottom: 20px, height: 100px) */
+        left: 5%!important;
+        transform: translateX(-50%);
+        width: 90%; /* Control width for centering */
+        font-size: 1rem; /* Slightly smaller font */
+        line-height: 1.2; /* Adjusted line height */
+        color: rgb(255, 255, 255);
+        letter-spacing: 0.5px;
+        text-align: center;
+        z-index: 15; 
+        /* Removed margin properties */
+    }
+
+    
+    
+    /* Prevent horizontal scrolling on mobile */
+    html, body {
+        overflow-x: hidden !important;
+        position: relative !important;
+        touch-action: pan-y !important;  /* Only allow vertical scrolling */
+        -webkit-overflow-scrolling: touch !important;
+    }
+}
 
 @media screen and (max-width: 576px) {
     h1 {

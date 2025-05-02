@@ -2164,6 +2164,111 @@ section {
         padding-top: 2rem; /* Reduced top padding */
         padding-bottom: 2rem;
     }
+
+    /* 1. Contact Section - 2 Columns + Icons Below */
+    .contact-content {
+        flex-wrap: wrap; /* Allow wrapping */
+        justify-content: space-between; /* Distribute space */
+        gap: 1rem; /* Vertical gap between rows */
+    }
+
+    .contact-column:nth-child(1),
+    .contact-column:nth-child(2) {
+        flex: 0 0 48%; /* Make first two columns take ~half width */
+        text-align: center; 
+        padding: 0 0.2rem; 
+    }
+    
+    .contact-column:nth-child(3) {
+        flex: 0 0 100%; /* Make third column full width */
+        padding: 0.5rem 0 0 0; /* Add some space above icons */
+        margin-top: 1rem; /* Add margin above */
+        border-top: 1px solid rgba(255, 255, 255, 0.1); /* Separator line */
+    }
+
+    /* Hide 'Keep In Touch' heading */
+    .contact-column:nth-child(3) h3 {
+        display: none;
+    }
+
+    .contact-column {
+        /* Keep previous column styles like text centering if needed */
+        text-align: center;
+    }
+
+    .contact-item {
+        flex-direction: column; 
+        align-items: center; 
+        gap: 0.2rem; 
+    }
+    .contact-divider {
+        margin: 0.5rem 0 1rem 0;
+    }
+
+    .contact-column h3 {
+        font-size: 0.8rem; 
+        margin-bottom: 0.8rem;
+    }
+    .contact-label,
+    .contact-value {
+        font-size: 0.7rem; 
+        text-align: center; 
+    }
+
+    .social-icons {
+        justify-content: center; 
+        gap: 1rem; /* Increase gap slightly */
+        margin-top: 0; /* Remove extra margin */
+    }
+    .social-icons a {
+        width: 35px; /* Keep size */
+        height: 35px;
+        font-size: 1.2rem;
+    }
+    
+    /* 2. Footer - Vertical Stack, Centered + Logo nudge */
+    .footer-container {
+        grid-template-columns: 1fr; 
+        gap: 1.5rem;                  
+        justify-items: center; 
+        text-align: center; 
+    }
+
+    .footer-logo {
+       /* Nudge logo slightly right */
+       padding-left: 10px; /* Or adjust margin-left if preferred */
+    }
+    
+    .footer-logo a {
+       justify-content: center; 
+       text-decoration: none; 
+    }
+
+    .footer-nav ul {
+        flex-direction: row;     
+        justify-content: center; 
+        gap: 1rem;               
+        flex-wrap: wrap; 
+        width: 100%; 
+    }
+    
+    .copyright {
+        text-align: center;
+        margin-top: 0.5rem; /* Add a bit space above copyright */
+    }
+    
+    /* 3. Section Spacing - Reduce further */
+    section#gallery {
+        padding-bottom: 1.5rem; /* Reduced further */
+    }
+    section#contact {
+        padding-top: 1.5rem; /* Reduced further */
+        padding-bottom: 1.5rem; /* Reduced further */
+    }
+    .footer {
+        padding-top: 1rem; /* Reduced further */
+        padding-bottom: 1.5rem; /* Reduced further */
+    }
 }
 
 @media screen and (max-width: 576px) {

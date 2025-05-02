@@ -473,8 +473,9 @@ section {
 
 .about-content {
     display: grid;              /* Grid layout */
-    grid-template-columns: 1fr 1fr;  /* Two equal columns */
-    gap: 2rem;                  /* Space between columns */
+    grid-template-columns: repeat(3, 1fr);  /* Three equal columns */
+    grid-template-rows: repeat(2, auto);    /* Two rows, height based on content */
+    gap: 2rem;                  /* Space between grid items */
     align-items: center;        /* Center vertically */
 }
 
@@ -489,7 +490,7 @@ section {
     position: relative;         /* For positioning */
     height: 500px;              /* Fixed height */
     overflow: hidden;           /* Hide overflow */
-    border-radius: 20px;  /* Use global border radius */
+    border-radius: 20px;        /* Use global border radius */
     background-color: #ddd;     /* Light gray background */
     display: flex;              /* Flexbox layout */
     justify-content: center;    /* Center horizontally */

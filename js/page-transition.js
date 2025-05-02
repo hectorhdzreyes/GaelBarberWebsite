@@ -304,6 +304,8 @@ document.addEventListener('DOMContentLoaded', function() {
                                  }
                                  // Add class to potentially hide/shrink page-container via CSS
                                  pageContainer.classList.add('scrolled-past'); 
+                                 // Set z-index to ensure it's behind other content
+                                 pageContainer.style.zIndex = "-1"; 
                              } else if (currentScrollPos < 50) {
                                  // If scrolling back to top, enable transition mode & show page container
                                  if (!isTransitionModeActive) {
@@ -311,6 +313,8 @@ document.addEventListener('DOMContentLoaded', function() {
                                  }
                                  // Remove class to restore page-container
                                  pageContainer.classList.remove('scrolled-past'); 
+                                 // Restore z-index
+                                 pageContainer.style.zIndex = "5";
                              }
                              
                              ticking = false;

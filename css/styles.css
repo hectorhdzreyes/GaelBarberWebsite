@@ -2534,6 +2534,8 @@ section {
 .page-container.scrolled-past {
     height: 0 !important; 
     overflow: hidden !important;
+    position: absolute !important;
+    z-index: -1 !important;
     /* transition: height 0.3s ease-out; optional transition */
 }
 

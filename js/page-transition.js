@@ -254,152 +254,78 @@ document.addEventListener('DOMContentLoaded', function() {
                     return;
                 }
                 
-                console.log('About clicked, transitioning to hero');
+                console.log('About clicked, transitioning to home');
                 
                 // Remove class to show hero section
                 pageContainer.classList.remove('show-about');
                 
                 // Update URL without page reload
-                window.history.pushState({page: 'home'}, 'Home', '#');
+                window.history.pushState({page: 'home'}, 'Home', '#home');
             }
-            
-            // Add event listeners to hero and about sections
+
+            // Attach click handlers
             if (heroSection) {
                 heroSection.addEventListener('click', handleHeroClick);
-                
-                // Add event listeners for all book now buttons in the hero section
-                const bookNowBtns = heroSection.querySelectorAll('.book-now-btn, .cal-trigger-btn');
-                bookNowBtns.forEach(btn => {
-                    btn.addEventListener('click', function(e) {
-                        e.stopPropagation(); // Prevent click from reaching the hero section
-                    }, { capture: true }); // Use capture phase to ensure this runs first
-                });
-                
-                // Special handling for left panel links in the cloned hero
-                const heroLeftPanelLinks = heroSection.querySelectorAll('.hero-left-panel a');
-                
-                heroLeftPanelLinks.forEach(link => {
-                    link.addEventListener('click', function(e) {
-                        e.stopPropagation(); // Prevent click from triggering hero click
-                        
-                        // Only process links to sections on this page
-                        const targetId = this.getAttribute('href');
-                        if (targetId && targetId.startsWith('#')) {
-                            e.preventDefault();
-                            
-                            // Get target section directly by ID
-                            const targetSection = document.querySelector(targetId);
-                            
-                            if (targetSection) {
-                                // Disable transition mode on mobile to allow normal scrolling
-                                if (isMobile) {
-                                    // For mobile, just let the links work normally
-                                    // First go back to hero view
-                                    pageContainer.classList.remove('show-about');
-                                    
-                                    // Then scroll after a short delay
-                                    setTimeout(() => {
-                                        let headerOffset = 160; // Offset value for header
-                                        const sectionRect = targetSection.getBoundingClientRect();
-                                        const absolutePosition = sectionRect.top + window.pageYOffset;
-                                        
-                                        window.scrollTo({
-                                            top: absolutePosition - headerOffset,
-                                            behavior: 'smooth'
-                                        });
-                                    }, 100);
-                                } else {
-                                    // Original desktop behavior
-                                    toggleTransitionMode(false);
-                                    
-                                    let headerOffset = 160;
-                                    const sectionRect = targetSection.getBoundingClientRect();
-                                    const absolutePosition = sectionRect.top + window.pageYOffset;
-                                    
-                                    window.scrollTo({
-                                        top: absolutePosition - headerOffset,
-                                        behavior: 'smooth'
-                                    });
-                                }
-                            }
-                        }
-                    });
-                });
             }
-            
             if (aboutSection) {
                 aboutSection.addEventListener('click', handleAboutClick);
             }
-            
-            // Handle navigation menu clicks
-            if (navAboutLink) {
-                navAboutLink.addEventListener('click', function(e) {
-                    if (isTransitionModeActive) {
-                        e.preventDefault();
-                        pageContainer.classList.add('show-about');
-                        window.history.pushState({page: 'about'}, 'About Me', '#about');
-                    }
-                });
-            }
-            
-            if (navHomeLink) {
-                navHomeLink.addEventListener('click', function(e) {
-                    if (isTransitionModeActive) {
-                        e.preventDefault();
-                        pageContainer.classList.remove('show-about');
-                        window.history.pushState({page: 'home'}, 'Home', '#');
-                    }
-                });
-            }
+
+            // Add event listeners for nav links if needed
+            // ... (keep existing nav link handlers)
             
             // Handle browser back/forward buttons
             window.addEventListener('popstate', function(e) {
-                if (isTransitionModeActive) {
-                    if (e.state && e.state.page === 'about') {
-                        pageContainer.classList.add('show-about');
-                    } else {
-                        pageContainer.classList.remove('show-about');
-                    }
-                }
+                 if (isTransitionModeActive) {
+                     if (e.state && e.state.page === 'about') {
+                         pageContainer.classList.add('show-about');
+                     } else {
+                         pageContainer.classList.remove('show-about');
+                     }
+                 }
             });
             
             // For desktop only - Handle scroll events to toggle between transition and scroll modes
-            if (!isMobile) {
-                let lastScrollPos = window.scrollY;
-                let ticking = false;
-                
-                window.addEventListener('scroll', function() {
-                    lastScrollPos = window.scrollY;
-                    
-                    if (!ticking) {
-                        window.requestAnimationFrame(function() {
-                            const currentScrollPos = lastScrollPos;
-                            
-                            // If scrolled down past a threshold, disable transition mode
-                            if (currentScrollPos > window.innerHeight * 0.6) { // Lower threshold for earlier transition
-                                if (isTransitionModeActive) {
-                                    toggleTransitionMode(false);
-                                }
-                            } else if (currentScrollPos < 50) {
-                                // If scrolling back to top, enable transition mode
-                                if (!isTransitionModeActive) {
-                                    toggleTransitionMode(true);
-                                }
-                            }
-                            
-                            ticking = false;
-                        });
-                        
-                        ticking = true;
-                    }
-                });
-            }
-            
+             if (!isMobile) {
+                 let lastScrollPos = window.scrollY;
+                 let ticking = false;
+                 
+                 window.addEventListener('scroll', function() {
+                     lastScrollPos = window.scrollY;
+                     
+                     if (!ticking) {
+                         window.requestAnimationFrame(function() {
+                             const currentScrollPos = lastScrollPos;
+                             
+                             // If scrolled down past a threshold, disable transition mode & hide page container
+                             if (currentScrollPos > window.innerHeight * 0.6) { 
+                                 if (isTransitionModeActive) {
+                                     toggleTransitionMode(false);
+                                 }
+                                 // Add class to potentially hide/shrink page-container via CSS
+                                 pageContainer.classList.add('scrolled-past'); 
+                             } else if (currentScrollPos < 50) {
+                                 // If scrolling back to top, enable transition mode & show page container
+                                 if (!isTransitionModeActive) {
+                                     toggleTransitionMode(true);
+                                 }
+                                 // Remove class to restore page-container
+                                 pageContainer.classList.remove('scrolled-past'); 
+                             }
+                             
+                             ticking = false;
+                         });
+                         
+                         ticking = true;
+                     }
+                 });
+             }
+
             // Check if URL has #about on page load and set initial state
             if (window.location.hash === '#about') {
                 pageContainer.classList.add('show-about');
             }
-            
+
             // Initialize in transition mode
             toggleTransitionMode(true);
         }

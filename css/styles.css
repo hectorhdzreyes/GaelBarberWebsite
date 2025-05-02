@@ -2504,12 +2504,12 @@ section {
 #services {
     position: relative;             /* For positioning */
     z-index: 10;                    /* Above other sections */
-    margin-top: 100vh;              /* Full viewport height */
-    padding-top: 0;                 /* No top padding */
+    margin-top: 100vh;              /* Restore original margin */
+    padding-top: 0;                 /* Restore original padding */
     display: block !important;      /* Force display */
     visibility: visible !important;  /* Force visibility */
     opacity: 1;                     /* Full opacity */
-    transition: opacity 0.4s ease-in-out;  /* Smooth transitions */
+    transition: opacity 0.4s ease-in-out;  /* Restore original transition */
     background-color: #000;         /* Black background */
 }
 
@@ -2528,6 +2528,13 @@ section {
 .page-container.transition-active {
     height: 100vh;                  /* Full viewport height */
     position: relative;             /* For positioning */
+}
+
+/* When scrolled past, collapse the container */
+.page-container.scrolled-past {
+    height: 0 !important; 
+    overflow: hidden !important;
+    /* transition: height 0.3s ease-out; optional transition */
 }
 
 .page-container.transition-active .hero,

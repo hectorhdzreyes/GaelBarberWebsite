@@ -1294,6 +1294,23 @@ section {
     /* MOBILE-SPECIFIC EFFECTS FOR HERO ELEMENTS */
     /* Same effects as desktop but applied differently for mobile */
     
+    /* Fix large gap between hero and services on mobile */
+    #services {
+        margin-top: 0 !important; /* Remove margin on mobile */
+        min-height: auto !important; /* Adjust height on mobile */
+        padding-top: 6rem !important; /* Add some padding at the top instead */
+    }
+    
+    /* Handle page container better on mobile */
+    .page-container.scrolled-past {
+        display: none !important;
+        height: 0 !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        position: absolute !important;
+        z-index: -1 !important;
+    }
+    
     /* Logo and Header Layout */
     .desktop-corner-logo {
         display: none; /* Hide the desktop version */
@@ -2421,6 +2438,16 @@ section {
     /* ... existing footer & spacing styles ... */
 
     /* ... rest of mobile styles ... */
+
+    /* ... existing mobile styles ... */
+    
+    /* Fix large gap between hero and services on mobile */
+    #services {
+        margin-top: 0 !important; /* Remove margin on mobile */
+        min-height: auto !important; /* Adjust height on mobile */
+    }
+    
+    /* ... rest of existing mobile styles ... */
 }
 
 @media screen and (max-width: 576px) {

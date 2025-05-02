@@ -1988,11 +1988,19 @@ section {
 
     .about-text p {
         font-size: 1rem; /* Smaller font size for mobile */
-        line-height: 1.7; /* Adjust line height if needed */
+        line-height: 1.7; 
+        text-align: center; /* Center align text */
+    /* Adjust line height if needed */
     }
 
     .about-container {
         padding: 0 1rem; /* Reduce horizontal padding for more width */
+    }
+
+    /* Make mobile panel text black when About page is shown */
+    .page-container.mobile-container.show-about ~ .header .hero-mobile-panel a,
+    .page-container.mobile-container.show-about ~ .header .hero-mobile-panel div {
+        color: #000000 !important; /* Black text */
     }
 
     .section-header {

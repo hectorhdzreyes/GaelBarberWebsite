@@ -2371,11 +2371,13 @@ section {
         flex-direction: column;
         align-items: center;
         gap: 0.1rem; 
+        width: 100%; /* Ensure item takes full width */
     }
     .contact-column:nth-child(1) .contact-label,
     .contact-column:nth-child(1) .contact-value {
         font-size: 0.7rem; 
         text-align: center; 
+        width: 100%; /* Force full width for centering */
     }
     
     /* --- Column 2 Specific --- */

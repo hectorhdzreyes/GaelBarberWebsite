@@ -2082,6 +2082,87 @@ section {
     .footer-logo-img {
         height: 40px;
     }
+
+    /* 1. Contact Section - Force Horizontal */
+    .contact-content {
+        flex-direction: row;     /* Horizontal layout */
+        flex-wrap: nowrap; /* Prevent wrapping */
+        gap: 0.5rem; /* Further reduce gap */
+        justify-content: space-between; /* Distribute space */
+    }
+
+    .contact-column {
+        padding: 0 0.2rem; /* Minimal padding */
+        flex: 0 1 auto; /* Allow shrinking, don't grow, basis auto */
+        text-align: center; /* Center text within columns */
+    }
+
+    .contact-item {
+        flex-direction: column; /* Stack label/value vertically */
+        align-items: center; /* Center items in column */
+        gap: 0.2rem; /* Reduce gap */
+    }
+    .contact-divider {
+        margin: 0.5rem 0 1rem 0;
+    }
+
+    .contact-column h3 {
+        font-size: 0.8rem; /* Smaller heading */
+        margin-bottom: 0.8rem;
+    }
+    .contact-label,
+    .contact-value {
+        font-size: 0.7rem; /* Smaller text */
+        text-align: center; /* Ensure value is centered */
+    }
+
+    .social-icons {
+        justify-content: center; /* Center icons */
+        gap: 0.8rem; /* Adjust gap */
+    }
+    .social-icons a {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+    }
+    
+    /* 2. Footer - Vertical Stack, Centered */
+    .footer-container {
+        grid-template-columns: 1fr; /* Single column */
+        gap: 1.5rem;                  /* Adjust vertical gap */
+        justify-items: center; /* Center items horizontally */
+        text-align: center; /* Center all text */
+    }
+
+    .footer-logo a {
+       justify-content: center; /* Center logo content */
+       text-decoration: none; /* Remove strikethrough if not desired */
+    }
+
+    .footer-nav ul {
+        flex-direction: row;     /* Horizontal nav */
+        justify-content: center; /* Center nav items */
+        gap: 1rem;               /* Adjust gap */
+        flex-wrap: wrap; /* Allow wrapping if needed */
+        width: 100%; /* Ensure nav takes full width for centering */
+    }
+    
+    .copyright {
+        text-align: center;         /* Center copyright text */
+    }
+    
+    /* 3. Section Spacing */
+    section#gallery {
+        padding-bottom: 3rem; /* Reduced bottom padding */
+    }
+    section#contact {
+        padding-top: 3rem; /* Reduced top padding */
+        padding-bottom: 3rem; /* Reduced bottom padding */
+    }
+    .footer {
+        padding-top: 2rem; /* Reduced top padding */
+        padding-bottom: 2rem;
+    }
 }
 
 @media screen and (max-width: 576px) {

@@ -2849,3 +2849,23 @@ html {
     object-fit: cover;
 }
 
+/* Desktop-only: About content layout in two equal columns */
+@media screen and (min-width: 769px) {
+    .about-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Two equal columns instead of three */
+        grid-template-rows: auto;
+        gap: 3rem; /* Increased gap between columns */
+    }
+    
+    .about-text {
+        grid-column: 1; /* Text on left */
+    }
+    
+    .about-image {
+        grid-column: 2; /* Image on right */
+        height: 550px; /* Taller image */
+        margin-top: -40px!important;
+    }
+}
+

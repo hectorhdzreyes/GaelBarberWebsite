@@ -1113,9 +1113,10 @@ section {
 
 .footer-logo a {
     display: flex;              /* Flexbox layout */
-    align-items: center;        /* Center vertically */
+    align-items: center;  
+    margin-right: 10px;      /* Center vertically */
     justify-content: flex-start;  /* Align to start */
-    gap: 10px;                  /* Space between elements */
+    gap: 5px;                  /* Space between elements */
     color: var(--light-color);  /* White text */
     text-decoration: line-through;  /* Strikethrough effect */
     text-decoration-thickness: 1.5px;  /* Thicker strikethrough */

@@ -1979,7 +1979,7 @@ section {
     .about-image {
         grid-row: 2; /* Ensure image is below tagline, above text */
         height: 300px; /* Adjust height for mobile */
-        margin-bottom: 1rem; /* Add space below image */
+        margin-bottom: 0.5rem; /* Reduce space below image */
     }
 
     .about-text {
@@ -1996,7 +1996,7 @@ section {
     }
 
     .section-header {
-        margin-bottom: 3rem;        /* Reduced spacing */
+        margin-bottom: 1.5rem;        /* Reduced spacing below header */
     }
 }
 

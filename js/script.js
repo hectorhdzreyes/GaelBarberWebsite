@@ -112,21 +112,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 e.preventDefault();
                 
                 // Get target section directly by ID
-                const targetSection = document.getElementById(targetId.substring(1));
+                const targetSection = document.querySelector(targetId);
                 
                 if (targetSection) {
-                    // Smooth scroll to section with increased offset for fixed header
-                    let headerOffset = 200; // Increased offset value to prevent overshooting
+                    // Smooth scroll to section with offset for fixed header
+                    let headerOffset = 160; // Offset value for header
                     
-                    // Calculate absolute position from the top of the page
-                    let elementPosition = targetSection.getBoundingClientRect().top;
-                    let offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    // Directly get the element's position
+                    const sectionRect = targetSection.getBoundingClientRect();
+                    const absolutePosition = sectionRect.top + window.pageYOffset;
                     
-                    console.log(`Scrolling to section ${targetId} at position: ${offsetPosition}`);
-                    
-                    // Scroll to the target position
+                    // Scroll to the exact section position minus header offset
                     window.scrollTo({
-                        top: offsetPosition,
+                        top: absolutePosition - headerOffset,
                         behavior: 'smooth'
                     });
                 }
@@ -291,26 +289,17 @@ function scrollToSpecificSection(sectionId, event) {
         return;
     }
     
-    // Wait for any animations to complete and DOM to update
-    setTimeout(() => {
-        // Calculate position with a larger offset specifically for desktop
-        const desktopHeaderOffset = 160; // Adjusted offset for better positioning
-        const sectionTop = section.getBoundingClientRect().top + window.scrollY;
-        const targetPosition = sectionTop - desktopHeaderOffset;
-        
-        // Log target
-        console.log(`Target position: ${targetPosition}, Section top: ${sectionTop}`);
-        
-        // Perform the scroll
-        window.scrollTo({
-            top: targetPosition,
-            behavior: 'smooth'
-        });
-        
-        // Add highlight effect
-        section.classList.add('highlight-section');
-        setTimeout(() => {
-            section.classList.remove('highlight-section');
-        }, 1000);
-    }, 50);
+    // Calculate position with a larger offset specifically for desktop
+    const desktopHeaderOffset = 250; // Much larger offset for desktop navigation
+    const sectionTop = section.getBoundingClientRect().top + window.pageYOffset;
+    const targetPosition = sectionTop - desktopHeaderOffset;
+    
+    // Log target
+    console.log(`Target position: ${targetPosition}, Section top: ${sectionTop}`);
+    
+    // Perform the scroll
+    window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+    });
 } 

@@ -112,19 +112,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 e.preventDefault();
                 
                 // Get target section directly by ID
-                const targetSection = document.querySelector(targetId);
+                const targetSection = document.getElementById(targetId.substring(1));
                 
                 if (targetSection) {
-                    // Smooth scroll to section with offset for fixed header
-                    let headerOffset = 160; // Offset value for header
+                    // Smooth scroll to section with increased offset for fixed header
+                    let headerOffset = 200; // Increased offset value to prevent overshooting
                     
-                    // Directly get the element's position
-                    const sectionRect = targetSection.getBoundingClientRect();
-                    const absolutePosition = sectionRect.top + window.pageYOffset;
+                    // Calculate absolute position from the top of the page
+                    let elementPosition = targetSection.getBoundingClientRect().top;
+                    let offsetPosition = elementPosition + window.pageYOffset - headerOffset;
                     
-                    // Scroll to the exact section position minus header offset
+                    console.log(`Scrolling to section ${targetId} at position: ${offsetPosition}`);
+                    
+                    // Scroll to the target position
                     window.scrollTo({
-                        top: absolutePosition - headerOffset,
+                        top: offsetPosition,
                         behavior: 'smooth'
                     });
                 }
@@ -282,10 +284,25 @@ function scrollToSpecificSection(sectionId, event) {
     
     console.log(`Desktop navigation: Scrolling to section: ${sectionId}`);
     
+    // Adjust section targeting - navigate to one section before the intended target
+    let adjustedSectionId = sectionId;
+    
+    // Map each section to the one before it
+    if (sectionId === 'services') {
+        // For services, keep at top
+        adjustedSectionId = 'services';
+    } else if (sectionId === 'pricing') {
+        adjustedSectionId = 'services';
+    } else if (sectionId === 'gallery') {
+        adjustedSectionId = 'pricing';
+    } else if (sectionId === 'contact') {
+        adjustedSectionId = 'gallery';
+    }
+    
     // Get the section using ID
-    const section = document.getElementById(sectionId);
+    const section = document.getElementById(adjustedSectionId);
     if (!section) {
-        console.error(`Section #${sectionId} not found`);
+        console.error(`Section #${adjustedSectionId} not found`);
         return;
     }
     
@@ -295,7 +312,7 @@ function scrollToSpecificSection(sectionId, event) {
     const targetPosition = sectionTop - desktopHeaderOffset;
     
     // Log target
-    console.log(`Target position: ${targetPosition}, Section top: ${sectionTop}`);
+    console.log(`Target position: ${targetPosition}, Section top: ${sectionTop}, Adjusted from ${sectionId} to ${adjustedSectionId}`);
     
     // Perform the scroll
     window.scrollTo({

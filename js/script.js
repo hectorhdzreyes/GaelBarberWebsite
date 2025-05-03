@@ -284,18 +284,7 @@ function scrollToSpecificSection(sectionId, event) {
     
     console.log(`Desktop navigation: Scrolling to section: ${sectionId}`);
     
-    // SPECIAL FIX FOR SERVICES: Use fixed position
-    if (sectionId === 'services') {
-        // Force scroll to a fixed position near top of page
-        console.log("SERVICES LINK CLICKED - Using fixed position");
-        window.scrollTo({
-            top: 0, // Scroll to absolute top of page
-            behavior: 'smooth'
-        });
-        return; // Exit function early
-    }
-    
-    // Normal handling for other sections
+    // Get the section using ID directly
     const section = document.getElementById(sectionId);
     if (!section) {
         console.error(`Section #${sectionId} not found`);
@@ -306,13 +295,16 @@ function scrollToSpecificSection(sectionId, event) {
     const sectionTop = section.getBoundingClientRect().top + window.pageYOffset;
     let finalPosition = 0;
     
-    // Use extremely aggressive fixed positions for each section
-    if (sectionId === 'pricing') {
-        // For pricing, scroll much further down
-        finalPosition = sectionTop + 300; // Large positive offset to scroll way down
+    // Use fixed positions for each section instead of offsets
+    if (sectionId === 'services') {
+        // For services, position near the very top
+        finalPosition = sectionTop - 300; // Very large offset to stop much higher
+    } else if (sectionId === 'pricing') {
+        // For pricing, scroll further down
+        finalPosition = sectionTop + 100; // Negative offset means scroll past the section start
     } else if (sectionId === 'gallery') {
-        // For gallery, scroll much further down
-        finalPosition = sectionTop + 300; // Large positive offset to scroll way down
+        // For gallery, scroll further down
+        finalPosition = sectionTop + 100; // Negative offset to scroll more
     } else if (sectionId === 'contact') {
         // For contact, use standard position
         finalPosition = sectionTop - 100;
@@ -321,20 +313,12 @@ function scrollToSpecificSection(sectionId, event) {
         finalPosition = sectionTop - 100;
     }
     
-    // Add forced scroll delay to ensure it works
-    setTimeout(function() {
-        // Log what's happening
-        console.log(`SCROLLING: Section: ${sectionId}, Raw top: ${sectionTop}, Final position: ${finalPosition}`);
-        
-        // Perform the scroll with the fixed position
-        window.scrollTo({
-            top: finalPosition,
-            behavior: 'smooth'
-        });
-        
-        // Double-check scroll position after a delay
-        setTimeout(function() {
-            console.log(`Current scroll position: ${window.pageYOffset}`);
-        }, 1000);
-    }, 50);
+    // Log what's happening
+    console.log(`Section: ${sectionId}, Raw top: ${sectionTop}, Final position: ${finalPosition}`);
+    
+    // Perform the scroll with the fixed position
+    window.scrollTo({
+        top: finalPosition,
+        behavior: 'smooth'
+    });
 } 

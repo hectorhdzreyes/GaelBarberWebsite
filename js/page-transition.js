@@ -262,7 +262,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Update URL without page reload
                 window.history.pushState({page: 'home'}, 'Home', '#home');
             }
-
+            
             // Attach click handlers
             if (heroSection) {
                 heroSection.addEventListener('click', handleHeroClick);
@@ -270,66 +270,66 @@ document.addEventListener('DOMContentLoaded', function() {
             if (aboutSection) {
                 aboutSection.addEventListener('click', handleAboutClick);
             }
-
+            
             // Add event listeners for nav links if needed
             // ... (keep existing nav link handlers)
             
             // Handle browser back/forward buttons
             window.addEventListener('popstate', function(e) {
-                 if (isTransitionModeActive) {
-                     if (e.state && e.state.page === 'about') {
-                         pageContainer.classList.add('show-about');
-                     } else {
-                         pageContainer.classList.remove('show-about');
-                     }
-                 }
+                if (isTransitionModeActive) {
+                    if (e.state && e.state.page === 'about') {
+                        pageContainer.classList.add('show-about');
+                    } else {
+                        pageContainer.classList.remove('show-about');
+                    }
+                }
             });
             
             // For desktop only - Handle scroll events to toggle between transition and scroll modes
-             if (!isMobile) {
-                 let lastScrollPos = window.scrollY;
-                 let ticking = false;
-                 
-                 window.addEventListener('scroll', function() {
-                     lastScrollPos = window.scrollY;
-                     
-                     if (!ticking) {
-                         window.requestAnimationFrame(function() {
-                             const currentScrollPos = lastScrollPos;
-                             
+            if (!isMobile) {
+                let lastScrollPos = window.scrollY;
+                let ticking = false;
+                
+                window.addEventListener('scroll', function() {
+                    lastScrollPos = window.scrollY;
+                    
+                    if (!ticking) {
+                        window.requestAnimationFrame(function() {
+                            const currentScrollPos = lastScrollPos;
+                            
                              // If scrolled down past a threshold, disable transition mode & hide page container
                              if (currentScrollPos > window.innerHeight * 0.6) { 
-                                 if (isTransitionModeActive) {
-                                     toggleTransitionMode(false);
-                                 }
+                                if (isTransitionModeActive) {
+                                    toggleTransitionMode(false);
+                                }
                                  // Add class to potentially hide/shrink page-container via CSS
                                  pageContainer.classList.add('scrolled-past'); 
                                  // Set z-index to ensure it's behind other content
                                  pageContainer.style.zIndex = "-1"; 
-                             } else if (currentScrollPos < 50) {
+                            } else if (currentScrollPos < 50) {
                                  // If scrolling back to top, enable transition mode & show page container
-                                 if (!isTransitionModeActive) {
-                                     toggleTransitionMode(true);
-                                 }
+                                if (!isTransitionModeActive) {
+                                    toggleTransitionMode(true);
+                                }
                                  // Remove class to restore page-container
                                  pageContainer.classList.remove('scrolled-past'); 
                                  // Restore z-index
                                  pageContainer.style.zIndex = "5";
-                             }
-                             
-                             ticking = false;
-                         });
-                         
-                         ticking = true;
-                     }
-                 });
-             }
-
+                            }
+                            
+                            ticking = false;
+                        });
+                        
+                        ticking = true;
+                    }
+                });
+            }
+            
             // Check if URL has #about on page load and set initial state
             if (window.location.hash === '#about') {
                 pageContainer.classList.add('show-about');
             }
-
+            
             // Initialize in transition mode
             toggleTransitionMode(true);
         }

@@ -284,39 +284,57 @@ function scrollToSpecificSection(sectionId, event) {
     
     console.log(`Desktop navigation: Scrolling to section: ${sectionId}`);
     
-    // Adjust section targeting - navigate to one section before the intended target
-    let adjustedSectionId = sectionId;
-    
-    // Map each section to the one before it
+    // SPECIAL FIX FOR SERVICES: Use fixed position
     if (sectionId === 'services') {
-        // For services, keep at top
-        adjustedSectionId = 'services';
-    } else if (sectionId === 'pricing') {
-        adjustedSectionId = 'services';
-    } else if (sectionId === 'gallery') {
-        adjustedSectionId = 'pricing';
-    } else if (sectionId === 'contact') {
-        adjustedSectionId = 'gallery';
+        // Force scroll to a fixed position near top of page
+        console.log("SERVICES LINK CLICKED - Using fixed position");
+        window.scrollTo({
+            top: 0, // Scroll to absolute top of page
+            behavior: 'smooth'
+        });
+        return; // Exit function early
     }
     
-    // Get the section using ID
-    const section = document.getElementById(adjustedSectionId);
+    // Normal handling for other sections
+    const section = document.getElementById(sectionId);
     if (!section) {
-        console.error(`Section #${adjustedSectionId} not found`);
+        console.error(`Section #${sectionId} not found`);
         return;
     }
     
-    // Calculate position with a larger offset specifically for desktop
-    const desktopHeaderOffset = 250; // Much larger offset for desktop navigation
+    // Calculate base position
     const sectionTop = section.getBoundingClientRect().top + window.pageYOffset;
-    const targetPosition = sectionTop - desktopHeaderOffset;
+    let finalPosition = 0;
     
-    // Log target
-    console.log(`Target position: ${targetPosition}, Section top: ${sectionTop}, Adjusted from ${sectionId} to ${adjustedSectionId}`);
+    // Use extremely aggressive fixed positions for each section
+    if (sectionId === 'pricing') {
+        // For pricing, scroll much further down
+        finalPosition = sectionTop + 300; // Large positive offset to scroll way down
+    } else if (sectionId === 'gallery') {
+        // For gallery, scroll much further down
+        finalPosition = sectionTop + 300; // Large positive offset to scroll way down
+    } else if (sectionId === 'contact') {
+        // For contact, use standard position
+        finalPosition = sectionTop - 100;
+    } else {
+        // Default fallback
+        finalPosition = sectionTop - 100;
+    }
     
-    // Perform the scroll
-    window.scrollTo({
-        top: targetPosition,
-        behavior: 'smooth'
-    });
+    // Add forced scroll delay to ensure it works
+    setTimeout(function() {
+        // Log what's happening
+        console.log(`SCROLLING: Section: ${sectionId}, Raw top: ${sectionTop}, Final position: ${finalPosition}`);
+        
+        // Perform the scroll with the fixed position
+        window.scrollTo({
+            top: finalPosition,
+            behavior: 'smooth'
+        });
+        
+        // Double-check scroll position after a delay
+        setTimeout(function() {
+            console.log(`Current scroll position: ${window.pageYOffset}`);
+        }, 1000);
+    }, 50);
 } 

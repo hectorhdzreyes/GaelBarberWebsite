@@ -164,7 +164,7 @@
         <!-- Left Navigation Panel - Desktop -->
         <div class="hero-left-panel hide-on-mobile">
             <div>about me</div>
-            <a href="#services" onclick="scrollToSpecificSection('services', event)">services</a>
+            <a href="javascript:void(0)" id="desktop-services-link">services</a>
             <a href="#pricing" onclick="scrollToSpecificSection('pricing', event)">pricing</a>
             <a href="#gallery" onclick="scrollToSpecificSection('gallery', event)">gallery</a>
             <a href="#contact" onclick="scrollToSpecificSection('contact', event)">contact</a>
@@ -596,6 +596,45 @@
       }, 200); // 200ms delay should be sufficient
       </script>
       <!-- Cal element-click embed code ends --> 
+
+    <!-- Custom script to fix desktop left panel services link -->
+    <script>
+    // Wait for DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get the services link by ID
+        const servicesLink = document.getElementById('desktop-services-link');
+        
+        if (servicesLink) {
+            console.log("Found services link, attaching handler");
+            // Attach click handler
+            servicesLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Get the hero section and calculate position
+                const heroSection = document.querySelector('.hero');
+                if (heroSection) {
+                    const heroHeight = heroSection.offsetHeight;
+                    // Scroll to just after the hero section
+                    window.scrollTo({
+                        top: heroHeight - 50, // Subtract 50px to show a bit of the services section
+                        behavior: 'smooth'
+                    });
+                    console.log("NEW METHOD: Scrolled to hero height: " + (heroHeight - 50));
+                } else {
+                    // Fallback to a reasonable position if hero not found
+                    window.scrollTo({
+                        top: 700,
+                        behavior: 'smooth'
+                    });
+                }
+                return false;
+            });
+        } else {
+            console.error("Services link not found by ID");
+        }
+    });
+    </script>
 
 </body>
 </html> 

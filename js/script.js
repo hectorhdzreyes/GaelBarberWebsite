@@ -291,17 +291,26 @@ function scrollToSpecificSection(sectionId, event) {
         return;
     }
     
-    // Calculate position with a larger offset specifically for desktop
-    const desktopHeaderOffset = 250; // Much larger offset for desktop navigation
-    const sectionTop = section.getBoundingClientRect().top + window.pageYOffset;
-    const targetPosition = sectionTop - desktopHeaderOffset;
-    
-    // Log target
-    console.log(`Target position: ${targetPosition}, Section top: ${sectionTop}`);
-    
-    // Perform the scroll
-    window.scrollTo({
-        top: targetPosition,
-        behavior: 'smooth'
-    });
+    // Wait for any animations to complete and DOM to update
+    setTimeout(() => {
+        // Calculate position with a larger offset specifically for desktop
+        const desktopHeaderOffset = 160; // Adjusted offset for better positioning
+        const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+        const targetPosition = sectionTop - desktopHeaderOffset;
+        
+        // Log target
+        console.log(`Target position: ${targetPosition}, Section top: ${sectionTop}`);
+        
+        // Perform the scroll
+        window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+        });
+        
+        // Add highlight effect
+        section.classList.add('highlight-section');
+        setTimeout(() => {
+            section.classList.remove('highlight-section');
+        }, 1000);
+    }, 50);
 } 

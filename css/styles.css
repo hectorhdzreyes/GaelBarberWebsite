@@ -2401,20 +2401,20 @@ section {
     /* Align label/value horizontally */
     .contact-column:nth-child(2) .contact-item {
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: baseline; /* Align text baselines */
-        gap: 0.5rem; /* Space between label/value */
+        flex-direction: column;
+        align-items: center;
+        gap: 0.1rem; 
+        width: 100%; /* Ensure item takes full width */
     }
     .contact-column:nth-child(2) .contact-label {
         font-size: 0.7rem; 
-        text-align: left;
-        flex-shrink: 0; /* Prevent shrinking */
+        text-align: center;
+        width: 100%; /* Force full width for centering */
     }
     .contact-column:nth-child(2) .contact-value {
         font-size: 0.7rem; 
-        text-align: right;
-        flex-grow: 1; /* Allow value to take space */
+        text-align: center;
+        width: 100%; /* Force full width for centering */
     }
     .contact-column:nth-child(2) .contact-divider {
         height: 1px;

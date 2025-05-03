@@ -112,19 +112,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 e.preventDefault();
                 
                 // Get target section directly by ID
-                const targetSection = document.querySelector(targetId);
+                const targetSection = document.getElementById(targetId.substring(1));
                 
                 if (targetSection) {
-                    // Smooth scroll to section with offset for fixed header
-                    let headerOffset = 160; // Offset value for header
+                    // Smooth scroll to section with increased offset for fixed header
+                    let headerOffset = 200; // Increased offset value to prevent overshooting
                     
-                    // Directly get the element's position
-                    const sectionRect = targetSection.getBoundingClientRect();
-                    const absolutePosition = sectionRect.top + window.pageYOffset;
+                    // Calculate absolute position from the top of the page
+                    let elementPosition = targetSection.getBoundingClientRect().top;
+                    let offsetPosition = elementPosition + window.pageYOffset - headerOffset;
                     
-                    // Scroll to the exact section position minus header offset
+                    console.log(`Scrolling to section ${targetId} at position: ${offsetPosition}`);
+                    
+                    // Scroll to the target position
                     window.scrollTo({
-                        top: absolutePosition - headerOffset,
+                        top: offsetPosition,
                         behavior: 'smooth'
                     });
                 }

@@ -276,3 +276,32 @@ function scrollToSection(sectionId, event) {
         }, 1000);
     }, 500);
 } 
+
+// Special function for desktop left panel navigation ONLY
+function scrollToSpecificSection(sectionId, event) {
+    event.preventDefault();
+    event.stopPropagation();
+    
+    console.log(`Desktop navigation: Scrolling to section: ${sectionId}`);
+    
+    // Get the section using ID
+    const section = document.getElementById(sectionId);
+    if (!section) {
+        console.error(`Section #${sectionId} not found`);
+        return;
+    }
+    
+    // Calculate position with a larger offset specifically for desktop
+    const desktopHeaderOffset = 250; // Much larger offset for desktop navigation
+    const sectionTop = section.getBoundingClientRect().top + window.pageYOffset;
+    const targetPosition = sectionTop - desktopHeaderOffset;
+    
+    // Log target
+    console.log(`Target position: ${targetPosition}, Section top: ${sectionTop}`);
+    
+    // Perform the scroll
+    window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+    });
+} 

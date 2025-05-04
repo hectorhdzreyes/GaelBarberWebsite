@@ -284,41 +284,32 @@ function scrollToSpecificSection(sectionId, event) {
     
     console.log(`Desktop navigation: Scrolling to section: ${sectionId}`);
     
-    // Get the section using ID directly
     const section = document.getElementById(sectionId);
     if (!section) {
         console.error(`Section #${sectionId} not found`);
         return;
     }
     
-    // Calculate base position
-    const sectionTop = section.getBoundingClientRect().top + window.pageYOffset;
-    let finalPosition = 0;
-    
-    // Use fixed positions for each section instead of offsets
+    let desktopHeaderOffset = 100; // Default offset
+
+    // Custom negative offsets for each section to position them below the header
     if (sectionId === 'services') {
-        // For services, position near the very top
-        finalPosition = sectionTop - 300; // Very large offset to stop much higher
+        desktopHeaderOffset = 250; // Increased offset to stop higher for Services
     } else if (sectionId === 'pricing') {
-        // For pricing, scroll further down
-        finalPosition = sectionTop + 100; // Negative offset means scroll past the section start
+        desktopHeaderOffset = 150; // Moderate offset for Pricing
     } else if (sectionId === 'gallery') {
-        // For gallery, scroll further down
-        finalPosition = sectionTop + 100; // Negative offset to scroll more
+        desktopHeaderOffset = 150; // Moderate offset for Gallery
     } else if (sectionId === 'contact') {
-        // For contact, use standard position
-        finalPosition = sectionTop - 100;
-    } else {
-        // Default fallback
-        finalPosition = sectionTop - 100;
+        desktopHeaderOffset = 100; // Standard offset for Contact
     }
     
-    // Log what's happening
-    console.log(`Section: ${sectionId}, Raw top: ${sectionTop}, Final position: ${finalPosition}`);
+    const sectionTop = section.getBoundingClientRect().top + window.pageYOffset;
+    const targetPosition = sectionTop - desktopHeaderOffset;
     
-    // Perform the scroll with the fixed position
+    console.log(`Section: ${sectionId}, Target Position: ${targetPosition}, Offset: ${desktopHeaderOffset}`);
+    
     window.scrollTo({
-        top: finalPosition,
+        top: targetPosition,
         behavior: 'smooth'
     });
 } 

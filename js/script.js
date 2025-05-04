@@ -101,39 +101,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // ADDED: Special smooth scrolling handler for hero-left-panel links
-    const heroLeftPanelLinks = document.querySelectorAll('.hero-left-panel a');
-    
-    heroLeftPanelLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            // Only process links to sections on this page
-            const targetId = this.getAttribute('href');
-            if (targetId.startsWith('#')) {
-                e.preventDefault();
-                
-                // Get target section directly by ID
-                const targetSection = document.getElementById(targetId.substring(1));
-                
-                if (targetSection) {
-                    // Smooth scroll to section with increased offset for fixed header
-                    let headerOffset = 200; // Increased offset value to prevent overshooting
-                    
-                    // Calculate absolute position from the top of the page
-                    let elementPosition = targetSection.getBoundingClientRect().top;
-                    let offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                    
-                    console.log(`Scrolling to section ${targetId} at position: ${offsetPosition}`);
-                    
-                    // Scroll to the target position
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            }
-        });
-    });
-    
     // Form submission
     const contactForm = document.getElementById('contactForm');
     const bookingForm = document.getElementById('bookingForm');

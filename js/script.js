@@ -257,11 +257,11 @@ function scrollToSpecificSection(sectionId, event) {
         return;
     }
     
-    // Use the same calculation method as the working mobile links
-    const offset = 100; // Using 100 for desktop header (adjust if needed)
+    // Use the same calculation method as mobile, but with a larger fixed offset for desktop
+    const offset = 250; // Significantly increased offset for desktop header clearance
     const targetPosition = section.getBoundingClientRect().top + window.pageYOffset - offset;
     
-    console.log(`Section: ${sectionId}, Target Position (using mobile method): ${targetPosition}, Offset: ${offset}`);
+    console.log(`Section: ${sectionId}, Target Position (Large Desktop Offset): ${targetPosition}, Offset: ${offset}`);
     
     window.scrollTo({
         top: targetPosition,

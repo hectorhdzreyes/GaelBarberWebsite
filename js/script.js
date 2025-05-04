@@ -270,10 +270,10 @@ function scrollToSpecificSection(sectionId, event) {
         desktopHeaderOffset = 100; // Standard offset for Contact
     }
     
-    const sectionTop = section.getBoundingClientRect().top + window.pageYOffset;
-    const targetPosition = sectionTop - desktopHeaderOffset;
+    // Calculate target position using offsetTop
+    const targetPosition = section.offsetTop - desktopHeaderOffset;
     
-    console.log(`Section: ${sectionId}, Target Position: ${targetPosition}, Offset: ${desktopHeaderOffset}`);
+    console.log(`Section: ${sectionId}, Target Position (using offsetTop): ${targetPosition}, Offset: ${desktopHeaderOffset}`);
     
     window.scrollTo({
         top: targetPosition,

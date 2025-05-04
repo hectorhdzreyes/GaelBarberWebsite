@@ -257,11 +257,21 @@ function scrollToSpecificSection(sectionId, event) {
         return;
     }
     
-    // Use the same calculation method as mobile, but with a larger fixed offset for desktop
-    const offset = 250; // Significantly increased offset for desktop header clearance
-    const targetPosition = section.getBoundingClientRect().top + window.pageYOffset - offset;
+    // Custom, larger offsets for desktop left panel
+    let desktopHeaderOffset = 150; // Default/Contact offset
+
+    if (sectionId === 'services') {
+        desktopHeaderOffset = 400; // Very large offset for Services
+    } else if (sectionId === 'pricing') {
+        desktopHeaderOffset = 200; // Increased offset for Pricing
+    } else if (sectionId === 'gallery') {
+        desktopHeaderOffset = 200; // Increased offset for Gallery
+    } // Contact uses the default 150
     
-    console.log(`Section: ${sectionId}, Target Position (Large Desktop Offset): ${targetPosition}, Offset: ${offset}`);
+    // Use the getBoundingClientRect calculation
+    const targetPosition = section.getBoundingClientRect().top + window.pageYOffset - desktopHeaderOffset;
+    
+    console.log(`Section: ${sectionId}, Target Position: ${targetPosition}, Offset: ${desktopHeaderOffset}`);
     
     window.scrollTo({
         top: targetPosition,

@@ -257,23 +257,11 @@ function scrollToSpecificSection(sectionId, event) {
         return;
     }
     
-    let desktopHeaderOffset = 100; // Default offset
-
-    // Custom negative offsets for each section to position them below the header
-    if (sectionId === 'services') {
-        desktopHeaderOffset = 250; // Increased offset to stop higher for Services
-    } else if (sectionId === 'pricing') {
-        desktopHeaderOffset = 150; // Moderate offset for Pricing
-    } else if (sectionId === 'gallery') {
-        desktopHeaderOffset = 150; // Moderate offset for Gallery
-    } else if (sectionId === 'contact') {
-        desktopHeaderOffset = 100; // Standard offset for Contact
-    }
+    // Use the same calculation method as the working mobile links
+    const offset = 100; // Using 100 for desktop header (adjust if needed)
+    const targetPosition = section.getBoundingClientRect().top + window.pageYOffset - offset;
     
-    // Calculate target position using offsetTop
-    const targetPosition = section.offsetTop - desktopHeaderOffset;
-    
-    console.log(`Section: ${sectionId}, Target Position (using offsetTop): ${targetPosition}, Offset: ${desktopHeaderOffset}`);
+    console.log(`Section: ${sectionId}, Target Position (using mobile method): ${targetPosition}, Offset: ${offset}`);
     
     window.scrollTo({
         top: targetPosition,

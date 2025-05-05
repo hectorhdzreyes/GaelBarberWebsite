@@ -244,7 +244,7 @@ function scrollToSection(sectionId, event) {
     }, 500);
 } 
 
-// Special function for desktop left panel navigation ONLY
+// Special function for desktop left panel navigation
 function scrollToSpecificSection(sectionId, event) {
     event.preventDefault();
     event.stopPropagation();
@@ -257,24 +257,40 @@ function scrollToSpecificSection(sectionId, event) {
         return;
     }
     
-    // Custom, larger offsets for desktop left panel
-    let desktopHeaderOffset = 150; // Default/Contact offset
-
-    if (sectionId === 'services') {
-        desktopHeaderOffset = 400; // Very large offset for Services
-    } else if (sectionId === 'pricing') {
-        desktopHeaderOffset = 200; // Increased offset for Pricing
-    } else if (sectionId === 'gallery') {
-        desktopHeaderOffset = 200; // Increased offset for Gallery
-    } // Contact uses the default 150
+    // Get viewport height to calculate relative offsets
+    const viewportHeight = window.innerHeight;
     
-    // Use the getBoundingClientRect calculation
-    const targetPosition = section.getBoundingClientRect().top + window.pageYOffset - desktopHeaderOffset;
+    // Calculate offsets as a percentage of viewport height
+    let desktopHeaderOffset;
     
-    console.log(`Section: ${sectionId}, Target Position: ${targetPosition}, Offset: ${desktopHeaderOffset}`);
+    switch(sectionId) {
+        case 'services':
+            // Adjust this percentage as needed
+            desktopHeaderOffset = viewportHeight * 0.15; 
+            break;
+        case 'pricing':
+            desktopHeaderOffset = viewportHeight * 0.1;
+            break;
+        case 'gallery':
+            desktopHeaderOffset = viewportHeight * 0.1;
+            break;
+        case 'contact':
+        default:
+            desktopHeaderOffset = viewportHeight * 0.05;
+            break;
+    }
     
+    // Get the element's position
+    const sectionRect = section.getBoundingClientRect();
+    
+    // Calculate the target position, accounting for the current scroll position
+    const targetPosition = sectionRect.top + window.pageYOffset - desktopHeaderOffset;
+    
+    console.log(`Section: ${sectionId}, Target Position: ${targetPosition}, Offset: ${desktopHeaderOffset}, Viewport Height: ${viewportHeight}`);
+    
+    // Scroll to the target position
     window.scrollTo({
         top: targetPosition,
         behavior: 'smooth'
     });
-} 
+}

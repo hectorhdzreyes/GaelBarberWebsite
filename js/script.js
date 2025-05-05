@@ -266,13 +266,13 @@ function scrollToSpecificSection(sectionId, event) {
     switch(sectionId) {
         case 'services':
             // Adjust this percentage as needed
-            desktopHeaderOffset = viewportHeight * 1; 
+            desktopHeaderOffset = viewportHeight * 1.2; 
             break;
         case 'pricing':
-            desktopHeaderOffset = viewportHeight * 1;
+            desktopHeaderOffset = viewportHeight * 1.2;
             break;
         case 'gallery':
-            desktopHeaderOffset = viewportHeight * 1;
+            desktopHeaderOffset = viewportHeight * 1.2;
             break;
         case 'contact':
         default:

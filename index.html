@@ -18,6 +18,40 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- Cal.com Embed Code -->
+    <script>
+    (function(C, A, L) {
+        let p = function(a, ar) { a.q.push(ar); };
+        let d = C.document;
+        C.Cal = C.Cal || function() {
+            let cal = C.Cal;
+            let ar = arguments;
+            if (!cal.loaded) {
+                cal.ns = {};
+                cal.q = cal.q || [];
+                d.head.appendChild(d.createElement("script")).src = A;
+                cal.loaded = true;
+            }
+            if (ar[0] === L) {
+                const api = function() { p(api, arguments); };
+                const namespace = ar[1];
+                api.q = api.q || [];
+                typeof namespace === "string" && (cal.ns[namespace] = api) && p(api, ar);
+                return;
+            }
+            p(cal, ar);
+        };
+    })(window, "https://cal.com/embed.js", "init");
+
+    document.addEventListener('DOMContentLoaded', function() {
+        Cal("init", {
+            origin: "https://cal.com",
+            elementOrSelector: ".cal-trigger-item",
+            calLink: "gael-padilla-jng1ej/30min"
+        });
+    });
+    </script>
+
     <!-- Mobile hero effects initialization -->
     <script>
         (function() {
@@ -137,11 +171,8 @@
                     about me
                 </div>
                 <div 
-                    
                     class="cal-trigger-item" 
-                    data-cal-link="hector-hernandez-jng1ej/30min" 
-                    data-cal-namespace="book-now"
-                    data-cal-config='{"layout":"month_view"}'
+                    data-cal-link="gael-padilla-jng1ej/30min"
                 >
                     book now
                 </div>
@@ -170,9 +201,7 @@
             <a href="#contact" onclick="scrollToSpecificSection('contact', event)">contact</a>
             <div 
                 class="cal-trigger-item" 
-                data-cal-link="hector-hernandez-jng1ej/30min" 
-                data-cal-namespace="book-now"
-                data-cal-config='{"layout":"month_view"}'
+                data-cal-link="gael-padilla-jng1ej/30min"
             >
                 book now
             </div>
@@ -261,25 +290,7 @@
                 <p class="tagline">[Precision. Passion. Proffesionalism.]</p>
                 <button 
                     class="cal-trigger-item hero-btn" 
-                    data-cal-link="hector-hernandez-jng1ej/30min" 
-                    data-cal-namespace="book-now"
-                    data-cal-config='{"layout":"month_view"}'
-                    style="
-                        display: inline-block;
-                        background-color: #fff;
-                        color: #000;
-                        padding: 1rem 4rem;
-                        border: 1px solid #fff;
-                        cursor: pointer;
-                        font-weight: 500;
-                        letter-spacing: 2px;
-                        text-transform: uppercase;
-                        transition: all 0.3s ease;
-                        margin-top: 1rem;
-                        font-family: 'Libre Baskerville', serif;
-                        font-size: 1rem;
-                        border-radius: 25px;
-                    "
+                    data-cal-link="gael-padilla-jng1ej/30min"
                 >
                     BOOK NOW
                 </button>
@@ -407,20 +418,12 @@
             <div class="section-header">
                 <span class="section-number">03</span>
                 <h2>Pricing</h2>
-                <p class="section-tagline">Best Barber Experience</p>
+                <p class="section-tagline">Quality Comes at a Price</p>
             </div>
             <div class="pricing-content">
-                <div class="pricing-text">
-                    <p>I am committed to delivering the highest quality service to ensure your complete satisfaction. My expertise and dedication set me apart.</p>
-                </div>
-                <div class="pricing-list">
+                <div class="price-list">
                     <div class="price-item">
-                        <div class="price-name">Cippler Cut Only</div>
-                        <div class="price-line"></div>
-                        <div class="price-amount">$40</div>
-                    </div>
-                    <div class="price-item">
-                        <div class="price-name">Clipper Cut + Scissors Work</div>
+                        <div class="price-name">Regular Cut</div>
                         <div class="price-line"></div>
                         <div class="price-amount">$45</div>
                     </div>
@@ -433,26 +436,7 @@
                 <div style="width: 100%; max-width: 2000px; margin: 10 auto;">
                     <button 
                         class="cal-trigger-item hero-btn" 
-                        data-cal-link="hector-hernandez-jng1ej/30min" 
-                        data-cal-namespace="book-now"
-                        data-cal-config='{"layout":"month_view"}'
-                        style="
-                            display: block;
-                            width: 100%;
-                            background-color: #fff;
-                            color: #000;
-                            padding: 1rem 2.5rem;
-                            border: 1px solid #fff;
-                            cursor: pointer;
-                            font-weight: 500;
-                            letter-spacing: 3px;
-                            text-transform: uppercase;
-                            transition: all 0.3s ease;
-                            margin-top: 1rem;
-                            font-family: 'Libre Baskerville', serif;
-                            font-size: 1rem;
-                            border-radius: 25px;
-                        "
+                        data-cal-link="gael-padilla-jng1ej/30min"
                     >
                         BOOK NOW
                     </button>
@@ -578,24 +562,6 @@
     <script src="js/main.js"></script>
     <script src="js/page-transition.js"></script>
     <script src="js/hero-hover.js"></script>
-
-    <!-- Cal element-click embed code begins -->
-    <script type="text/javascript">
-      // Delay initialization slightly to ensure page-transition.js has finished DOM manipulation
-      setTimeout(function() {
-        (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
-        Cal("init", "book-now", {origin:"https://cal.com"});
-
-        // NOTE: The data attributes on the button element handle the triggering.
-        // The data-cal-link attribute specifies which calendar to open.
-        // The data-cal-namespace attribute should match the namespace used in Cal("init", ...)
-        // The data-cal-config attribute sets options like layout.
-      
-        // This UI call is optional for element-click, but can configure the modal appearance
-        Cal.ns["book-now"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
-      }, 200); // 200ms delay should be sufficient
-      </script>
-      <!-- Cal element-click embed code ends --> 
 
 </body>
 </html> 

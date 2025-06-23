@@ -133,6 +133,37 @@ document.addEventListener('DOMContentLoaded', function() {
             const originalHero = hero.cloneNode(true);
             const originalAbout = about.cloneNode(true);
             
+            // Re-initialize Cal.com buttons in the cloned hero section
+            originalHero.querySelectorAll('[data-cal-link]').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const link = button.getAttribute('data-cal-link');
+                    const namespace = button.getAttribute('data-cal-namespace');
+                    const config = JSON.parse(button.getAttribute('data-cal-config') || '{}');
+                    
+                    console.log('Cloned Cal.com button clicked:', { link, namespace, config });
+                    
+                    if (window.Cal && typeof window.Cal === 'function') {
+                        try {
+                            window.Cal.ns[namespace]("showModal", { 
+                                calLink: link,
+                                ...config
+                            });
+                        } catch (error) {
+                            console.error('Error showing Cal.com modal:', error);
+                            // Fallback - open in new tab
+                            window.open(`https://cal.com/${link}`, '_blank');
+                        }
+                    } else {
+                        console.error('Cal.com not initialized');
+                        // Fallback - open in new tab
+                        window.open(`https://cal.com/${link}`, '_blank');
+                    }
+                });
+            });
+            
             // Insert container in place of hero
             document.body.insertBefore(pageContainer, hero);
             
@@ -333,5 +364,17 @@ document.addEventListener('DOMContentLoaded', function() {
             // Initialize in transition mode
             toggleTransitionMode(true);
         }
+
+        // Re-setup hero hover and mobile scroll effects on the new dynamic elements
+        setTimeout(() => {
+            if (typeof setupHeroHoverEffect === 'function') {
+                console.log('Re-initializing hero hover effect');
+                setupHeroHoverEffect();
+            }
+            if (typeof setupMobileScrollEffects === 'function') {
+                console.log('Re-initializing mobile scroll effects');
+                setupMobileScrollEffects();
+            }
+        }, 500);
     }
 }); 

@@ -18,40 +18,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Cal.com Embed Code -->
-    <script>
-    (function(C, A, L) {
-        let p = function(a, ar) { a.q.push(ar); };
-        let d = C.document;
-        C.Cal = C.Cal || function() {
-            let cal = C.Cal;
-            let ar = arguments;
-            if (!cal.loaded) {
-                cal.ns = {};
-                cal.q = cal.q || [];
-                d.head.appendChild(d.createElement("script")).src = A;
-                cal.loaded = true;
-            }
-            if (ar[0] === L) {
-                const api = function() { p(api, arguments); };
-                const namespace = ar[1];
-                api.q = api.q || [];
-                typeof namespace === "string" && (cal.ns[namespace] = api) && p(api, ar);
-                return;
-            }
-            p(cal, ar);
-        };
-    })(window, "https://cal.com/embed.js", "init");
-
-    document.addEventListener('DOMContentLoaded', function() {
-        Cal("init", {
-            origin: "https://cal.com",
-            elementOrSelector: ".cal-trigger-item",
-            calLink: "gael-padilla-jng1ej/30min"
-        });
-    });
-    </script>
-
     <!-- Mobile hero effects initialization -->
     <script>
         (function() {
@@ -173,6 +139,8 @@
                 <div 
                     class="cal-trigger-item" 
                     data-cal-link="gael-padilla-jng1ej/30min"
+                    data-cal-namespace="30min"
+                    data-cal-config='{"layout":"month_view"}'
                 >
                     book now
                 </div>
@@ -202,6 +170,8 @@
             <div 
                 class="cal-trigger-item" 
                 data-cal-link="gael-padilla-jng1ej/30min"
+                data-cal-namespace="30min"
+                data-cal-config='{"layout":"month_view"}'
             >
                 book now
             </div>
@@ -291,6 +261,24 @@
                 <button 
                     class="cal-trigger-item hero-btn" 
                     data-cal-link="gael-padilla-jng1ej/30min"
+                    data-cal-namespace="30min"
+                    data-cal-config='{"layout":"month_view"}'
+                    style="
+                        display: inline-block;
+                        background-color: #fff;
+                        color: #000;
+                        padding: 1rem 4rem;
+                        border: 1px solid #fff;
+                        cursor: pointer;
+                        font-weight: 500;
+                        letter-spacing: 2px;
+                        text-transform: uppercase;
+                        transition: all 0.3s ease;
+                        margin-top: 1rem;
+                        font-family: 'Libre Baskerville', serif;
+                        font-size: 1rem;
+                        border-radius: 25px;
+                    "
                 >
                     BOOK NOW
                 </button>
@@ -418,12 +406,20 @@
             <div class="section-header">
                 <span class="section-number">03</span>
                 <h2>Pricing</h2>
-                <p class="section-tagline">Quality Comes at a Price</p>
+                <p class="section-tagline">Best Barber Experience</p>
             </div>
             <div class="pricing-content">
-                <div class="price-list">
+                <div class="pricing-text">
+                    <p>I am committed to delivering the highest quality service to ensure your complete satisfaction. My expertise and dedication set me apart.</p>
+                </div>
+                <div class="pricing-list">
                     <div class="price-item">
-                        <div class="price-name">Regular Cut</div>
+                        <div class="price-name">Cippler Cut Only</div>
+                        <div class="price-line"></div>
+                        <div class="price-amount">$40</div>
+                    </div>
+                    <div class="price-item">
+                        <div class="price-name">Clipper Cut + Scissors Work</div>
                         <div class="price-line"></div>
                         <div class="price-amount">$45</div>
                     </div>
@@ -437,6 +433,25 @@
                     <button 
                         class="cal-trigger-item hero-btn" 
                         data-cal-link="gael-padilla-jng1ej/30min"
+                        data-cal-namespace="30min"
+                        data-cal-config='{"layout":"month_view"}'
+                        style="
+                            display: block;
+                            width: 100%;
+                            background-color: #fff;
+                            color: #000;
+                            padding: 1rem 2.5rem;
+                            border: 1px solid #fff;
+                            cursor: pointer;
+                            font-weight: 500;
+                            letter-spacing: 3px;
+                            text-transform: uppercase;
+                            transition: all 0.3s ease;
+                            margin-top: 1rem;
+                            font-family: 'Libre Baskerville', serif;
+                            font-size: 1rem;
+                            border-radius: 25px;
+                        "
                     >
                         BOOK NOW
                     </button>
@@ -562,6 +577,15 @@
     <script src="js/main.js"></script>
     <script src="js/page-transition.js"></script>
     <script src="js/hero-hover.js"></script>
+
+    <!-- Cal element-click embed code begins -->
+    <script type="text/javascript">
+      (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+      Cal("init", "30min", {origin:"https://app.cal.com"});
+      
+      Cal.ns["30min"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+    </script>
+    <!-- Cal element-click embed code ends --> 
 
 </body>
 </html> 
